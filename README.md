@@ -9,6 +9,9 @@ git checkout [name_of_your_new_branch]
 Push the branch on github :
 git push origin [name_of_your_new_branch]
 
+Delete the branch on github :
+git push origin :[name_of_your_new_branch]
+
 Cai package:
 npm install
 
