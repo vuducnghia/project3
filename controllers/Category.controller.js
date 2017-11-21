@@ -13,7 +13,6 @@ exports.getAll = (req, res) => {
         console.log(err);
         return res.json({err_msg: 'Something wrong!'});
       };
-      console.log('results: ', results);
       const cates = [];
       const idCates = [];
       results.forEach((row) => {
@@ -21,16 +20,6 @@ exports.getAll = (req, res) => {
         const nameCat = row.catName;
         const idSubcat = row.idSub_Category;
         const nameSubcat = row.subcatName;
-        //Fix includes is not a function
-        if(!Array.prototype.includes) {
-          Array.prototype.includes = function(elem) {
-            if(this.length === 0) return false;
-            for(var i = 0; i< this.length; i++) {
-              if(this[i] === elem) return true;
-            }
-            return false;
-          };
-        }
         if(!idCates.includes(idCate)) {
           idCates.push(idCate);
           cates.push(
@@ -49,7 +38,6 @@ exports.getAll = (req, res) => {
         })
 
       })
-      console.log('cates: ', JSON.stringify(cates));
       res.json(cates);
     });
     //Release connection back to pool
