@@ -7,11 +7,11 @@ var data = {
 
 		    console.log('aaaaaaaaaaaa');
 		    console.log('aaaaaaaaaaaa');
-			
+
 		    return results[0];
 		});
     }
 };
 
-console.log(data.list());
+console.log('return data(models/brand.js): ', data.list());
 module.exports = data;
