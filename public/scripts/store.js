@@ -34,6 +34,7 @@ console.log('start');
             $http.get("/category").then(function(result) {
                 console.log('startaaa');
                 console.log(result);
+                $scope.categories = result.data;
                 
             }); 
            
