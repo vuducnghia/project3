@@ -205,17 +205,17 @@ $(document).ready(function() {
 		<div class="header-three"><!-- header-three -->
 			<div class="container">
 				<div class="menu">
-					<div class="cd-dropdown-wrapper">
+					<div class="cd-dropdown-wrapper" ng-controller="loaiSanPham">
 						<a class="cd-dropdown-trigger" href="#0">Store Categories</a>
 						<nav class="cd-dropdown"> 
 							<a href="#0" class="cd-close">Close</a>
 							<ul class="cd-dropdown-content"> 
-								<li><a href="offers.html">Today's Offers</a></li>
+								<li><a href="/offers">Today's Offers</a></li>
 								<li class="has-children">
 									<a href="#">Electronics</a> 
 									<ul class="cd-secondary-dropdown is-hidden">
 										<li class="go-back"><a href="#">Menu</a></li>
-										<li class="see-all"><a href="products.html">All Electronics</a></li>
+										<li class="see-all"><a href="/products">All Electronics</a></li>
 										<li class="has-children">
 											<a href="#">MOBILE PHONES</a>  
 											<ul class="is-hidden"> 
@@ -324,8 +324,8 @@ $(document).ready(function() {
 												<li><a href="products.html">cables</a></li>
 											</ul>
 										</li>
-									</ul> <!-- .cd-secondary-dropdown --> 
-								</li> <!-- .has-children -->
+									</ul> <!-- .cd-secondary-dropdown 
+								</li>  --><!-- .has-children -->
 								<li class="has-children">
 									<a href="#">Fashion Store</a> 
 									<ul class="cd-secondary-dropdown is-hidden">
