@@ -53,10 +53,10 @@ app.use(function (req, res, next) {
 });
 
 //Use routers
-app.use('/', store);
 app.use('/users', users);
 app.use('/category', category);
 app.use('/admin', admin);
+app.use('/', store);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
