@@ -3,9 +3,10 @@ var bcrypt = require('bcryptjs');
 
 exports.getAll = (req, res) => {
   //Get a connection from pool
+  console.log("start query category");
   poolConnection.getConnection((err, connection) => {
     if(err) return console.log(err);
-    const sellectQuery = 'SELECT cat.idCategory, cat.name as catName, sub_cat.idSub_Category, sub_cat.name as subcatName FROM ecommerce.category cat LEFT JOIN ecommerce.sub_category sub_cat ON cat.idCategory = sub_cat.category_idCategory;';
+    const sellectQuery = 'SELECT cat.idCategory, cat.name as catName, sub_cat.idSub_Category, sub_cat.name as subcatName FROM ecommerce.category cat LEFT JOIN ecommerce.sub_Category sub_cat ON cat.idCategory = sub_cat.category_idCategory;';
 
     connection.query(sellectQuery, (error, results, fields) => {
       if (err) {
