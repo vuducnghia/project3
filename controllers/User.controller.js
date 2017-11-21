@@ -57,6 +57,7 @@ exports.signup = (req, res) => {
           }
           console.log(results);
           return res.json({msg: 'Signup success!'});
+          res.redirect('/login');
         });
       })
       .catch((err) => {

@@ -9,7 +9,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
 
-var index = require('./routes/index');
+var store = require('./routes/store');
+var admin = require('./routes/admin');
 var users = require('./routes/users');
 var category = require('./routes/category');
 
@@ -52,9 +53,10 @@ app.use(function (req, res, next) {
 });
 
 //Use routers
-app.use('/', index);
+app.use('/', store);
 app.use('/users', users);
 app.use('/category', category);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
