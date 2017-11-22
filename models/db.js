@@ -10,10 +10,10 @@ var connection = mysql.createConnection({
   password: process.env.password,
   database: process.env.database
 });
-connection.connect(function(err) {
-  if (err) throw err
-  console.log('You are now connected...')
-
-});
+// connection.connect(function(err) {
+//   if (err) throw err;
+//   console.log('You are now connected...')
+//
+// });
 
 module.exports = connection;

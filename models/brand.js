@@ -5,13 +5,13 @@ var data = {
 		db.query('SELECT * FROM brand', function(err, results) {
 		    if (err) throw err
 
-		    console.log('aaaaaaaaaaaa');
-		    console.log('aaaaaaaaaaaa');
+		    // console.log('aaaaaaaaaaaa');
+		    // console.log('aaaaaaaaaaaa');
 
 		    return results[0];
 		});
     }
 };
 
-console.log('return data(models/brand.js): ', data.list());
+// console.log('return data(models/brand.js): ', data.list());
 module.exports = data;

@@ -7,4 +7,10 @@ var poolConnection  = mysql.createPool({
   database: process.env.database
 });
 
+poolConnection.getConnection((err, connection) => {
+  if(err) { return console.log('Conect to database fault. Msg: ', err.sqlMessage); };
+  console.log("Your connection to database ready to use!");
+  connection.release();
+})
+
 module.exports = poolConnection;

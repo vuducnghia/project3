@@ -8,8 +8,13 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
-require('./polyfill/index').usePolyfill();
 
+//Load config
+require('./polyfill/index').usePolyfill();
+require('dotenv').config();
+const passportConfig = require('./config/passport.config');
+
+//Load routers
 var store = require('./routes/store');
 var admin = require('./routes/admin');
 var users = require('./routes/users');
