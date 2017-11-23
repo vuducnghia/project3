@@ -2,21 +2,30 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var poolConnection = require('../models/pool.connection');
 var bcrypt = require('bcryptjs');
+var User = require('../models/User.model');
 
-//Config here
-passport.use(new LocalStrategy((username, password, next) => {
+// Config here
+
+passport.use('local', new LocalStrategy((username, password, next) => {
+
   poolConnection.getConnection((err, connection) => {
-    if(err) return console.log(err);
+    if(err) return next(err);
     // console.log('connected as id ' + connection.threadId);
     const sellectQuery = 'SELECT * FROM ecommerce.user WHERE username = ?;';
     const params = [username];
     connection.query(sellectQuery, params, (err, results, fields) => {
-      if (err) { return next(err); };
-      if(!results || results.length === 0) { return next(null, false); }
+      if (err) {
+        return next(err);
+      };
+      if(!results || results.length === 0) {
+        return next(null, false);
+      }
       const user = results[0];
-      bcrypt.compare(password, username.password)
+      bcrypt.compare(password, user.password)
       .then((res) => {
-        if(res !== true) { return next(null, false); }
+        if(res !== true) {
+          return next(null, false);
+        }
         // delete user.password;
         return next(null, user);
       })
@@ -30,10 +39,10 @@ passport.serializeUser(function(user, next) {
 });
 
 passport.deserializeUser(function(id, next) {
-  db.users.findById(id, function (err, user) {
-    if (err) { return next(err); }
+  User.getById(id, (err, user) => {
+    if(err) { return next(err) };
     next(null, user);
-  });
+  })
 });
 
 exports.isAuthenticated = (req, res, next) => {

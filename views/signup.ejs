@@ -87,21 +87,29 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <body ng-app="storeApp">
 	<!-- header -->
 	<div class="header" ng-controller = "account">
+
 		<div class="w3ls-header"><!--header-one--> 
 			<div class="w3ls-header-left">
 				<p><a href="#">UPTO $50 OFF ON LAPTOPS | USE COUPON CODE LAPPY </a></p>
 			</div>
 			<div class="w3ls-header-right">
-				<ul>
-					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> My Account<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li ng-if="account == 'My Account'"><a href="/login">Login </a></li> 
-							<li ng-if="account == 'My Account'"><a href="/signup">Sign Up</a></li> 
 
-							<li ng-if="account != 'My Account'"><a href="/login">My Orders</a></li>  
-							<li ng-if="account != 'My Account'"><a href="/login">Wallet</a></li> 
-						</ul>  
+				<ul>
+					<li class="dropdown head-dpdn" ng-if="user == ''">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i>{{user}} <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li ><a href="/login">Login </a></li>
+							<li ><a href="/signup">Sign Up</a></li>
+						</ul>
+					</li>
+					<li class="dropdown head-dpdn" ng-if="user != ''">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i>{{user}} <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							
+
+							<li ><a href="/login">My Orders</a></li>
+							<li ><a href="/login">Wallet</a></li>
+						</ul>
 					</li> 
 					<li class="dropdown head-dpdn">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-percent" aria-hidden="true"></i> Today's Deals<span class="caret"></span></a>
@@ -974,6 +982,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			<h6>Already have an account? <a href="/login">Login Now »</a> </h6>  
 		</div>
 	</div>
+	
 	<!-- //sign up-page --> 
 	<!-- footer-top -->
 	<div class="w3agile-ftr-top">

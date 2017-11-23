@@ -5,5 +5,5 @@ var userController = require('../controllers/User.controller');
 var passport = require('passport');
 
 router.post('/signup', userController.signup);
-router.post('/login', userController.login);
+router.post('/login', passport.authenticate('local', { failureRedirect: '/login' }) , userController.login);
 module.exports = router;

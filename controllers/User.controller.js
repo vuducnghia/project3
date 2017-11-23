@@ -1,5 +1,6 @@
 var poolConnection = require('../models/pool.connection');
 var bcrypt = require('bcryptjs');
+var User = require('../models/User.model');
 
 exports.signup = (req, res) => {
   const user = {
@@ -27,7 +28,6 @@ exports.signup = (req, res) => {
         console.log(err);
         return res.json({err_msg: 'Something wrong!'});
       }
-      ;
 
       //Check if have any duplicate infomation
       const duplicateUser = results.filter((userExist) => {
@@ -73,12 +73,22 @@ exports.signup = (req, res) => {
 }
 
 exports.login = (req, res, next) => {
-  passport.authenticate('local', function(err, user, info) {
-    if (err) { return next(err); }
-    if (!user) { return res.redirect('/login'); }
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      return res.redirect('/profile');
-    });
-  })(req, res, next);
+  // console.log(req);
+  // passport.authenticate('local', function(err, user, info) {
+  //   console.log('User: ', user);
+  //   if (err) { return next(err); }
+  //   if (!user) {
+  //     console.log('Khong tim thay user');
+  //     return res.redirect('/login');
+  //   }
+  //   req.logIn(user, function(err) {
+  //     if (err) {
+  //       console.log('Error occus: ', err);
+  //       return next(err);
+  //     }
+  //     // return res.redirect('/');
+  //   });
+  // })(req, res, next);
+  res.json({user: req.user});
+
 }

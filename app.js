@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,9 +10,11 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
 
+var bcrypt = require('bcryptjs');
+var poolConnection = require('./models/pool.connection');
+
 //Load config
 require('./polyfill/index').usePolyfill();
-require('dotenv').config();
 const passportConfig = require('./config/passport.config');
 
 //Load routers
@@ -54,6 +57,7 @@ app.use(function (req, res, next) {
     // res.locals.success_msg = req.flash('success_msg');
     // res.locals.error_msg = req.flash('error_msg');
     // res.locals.error = req.flash('error');
+    // console.log(req.user);
     res.locals.user = req.user || null;
     next();
 });
