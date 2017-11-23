@@ -1,5 +1,6 @@
 var poolConnection = require('../models/pool.connection');
 var bcrypt = require('bcryptjs');
+var User = require('../models/User.model');
 
 exports.signup = (req, res) => {
   const user = {
@@ -27,7 +28,6 @@ exports.signup = (req, res) => {
         console.log(err);
         return res.json({err_msg: 'Something wrong!'});
       }
-      ;
 
       //Check if have any duplicate infomation
       const duplicateUser = results.filter((userExist) => {
@@ -89,8 +89,6 @@ exports.login = (req, res, next) => {
   //     // return res.redirect('/');
   //   });
   // })(req, res, next);
-  console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiiii');
-  console.log('user tra ve: ', req.user);
   res.json({user: req.user});
 
 }
