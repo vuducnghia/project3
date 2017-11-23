@@ -4,7 +4,7 @@ console.log('start');
         	$scope.account = "My Account";
         })
          app.controller('sign-up', function ($http,$scope,$window) {
-            
+
             $scope.register = function () {
                 console.log('lol');
                 console.log($scope);
@@ -21,7 +21,7 @@ console.log('start');
                     url: "users/signup",
                     data: data
                 }).success(function (data) {
-                    
+
                     console.log("signup successful");
                     console.log(data);
                     $window.location.href = '/login';
@@ -33,6 +33,7 @@ console.log('start');
          app.controller('dang_nhap', function ($http,$scope,$window) {
             
             $scope.dangNhap = function (user) {
+
                 console.log('lol');
                 console.log($scope);
 
@@ -40,6 +41,8 @@ console.log('start');
                 .success(function (data) {
                     console.log("Login successful");
                     console.log(data);
+
+                    $rootScope.currentUser = data.user;
                     $window.location.href = '/';
                 }).error(function (err) {
                     console.log(err);
@@ -52,7 +55,7 @@ console.log('start');
                 console.log('startaaa');
                 console.log(result);
                 $scope.categories = result.data;
-            });  
+            });
 
             $scope.cat = function(id){
                 console.log(id);
@@ -60,6 +63,6 @@ console.log('start');
                     console.log('startaaa');
                     console.log(result);
                     $scope.categories = result.data;
-            });  
+            });
             }
         })
