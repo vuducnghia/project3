@@ -84,7 +84,7 @@ exports.login = (req, res, next) => {
         console.log('Error occus: ', err);
         return next(err);
       }
-      return res.redirect('/');
+      // return res.redirect('/');
     });
   })(req, res, next);
 }
