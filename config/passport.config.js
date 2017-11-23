@@ -4,8 +4,9 @@ var poolConnection = require('../models/pool.connection');
 var bcrypt = require('bcryptjs');
 
 // Config here
-passport.use(new LocalStrategy((username, password, next) => {
+passport.use('local', new LocalStrategy((username, password, next) => {
   poolConnection.getConnection((err, connection) => {
+    console.log('Search userrrrrrr');
     if(err) return next(err);
     // console.log('connected as id ' + connection.threadId);
     const sellectQuery = 'SELECT * FROM ecommerce.user WHERE username = ?;';
@@ -18,28 +19,44 @@ passport.use(new LocalStrategy((username, password, next) => {
         return next(null, false);
       }
       const user = results[0];
-      bcrypt.compare(password, username.password)
+      console.log('user catched: ', user);
+      bcrypt.compare(password, user.password)
       .then((res) => {
         if(res !== true) {
+          console.log('password incorrect');
           return next(null, false);
         }
         // delete user.password;
+        console.log('password correct');
+        connection.release();
         return next(null, user);
       })
     })
-    connection.release();
   })
 }))
 
 passport.serializeUser(function(user, next) {
+  console.log('serializeUser');
   next(null, user.idUser);
 });
 
 passport.deserializeUser(function(id, next) {
-  db.users.findById(id, function (err, user) {
-    if (err) { return next(err); }
-    next(null, user);
-  });
+  console.log('deserializeUser');
+  // db.users.findById(id, function (err, user) {
+  //   if (err) { return next(err); }
+  //   next(null, user);
+  // });
+  poolConnection.getConnection((err, connection) => {
+    const sellectQuery = 'SELECT * FROM ecommerce.user WHERE idUser = ?;';
+    connection.query(sellectQuery, [id], (err, results, fields) => {
+      const user = results[0];
+      if(user) {
+        console.log('deserialize User!!!');
+        next(null, user);
+      }
+    })
+    connection.release();
+  })
 });
 
 exports.isAuthenticated = (req, res, next) => {

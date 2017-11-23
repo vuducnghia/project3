@@ -73,18 +73,24 @@ exports.signup = (req, res) => {
 }
 
 exports.login = (req, res, next) => {
-  passport.authenticate('local', function(err, user, info) {
-    if (err) { return next(err); }
-    if (!user) {
-      console.log('Khong tim thay user');
-      return res.redirect('/login');
-    }
-    req.logIn(user, function(err) {
-      if (err) {
-        console.log('Error occus: ', err);
-        return next(err);
-      }
-      // return res.redirect('/');
-    });
-  })(req, res, next);
+  // console.log(req);
+  // passport.authenticate('local', function(err, user, info) {
+  //   console.log('User: ', user);
+  //   if (err) { return next(err); }
+  //   if (!user) {
+  //     console.log('Khong tim thay user');
+  //     return res.redirect('/login');
+  //   }
+  //   req.logIn(user, function(err) {
+  //     if (err) {
+  //       console.log('Error occus: ', err);
+  //       return next(err);
+  //     }
+  //     // return res.redirect('/');
+  //   });
+  // })(req, res, next);
+  console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+  console.log('user tra ve: ', req.user);
+  res.json({user: req.user});
+
 }
