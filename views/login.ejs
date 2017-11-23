@@ -955,11 +955,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	<div class="login-page">
 		<div class="container"> 
 			<h3 class="w3ls-title w3ls-title1">Login to your account</h3>  
-			<div class="login-body" ng-controller="sign-up">
+			<div class="login-body" ng-controller="dang_nhap">
 				<form action="#" method="post">
-					<input type="text" class="user" name="email" placeholder="Enter your email" required="">
-					<input type="password" name="password" class="lock" placeholder="Password" required="">
-					<input type="submit" value="Login">
+					<input type="text" class="user" name="username" ng-model="username" placeholder="Enter your username" required="">
+					<input type="password" name="password" ng-model = "password" class="lock" placeholder="Password" required="">
+					<input type="submit" value="Login" ng-click="dangNhap()">
 					<div class="forgot-grid">
 						<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Remember me</label>
 						<div class="forgot">
