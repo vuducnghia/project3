@@ -3,7 +3,7 @@ exports.usePolyfill = () => {
   if (!Array.prototype.includes) {
     console.log('Use Array.prototype.includes polyfill!');
     Object.defineProperty(Array.prototype, 'includes', {
-      value: function(searchElement, fromIndex) {
+      value: function (searchElement, fromIndex) {
 
         if (this == null) {
           throw new TypeError('"this" is null or not defined');

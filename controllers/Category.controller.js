@@ -11,7 +11,8 @@ exports.getAll = (req, res) => {
       if (err) {
         console.log(err);
         return res.json({err_msg: 'Something wrong!'});
-      };
+      }
+      ;
       const cates = [];
       const idCates = [];
       results.forEach((row) => {
@@ -19,20 +20,20 @@ exports.getAll = (req, res) => {
         const nameCat = row.catName;
         const idSubcat = row.idSub_Category;
         const nameSubcat = row.subcatName;
-        if(!idCates.includes(idCate)) {
+        if (!idCates.includes(idCate)) {
           idCates.push(idCate);
           cates.push(
             {
               id: idCate,
               name: nameCat,
-              subCate: [{id: idSubcat,name: nameSubcat}]
+              subCate: [{id: idSubcat, name: nameSubcat}]
             }
           );
           return;
         }
         cates.forEach((cate) => {
-          if(cate.id === idCate) {
-            cate.subCate.push({id: idSubcat,name: nameSubcat})
+          if (cate.id === idCate) {
+            cate.subCate.push({id: idSubcat, name: nameSubcat})
           }
         })
 
