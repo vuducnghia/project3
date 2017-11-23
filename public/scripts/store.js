@@ -1,7 +1,22 @@
 console.log('start');
   var app = angular.module('storeApp', []);
-        app.controller("account", function ($scope, $http) {
-        	$scope.account = "My Account";
+        app.controller("account", function ($scope, $http,$window,$rootScope) {
+        	 // $window.localStorage.setItem('user','') ;
+            $rootScope.user=$window.localStorage.getItem('user') ;
+            $scope.dang_xuat = function(){
+                 $http({
+                    method: "POST",
+                    url: "users/logout",
+                }).success(function () {
+                    $window.localStorage.setItem('user','') ;
+                    $rootScope.user=$window.localStorage.getItem('user') ;
+                    console.log("Log out successful");
+                    // console.log(data);
+                    $window.location.href = '/';
+                }).error(function (err) {
+                    alert("Unable to connect to the server.");
+                });
+            }
         })
          app.controller('sign-up', function ($http,$scope,$window) {
 
@@ -30,7 +45,7 @@ console.log('start');
                 });
             }
         });
-         app.controller('dang_nhap', function ($http,$scope,$window) {
+         app.controller('dang_nhap', function ($http,$scope,$window,$rootScope,$location) {
             
             $scope.dangNhap = function (user) {
 
@@ -42,8 +57,13 @@ console.log('start');
                     console.log("Login successful");
                     console.log(data);
 
-                    $rootScope.currentUser = data.user;
+                    // $rootScope.currentUser = data.user;
+                    // $scope.account = data.user.username
+                    // $rootScope.currentUser.username = data.user.username
+                    $window.localStorage.setItem('user',data.user.username); 
+                    $rootScope.user = $window.localStorage.getItem('user') ;
                     $window.location.href = '/';
+                    // $location.url("/");
                 }).error(function (err) {
                     console.log(err);
                     alert("Unable to connect to the server.");
