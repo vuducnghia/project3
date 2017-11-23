@@ -32,21 +32,12 @@ console.log('start');
         });
          app.controller('dang_nhap', function ($http,$scope,$window) {
             
-            $scope.dangNhap = function () {
+            $scope.dangNhap = function (user) {
                 console.log('lol');
                 console.log($scope);
-                var data = {
-                    username : $scope.username,
-                    password: $scope.password
-                };
 
-                console.log(data);
-                console.log(data);
-                $http({
-                    method: "POST",
-                    url: "users/login",
-                    data: data
-                }).success(function (data) {
+                $http.post('/users/login',user)
+                .success(function (data) {
                     console.log("Login successful");
                     console.log(data);
                     $window.location.href = '/';
