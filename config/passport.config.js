@@ -5,7 +5,9 @@ var bcrypt = require('bcryptjs');
 var User = require('../models/User.model');
 
 // Config here
+
 passport.use('local', new LocalStrategy((username, password, next) => {
+
   poolConnection.getConnection((err, connection) => {
     if(err) return next(err);
     // console.log('connected as id ' + connection.threadId);

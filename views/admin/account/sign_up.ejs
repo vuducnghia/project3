@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>nghia</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="scripts/admin.controller.client/account/sign_up.js"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
+
+</head>
+
+<body ng-app="signUpApp">
+    <div ng-controller="signUp">
+        <form>
+            <input type="text" placeholder="username" name="username" ng-model="username">
+            <input type="password" placeholder="password" name="password" ng-model="password">
+            <input type="text" placeholder="phone" name="phone" ng-model="phone">
+            <button ng-click="SignUp()" >Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
