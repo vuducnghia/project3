@@ -89,13 +89,13 @@ exports.login = (req, res, next) => {
   //     // return res.redirect('/');
   //   });
   // })(req, res, next);
-  console.log('current user: ', req.user);
+  console.log('login controller');
+  // console.log('current user: ', req.user);
   res.json({user: req.user});
 
 
 }
 exports.logout = (req, res) => {
   req.logout();
-  console.log('current user: ', req.user);
-  res.redirect('/');
+  res.json({msg: 'You are out of my system!'});
 }
