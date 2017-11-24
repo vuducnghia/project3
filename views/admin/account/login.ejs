@@ -3,14 +3,19 @@
 
 <head>
     <title>nghia</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="scripts/admin.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/scripts/admin.js"></script>
 
 </head>
 
-<body>
-    <input type="text" placeholder="user">
-    <button ng-click="$scope.alert()">submit</button>
+<body ng-app="admin">
+	<div ng-controller="account">
+        <form>
+            <input type="text" placeholder="username" name="username" ng-model="username">
+            <input type="password" placeholder="password" name="password" ng-model="password">
+            <button ng-click="Login()" >Submit</button>
+        </form>
+    </div>
 </body>
 
 </html>
