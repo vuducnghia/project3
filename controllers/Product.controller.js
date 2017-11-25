@@ -11,3 +11,14 @@ exports.getBySubCateId = (req, res) => {
     res.json({products: products});
   })
 }
+
+exports.getById = (req, res) => {
+  const idProduct = req.params.idProduct;
+  Product.getById(idProduct, (err, product) => {
+    if(err) {
+      console.log(err);
+      return res.json({error_msg: "Some thing wrong when catch product by id!"});
+    }
+    res.json({product: product});
+  })
+}

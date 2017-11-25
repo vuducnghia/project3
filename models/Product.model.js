@@ -9,8 +9,8 @@ exports.getBySubCateId = (idSubcate, callback) => {
       return callback(err, null);
     };
 
-    const querry = "SELECT * FROM ecommerce.product, ecommerce.sub_category, ecommerce.category, ecommerce.brand where sub_Category_idSub_Category = ? AND idSub_Category = ? AND idCategory = category_idCategory;";
-    const params = [idSubcate, idSubcate];
+    const querry = "SELECT * FROM ecommerce.product p, ecommerce.sub_category s, ecommerce.category c, ecommerce.brand b where p.sub_Category_idSub_Category = ? AND s.idSub_Category = p.sub_Category_idSub_Category AND c.idCategory = s.category_idCategory AND p.brand_idbrand = b.idbrand;";
+    const params = [idSubcate];
 
     connection.query({sql: querry, nestTables: true}, params, (err, results, fields) => {
       if(err) {
@@ -19,28 +19,74 @@ exports.getBySubCateId = (idSubcate, callback) => {
       };
       const products = results.map((result) => {
         return {
-          id: result.product.idProduct,
-          name: result.product.name,
-          code: result.product.code,
-          description: result.product.description,
-          accessories: result.product.accessories,
-          product_assuarance_policy: result.product.product_assuarance_policy,
-          month_assuarance: result.product.month_assuarance,
+          id: result.p.idProduct,
+          name: result.p.name,
+          code: result.p.code,
+          description: result.p.description,
+          accessories: result.p.accessories,
+          product_assuarance_policy: result.p.product_assuarance_policy,
+          month_assuarance: result.p.month_assuarance,
           sub_category: {
-            id: result.sub_category.idSub_Category,
-            name: result.sub_category.name
+            id: result.s.idSub_Category,
+            name: result.s.name
           },
           category: {
-            id: result.category.idCategory,
-            name: result.category.name
+            id: result.c.idCategory,
+            name: result.c.name
           },
           brand: {
-            id: result.brand.idbrand,
-            name: result.brand.name
+            id: result.b.idbrand,
+            name: result.b.name
           }
         }
       })
       callback(null, products);
+    })
+    connection.release();
+  })
+};
+
+exports.getById = (idProduct, callback) => {
+  poolConnection.getConnection((err, connection) => {
+    if(err) {
+      console.log("error when get connection when catch product by id");
+      return callback(err, null);
+    };
+
+    const querry = "SELECT * FROM ecommerce.product p, ecommerce.sub_category s, ecommerce.category c, ecommerce.brand b where p.idProduct = ? AND s.idSub_Category = p.sub_Category_idSub_Category AND c.idCategory = s.category_idCategory AND p.brand_idbrand = b.idbrand;";
+    const params = [idProduct];
+
+    connection.query({sql: querry, nestTables: true}, params, (err, results, fields) => {
+      if(err) {
+        console.log('Something wrong when querry products by subcate id!');
+        return callback(err, null);
+      };
+      if(!results[0]) {
+        callback(err, null);
+      }
+      const result = results[0];
+      const product = {
+          id: result.p.idProduct,
+          name: result.p.name,
+          code: result.p.code,
+          description: result.p.description,
+          accessories: result.p.accessories,
+          product_assuarance_policy: result.p.product_assuarance_policy,
+          month_assuarance: result.p.month_assuarance,
+          sub_category: {
+            id: result.s.idSub_Category,
+            name: result.s.name
+          },
+          category: {
+            id: result.c.idCategory,
+            name: result.c.name
+          },
+          brand: {
+            id: result.b.idbrand,
+            name: result.b.name
+          }
+        }
+      callback(null, product);
     })
     connection.release();
   })
