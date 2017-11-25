@@ -43,7 +43,22 @@ app.controller("account", function ($scope, $http, $rootScope, $window) {
 })
 
 app.controller("home", function ($scope, $http, $rootScope, $window) {
-    $scope.nghia=function(){
+    $scope.nghia = function () {
         alert('nghia')
+    }
+})
+
+app.controller("manage_categories", function ($scope, $http, $rootScope, $window) {
+    init();
+    function init() {
+        $http({
+            method: "GET",
+            url: "/admin/getAllCategories",
+        }).success(function (data) {
+
+            console.log('response: ', data);
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr.");
+        });
     }
 })
