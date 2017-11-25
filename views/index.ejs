@@ -1,48 +1,6 @@
 
 <% include partials/navbar %>
-		<div class="header-three"><!-- header-three -->
-			<div class="container">
-				<div class="menu">
-					<div class="cd-dropdown-wrapper" ng-controller="loaiSanPham">
-						<a class="cd-dropdown-trigger" href="#0">Store Categories</a>
-						<nav class="cd-dropdown">
-							<a href="#0" class="cd-close">Close</a>
-							<ul class="cd-dropdown-content">
-								<li><a href="/offers">Today's Offers</a></li>
-								<li class="has-children" ng-repeat="category in categories">
-									<!-- /category/{{category.id}} -->
-									<a href="" ng-click="cat(category.id)">{{category.name}}</a>
-									<ul class="cd-secondary-dropdown is-hidden">
-										<li class="go-back"><a href="#">Menu</a></li>
-										<li class="see-all" ng-repeat="subcate in category.subCate"><a href="/products">All {{category.name}}</a>
-											<li class="has-children">
-												<a href="#">{{subcate.name}}</a>
-											</li>
-										</li>
-
-									</ul>
-								</li>
-								<!-- .cd-secondary-dropdown
-								</li>  -->
-								<!-- .has-children -->
-							</ul>
-							<!-- .cd-dropdown-content -->
-						</nav>
-						<!-- .cd-dropdown -->
-					</div>
-					<!-- .cd-dropdown-wrapper -->
-				</div>
-				<div class="move-text">
-					<div class="marquee"><a href="offers.html"> New collections are available here...... <span>Get extra 10% off on everything | no extra taxes </span> <span> Try shipping pass free for 15 days with unlimited</span></a></div>
-					<script type="text/javascript" src="js/jquery.marquee.min.js"></script>
-					<script>
-						$('.marquee').marquee({ pauseOnHover: true });
-					  //@ sourceURL=pen.js
-					</script>
-				</div>
-			</div>
-		</div>
-	</div>
+		
 	<!-- //header -->
 	<!-- banner -->
 	<div class="banner">
