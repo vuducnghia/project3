@@ -41,3 +41,9 @@ app.controller("account", function ($scope, $http, $rootScope, $window) {
     }
 
 })
+
+app.controller("home", function ($scope, $http, $rootScope, $window) {
+    $scope.nghia=function(){
+        alert('nghia')
+    }
+})
