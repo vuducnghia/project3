@@ -21,7 +21,7 @@ const passportConfigAdmin = require('./config/passport.admin.config');
 
 //Load routers
 var store = require('./routes/store');
-var admin = require('./routes/admin');
+var admin = require('./routes/admin.router');
 var users = require('./routes/users');
 var category = require('./routes/category');
 
