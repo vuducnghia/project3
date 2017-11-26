@@ -2,20 +2,31 @@
 <html lang="en">
 
 <head>
-    <title>nghia</title>
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/admin-login.css">
+    <link rel="stylesheet" href="/css/font-awesome.css">
     <script src="/js/angular.min.js"></script>
     <script src="/scripts/admin.controller.client.js"></script>
 
 </head>
 
 <body ng-app="admin">
-	<div ng-controller="account">
-        <form>
-            <input type="text" placeholder="username" name="username" ng-model="username">
-            <input type="password" placeholder="password" name="password" ng-model="password">
-            <button ng-click="Login()" >Submit</button>
-        </form>
-    </div>
+<form class="login-form">
+    <p class="login-text">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-lock fa-stack-1x"></i>
+    </span>
+    </p>
+    <input type="email" class="login-username" autofocus="true" required="true" placeholder="username" name="username" ng-model="username"/>
+    <input type="password" class="login-password" required="true" placeholder="password" name="password" ng-model="password"/>
+    <input type="submit" name="Login" value="Login" class="login-submit" />
+</form>
+<a href="#" class="login-forgot-pass">forgot password?</a>
+<div class="underlay-photo"></div>
+<div class="underlay-black"></div>
+
+
 </body>
 
 </html>
