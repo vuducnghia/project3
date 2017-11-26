@@ -1,7 +1,9 @@
+
 <% include partials/navbar %>
-<!-- //header --> 	
+
+	<!-- //header --> 	
 	<!-- products -->
-	<div class="products">	 
+	<div class="products" ng-controller="sanPham">	 
 		<div class="container">
 			<div class="col-md-9 product-w3ls-right">
 				<!-- breadcrumbs --> 
@@ -23,7 +25,7 @@
 								<li><a href="#">Popular</a></li> 
 							</ul> 
 						</li>
-						<li class="dropdown head-dpdn">
+						<!-- <li class="dropdown head-dpdn">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Brands<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Samsung</a></li> 
@@ -31,14 +33,14 @@
 								<li><a href="#">Sony</a></li> 
 								<li><a href="#">Other</a></li> 
 							</ul> 
-						</li>
+						</li> -->
 					</ul> 
 					<div class="clearfix"> </div>
 				</div>
 				<div class="products-row">
 					<div class="col-md-3 product-grids"> 
 						<div class="agile-products">
-							<div class="new-tag"><h6>20%<br>Off</h6></div>
+							<!-- <div class="new-tag"><h6>20%<br>Off</h6></div>
 							<a href="single.html"><img src="images/e1.png" class="img-responsive" alt="img"></a>
 							<div class="agile-product-text">              
 								<h5><a href="single.html">Audio speaker</a></h5> 
@@ -50,7 +52,8 @@
 									<input type="hidden" name="amount" value="100.00" /> 
 									<button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 								</form> 
-							</div>
+							</div> -->
+							{{sanPhams}}
 						</div> 
 					</div>
 					<div class="col-md-3 product-grids">

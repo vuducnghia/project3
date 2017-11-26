@@ -25,5 +25,8 @@ router.get('/help', function(req, res, next) {
   res.setHeader('Content-Type', 'text/html');
   res.render('help', { title: 'Express' });
 });
-
+router.get('/:id',function(req, res, next) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('products', { title: 'Express' });
+});
 module.exports = router;

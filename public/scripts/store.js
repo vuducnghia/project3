@@ -89,4 +89,18 @@ app.controller("loaiSanPham", function ($scope, $http) {
             $scope.categories = result.data;
         });
     }
+});
+app.controller("sanPham", function ($scope, $http,$location) {
+    // console.log($stateParams);
+    console.log('$location');
+    console.log($location.$$absUrl);
+    maLoaiSanPham = $location.$$absUrl.split('/')[3];
+    console.log(maLoaiSanPham);
+    $http.get("/product/{{maLoaiSanPham}}").then(function (result) {
+        console.log('startaaa');
+        console.log(result);
+        $scope.sanPhams = result.data;
+    });
+
+   
 })

@@ -198,7 +198,7 @@ $(document).ready(function() {
 								<li><a href="/offers">Today's Offers</a></li>
 								<li class="has-children" ng-repeat="category in categories">
 									<!-- /category/{{category.id}} -->
-									<a href="/category/{{category.id}}">{{category.name}}</a>
+									<a href="/{{category.id}}">{{category.name}}</a>
 									<ul class="cd-secondary-dropdown is-hidden">
 										<li class="go-back"><a href="#">Menu</a></li>
 										<li class="see-all" ng-repeat="subcate in category.subCate"><a href="/products">All {{category.name}}</a>
