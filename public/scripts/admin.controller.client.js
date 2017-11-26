@@ -49,16 +49,44 @@ app.controller("home", function ($scope, $http, $rootScope, $window) {
 })
 
 app.controller("manage_categories", function ($scope, $http, $rootScope, $window) {
+    
     init();
+
     function init() {
         $http({
             method: "GET",
-            url: "/admin/getAllCategories",
+            url: "/admin/getAllCategories"
         }).success(function (data) {
-
+            $scope.listCate = data
             console.log('response: ', data);
         }).error(function (err) {
-            alert("Unable to connect to the serverrrrr.");
+            alert("Unable to connect to the serverrrrr---/admin/getAllCategories");
+        });
+
+        // $http({
+        //     method: "GET",
+        //     url: "/admin/getSub_Categories",
+        // }).success(function (data) {
+        //     $scope.listCate = data
+        //     console.log('response: ', data);
+        // }).error(function (err) {
+        //     alert("Unable to connect to the serverrrrr.");
+        // });
+    }
+
+    $scope.createCategory = function(){
+
+        alert($scope.nameCategory)
+
+        $http({
+            method: "POST",
+            url: "/admin/createCategory",
+            data: '$scope.nameCategory'
+        }).success(function (data) {
+            $scope.listCate = data
+            console.log('response: ', data);
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/createCategory");
         });
     }
 })
