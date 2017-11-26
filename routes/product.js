@@ -5,7 +5,7 @@ var productController = require('../controllers/Product.controller');
 var passport = require('passport');
 
 
-router.post('/subcate/:idSubcate', productController.getBySubCateId);
+router.get('/subcate/:idSubcate', productController.getBySubCateId);
 router.post('/:idProduct', productController.getById);
 
 

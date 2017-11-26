@@ -3,6 +3,8 @@ var Product = require('../models/Product.model');
 
 exports.getBySubCateId = (req, res) => {
   const idSubcate = req.params.idSubcate;
+  console.log('idSubcate');
+  console.log(idSubcate);
   Product.getBySubCateId(idSubcate, (err, products) => {
     if(err) {
       console.log(err);
