@@ -1,0 +1,11 @@
+.sign-up form p input{
+    width: 300px;
+}
+.sign-up form p button{
+    background-color: #09192A;
+    color: white;
+}
+
+.navbar-right{
+	margin-right: 0;
+}

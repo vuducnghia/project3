@@ -62,3 +62,12 @@ exports.sign_up = (req, res) => {
         connection.release();
     })
 }
+
+exports.login = (req, res) => {
+    res.json({admin: req.user});
+}
+
+exports.logout = (req, res) => {
+    req.logout();
+    res.json({msg: 'You are logout!'});
+}

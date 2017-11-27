@@ -16,10 +16,12 @@ var poolConnection = require('./models/pool.connection');
 //Load config
 require('./polyfill/index').usePolyfill();
 const passportConfig = require('./config/passport.config');
+const passportConfigAdmin = require('./config/passport.admin.config');
+
 
 //Load routers
 var store = require('./routes/store');
-var admin = require('./routes/admin');
+var admin = require('./routes/admin.router');
 var users = require('./routes/users');
 var category = require('./routes/category');
 var product = require('./routes/product');
