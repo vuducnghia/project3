@@ -25,7 +25,14 @@ exports.getById = (req, res) => {
   })
 }
 
-exports.findProductByName = (req, res) => {
-  const nameQuery = req.body.query.name;
-  
+exports.findProductsByName = (req, res) => {
+  const query = req.body.query;
+  console.log('Query: ', query);
+  Product.findProductsByName(query, (err, products) => {
+    if(err) {
+      console.log(err);
+      return res.json({error_msg: "Some thing wrong when catch products by subcategory id!"});
+    }
+    res.json({products: products});
+  })
 }

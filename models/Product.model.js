@@ -1,6 +1,66 @@
 var poolConnection = require('../models/pool.connection');
 var bcrypt = require('bcryptjs');
 
+exports.findProductsByName = (query, callback) => {
+  poolConnection.getConnection((err, connection) => {
+    if(err) {
+      console.log("error when get connection when catch products by subcate id");
+      return callback(err, null);
+    };
+
+    const name = query;
+    const queryString = "SELECT * FROM ecommerce.product p, ecommerce.sub_Category s, ecommerce.category c, ecommerce.brand b, ecommerce.imageProduct i "
+    +"where p.name = ? AND "
+    +"s.idSub_Category = p.sub_Category_idSub_Category AND "
+    +"c.idCategory = s.category_idCategory AND "
+    +"p.brand_idbrand = b.idbrand AND "
+    +"p.idProduct = i.product_idProduct;";
+    connection.query({sql: queryString, nestTables: true}, [name], (err, results, fields) =>{
+      if(err) {
+        console.log('Something wrong when querry products by subcate id!');
+        return callback(err, null);
+      };
+      const products = results.map((result) => {
+        return {
+          id: result.p.idProduct,
+          name: result.p.name,
+          price: 1000,
+          currency: 'USD',
+          imageLink: result.i.link_Image,
+          brand: {
+            id: result.b.idbrand,
+            name: result.b.name
+          }
+        }
+      })
+      products.push({
+          id: results[0].p.idProduct,
+          name: results[0].p.name,
+          price: 1000,
+          currency: 'USD',
+          imageLink: results[0].i.link_Image,
+          brand: {
+            id: results[0].b.idbrand,
+            name: results[0].b.name
+          }
+      });
+      products.push({
+          id: results[0].p.idProduct,
+          name: results[0].p.name,
+          price: 1000,
+          currency: 'USD',
+          imageLink: results[0].i.link_Image,
+          brand: {
+            id: results[0].b.idbrand,
+            name: results[0].b.name
+          }
+      });
+      callback(null, products);
+    })
+    connection.release();
+  })
+}
+
 exports.getBySubCateId = (idSubcate, callback) => {
 
   poolConnection.getConnection((err, connection) => {

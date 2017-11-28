@@ -21,18 +21,17 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
     }
     $scope.timKiemSanPham = function() {
         console.log('Tim kiem san pham');
-        console.log($scope.tenSanPham);
+        console.log('Cau lenh tim kiem: ', $scope.querySanPham);
         data = {
-            tenSanPham: $scope.tenSanPham
+            query: $scope.querySanPham
         }
         $http({
             method: "POST",
             url: "product/timKiemSanPham",
             data: data
         }).success(function (data) {
-
-            console.log("signup successful");
             console.log(data);
+
         }).error(function (err) {
             alert("Unable to connect to the server.");
         });
