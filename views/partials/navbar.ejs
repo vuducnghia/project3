@@ -164,9 +164,9 @@ $(document).ready(function() {
 					<h6>Your stores. Your place.</h6>
 				</div>
 				<div class="header-search">
-					<form action="#" method="post">
-						<input type="search" name="Search" placeholder="Search for a Product..." required="">
-						<button type="submit" class="btn btn-default" aria-label="Left Align">
+					<form >
+						<input type="search" name="Search" ng-model="tenSanPham" placeholder="Search for a Product..." required="">
+						<button type="submit" ng-click="timKiemSanPham()" class="btn btn-default" aria-label="Left Align">
 							<i class="fa fa-search" aria-hidden="true"> </i>
 						</button>
 					</form>

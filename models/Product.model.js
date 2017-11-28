@@ -56,7 +56,7 @@ exports.getById = (idProduct, callback) => {
       return callback(err, null);
     };
 
-    const querry = "SELECT * FROM ecommerce.product p, ecommerce.sub_Category s, ecommerce.category c, ecommerce.brand b, ecommerce.imageproduct i where p.idProduct = ? AND s.idSub_Category = p.sub_Category_idSub_Category AND c.idCategory = s.category_idCategory AND p.brand_idbrand = b.idbrand AND p.idProduct = i.product_idProduct;";
+    const querry = "SELECT * FROM ecommerce.product p, ecommerce.sub_Category s, ecommerce.category c, ecommerce.brand b, ecommerce.imageProduct i where p.idProduct = ? AND s.idSub_Category = p.sub_Category_idSub_Category AND c.idCategory = s.category_idCategory AND p.brand_idbrand = b.idbrand AND p.idProduct = i.product_idProduct;";
     const params = [idProduct];
 
     connection.query({sql: querry, nestTables: true}, params, (err, results, fields) => {
