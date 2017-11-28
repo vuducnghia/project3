@@ -9,9 +9,7 @@ exports.getBySubCateId = (idSubcate, callback) => {
       return callback(err, null);
     };
 
-
-    const querry = "SELECT * FROM ecommerce.product p, ecommerce.sub_Category s, ecommerce.category c, ecommerce.brand b where p.sub_Category_idSub_Category = ? AND s.idSub_Category = p.sub_Category_idSub_Category AND c.idCategory = s.category_idCategory AND p.brand_idbrand = b.idbrand;";
-
+    const querry = "SELECT * FROM ecommerce.product p, ecommerce.sub_category s, ecommerce.category c, ecommerce.brand b, ecommerce.imageproduct i where p.sub_Category_idSub_Category = ? AND s.idSub_Category = p.sub_Category_idSub_Category AND c.idCategory = s.category_idCategory AND p.brand_idbrand = b.idbrand AND p.idProduct = i.product_idProduct;";
     const params = [idSubcate];
 
     connection.query({sql: querry, nestTables: true}, params, (err, results, fields) => {
@@ -58,7 +56,7 @@ exports.getById = (idProduct, callback) => {
       return callback(err, null);
     };
 
-    const querry = "SELECT * FROM ecommerce.product p, ecommerce.sub_Category s, ecommerce.category c, ecommerce.brand b where p.idProduct = ? AND s.idSub_Category = p.sub_Category_idSub_Category AND c.idCategory = s.category_idCategory AND p.brand_idbrand = b.idbrand;";
+    const querry = "SELECT * FROM ecommerce.product p, ecommerce.sub_category s, ecommerce.category c, ecommerce.brand b where p.idProduct = ? AND s.idSub_Category = p.sub_Category_idSub_Category AND c.idCategory = s.category_idCategory AND p.brand_idbrand = b.idbrand;";
     const params = [idProduct];
 
     connection.query({sql: querry, nestTables: true}, params, (err, results, fields) => {
