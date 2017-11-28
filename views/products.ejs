@@ -38,12 +38,12 @@
 					<div class="clearfix"> </div>
 				</div>
 				<div class="products-row">
-					<div class="col-md-3 product-grids"> 
+					<div class="col-md-3 product-grids" ng-repeat="sanPham in sanPhams.products"> 
 						<div class="agile-products">
-							<!-- <div class="new-tag"><h6>20%<br>Off</h6></div>
-							<a href="single.html"><img src="images/e1.png" class="img-responsive" alt="img"></a>
+							<div class="new-tag"><h6>20%<br>Off</h6></div>
+							<a href="/single"><img src="images/e1.png" class="img-responsive" alt="img"></a>
 							<div class="agile-product-text">              
-								<h5><a href="single.html">Audio speaker</a></h5> 
+								<h5><a href="/single">{{sanPham.name}}</a></h5> 
 								<h6><del>$200</del> $100</h6> 
 								<form action="#" method="post">
 									<input type="hidden" name="cmd" value="_cart" />
@@ -52,11 +52,11 @@
 									<input type="hidden" name="amount" value="100.00" /> 
 									<button type="submit" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 								</form> 
-							</div> -->
-							{{sanPhams}}
+							</div>
+							<!-- {{sanPhams}} -->
 						</div> 
 					</div>
-					<div class="col-md-3 product-grids">
+<!-- 					<div class="col-md-3 product-grids">
 						<div class="agile-products">
 							<div class="new-tag"><h6>New</h6></div>
 							<a href="single.html"><img src="images/e2.png" class="img-responsive" alt="img"></a>
@@ -310,7 +310,7 @@
 								</form>
 							</div>
 						</div>
-					</div> 
+					</div>  -->
 					<div class="clearfix"> </div>
 				</div>
 				<!-- add-products --> 
