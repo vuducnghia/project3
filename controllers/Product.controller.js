@@ -24,3 +24,8 @@ exports.getById = (req, res) => {
     res.json({product: product});
   })
 }
+
+exports.findProductByName = (req, res) => {
+  const nameQuery = req.body.query.name;
+  
+}
