@@ -60,7 +60,7 @@
 							<input type="hidden" name="add" value="1" />
 							<input type="hidden" name="w3ls_item" value="Snow Blower" />
 							<input type="hidden" name="amount" value={{sanPham.price}} /> -->
-							<button ng-click="onClickAddToCart()" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+							<button ng-click="onClickAddToCart(sanPham.id, sanPham.name, sanPham.price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 						<!-- </form> -->
 						<button class="w3ls-cart w3ls-cart-like" ng-click="addToWishlist()"><i class="fa fa-heart-o" aria-hidden="true"></i> Add to Wishlist</button>
 					</div>

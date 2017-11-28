@@ -1,7 +1,33 @@
 console.log('start');
 var app = angular.module('storeApp', []);
+app.themVaoGioHang = function(id, name, price){
+        data = {
+            id: id,
+            name: name,
+            price: price
+        }
+        console.log('new Data');
+        console.log(data);
+        console.log('JSON.stringify(new data)');
+        console.log(JSON.stringify(data));
+        olderData =window.localStorage.getItem('gioHang') ;
+        // console.log('JSON.parse(olderData)');
+        // console.log(JSON.parse(olderData));
+        console.log('old Data');
+        console.log(olderData);
+        if(olderData.length!=0){
+             newData = olderData + ";" + JSON.stringify(data)
+            console.log(newData)
+            window.localStorage.setItem('gioHang',newData) ;
+        }else{
+            window.localStorage.setItem('gioHang',JSON.stringify(data)) ;
+        }
+
+       
+
+    }
 app.controller("account", function ($scope, $http, $window, $rootScope) {
-    // $window.localStorage.setItem('user','') ;
+    // $window.localStorage.setItem('gioHang','') ;
     $rootScope.user = $window.localStorage.getItem('user');
     $scope.dang_xuat = function () {
       console.log('CLickkk');
@@ -36,6 +62,9 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
         }).error(function (err) {
             alert("Unable to connect to the server.");
         });
+    }
+    $scope.xemGioHang = function()  {
+        $rootScope.gioHang = $window.localStorage.getItem('gioHang');
     }
 })
 app.controller('sign-up', function ($http, $scope, $window) {
@@ -108,7 +137,7 @@ app.controller("loaiSanPham", function ($scope, $http) {
         });
     }
 });
-app.controller("sanPham", function ($scope, $http,$location) {
+app.controller("sanPham", function ($scope, $http,$location,$window) {
     // console.log($stateParams);
     console.log('$location');
     console.log($location.$$absUrl);
@@ -120,13 +149,14 @@ app.controller("sanPham", function ($scope, $http,$location) {
         $scope.sanPhams = result.data;
     });
 
+    $scope.themVaoGioHang = app.themVaoGioHang;
+
 
 })
 app.controller("singleProduct", function ($scope, $http,$location) {
     // console.log($stateParams);
-    $scope.onClickAddToCart = function() {
-      console.log("Clicked add to cart :))");
-    }
+    $scope.onClickAddToCart = app.themVaoGioHang;
+
     $scope.addToWishlist = function() {
       console.log("Clicked add to Wishlist :)))");
     }
