@@ -37,5 +37,7 @@ router.post('/login', passport.authenticate('local-admin', { failureRedirect: '/
 router.get('/getAllCategories', productController.getAllCategories);
 router.post('/createCategory', productController.createCategory);
 
+router.delete('/deleteCategory/:id', productController.deleteCategory);
+
 
 module.exports = router;

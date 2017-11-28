@@ -49,7 +49,7 @@ app.controller("home", function ($scope, $http, $rootScope, $window) {
 })
 
 app.controller("manage_categories", function ($scope, $http, $rootScope, $window) {
-    
+
     init();
 
     function init() {
@@ -74,20 +74,45 @@ app.controller("manage_categories", function ($scope, $http, $rootScope, $window
         // });
     }
 
-    $scope.createCategory = function(){
 
-        alert($scope.nameCategory)
+    $scope.createCategory = function () {
 
-        $http({
-            method: "POST",
-            url: "/admin/createCategory",
-            data: {nameCategory: $scope.nameCategory}
-        }).success(function (data) {
-            $scope.listCate = data
-            console.log('response: ', data);
-        }).error(function (err) {
-            console.log(err);
-            alert("Unable to connect to the serverrrrr---/admin/createCategory");
-        });
+        if ($scope.nameCategory !== '') {
+            var data = {
+                name: $scope.nameCategory
+            }
+            $http({
+                method: "POST",
+                url: "/admin/createCategory",
+                data: data
+            }).success(function (data) {
+                $scope.listCate = data
+                console.log('response: ', data);
+            }).error(function (err) {
+                alert("Unable to connect to the serverrrrr---/admin/createCategory");
+            });
+
+            init();
+        }
+    }
+
+    $scope.delete = function(id){
+        alert(id + "dangerous, you don 't access")
+
+        // $http({
+        //     method: "DELETE",
+        //     url: "/admin/deleteCategory/" + id
+        // }).success(function (data) {
+        //     $scope.listCate = data
+        //     console.log('response: ', data);
+        // }).error(function (err) {
+        //     alert("Unable to connect to the serverrrrr---deleteCategories");
+        // });
+    }
+
+    $scope.edit = function(id){
+        alert(id);
+        
+
     }
 })
