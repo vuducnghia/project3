@@ -12,11 +12,11 @@
 	</div>
 	<!-- //breadcrumbs -->
 	<!-- products -->
-	<div class="products">	 
+	<div class="products" ng-controller="singleProduct">	 
 		<div class="container">  
 			<div class="single-page">
 				<div class="single-page-row" id="detail-21">
-					<div class="col-md-6 single-top-left">	
+					<!-- <div class="col-md-6 single-top-left">	
 						<div class="flexslider">
 							<ul class="slides">
 								<li data-thumb="images/s1.jpg">
@@ -30,9 +30,10 @@
 								</li> 
 							</ul>
 						</div>
-					</div>
+					</div> -->
+					<!-- {{sanPham}} -->
 					<div class="col-md-6 single-top-right">
-						<h3 class="item_name">Electric Snow Blower</h3>
+						<h3 class="item_name">{{sanPham.name}}</h3>
 						<p>Processing Time: Item will be shipped out within 2-3 working days. </p>
 						<div class="single-rating">
 							<ul>
