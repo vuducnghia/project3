@@ -102,5 +102,5 @@ app.controller("sanPham", function ($scope, $http,$location) {
         $scope.sanPhams = result.data;
     });
 
-   
+
 })
