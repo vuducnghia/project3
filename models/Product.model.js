@@ -9,7 +9,7 @@ exports.getBySubCateId = (idSubcate, callback) => {
       return callback(err, null);
     };
 
-    const querry = "SELECT * FROM ecommerce.product p, ecommerce.sub_category s, ecommerce.category c, ecommerce.brand b where p.sub_Category_idSub_Category = ? AND s.idSub_Category = p.sub_Category_idSub_Category AND c.idCategory = s.category_idCategory AND p.brand_idbrand = b.idbrand;";
+    const querry = "SELECT * FROM ecommerce.product p, ecommerce.sub_category s, ecommerce.category c, ecommerce.brand b, ecommerce.imageproduct i where p.sub_Category_idSub_Category = ? AND s.idSub_Category = p.sub_Category_idSub_Category AND c.idCategory = s.category_idCategory AND p.brand_idbrand = b.idbrand AND p.idProduct = i.product_idProduct;";
     const params = [idSubcate];
 
     connection.query({sql: querry, nestTables: true}, params, (err, results, fields) => {
@@ -21,19 +21,22 @@ exports.getBySubCateId = (idSubcate, callback) => {
         return {
           id: result.p.idProduct,
           name: result.p.name,
-          code: result.p.code,
-          description: result.p.description,
-          accessories: result.p.accessories,
-          product_assuarance_policy: result.p.product_assuarance_policy,
-          month_assuarance: result.p.month_assuarance,
-          sub_category: {
-            id: result.s.idSub_Category,
-            name: result.s.name
-          },
-          category: {
-            id: result.c.idCategory,
-            name: result.c.name
-          },
+          // code: result.p.code,
+          // description: result.p.description,
+          // accessories: result.p.accessories,
+          // product_assuarance_policy: result.p.product_assuarance_policy,
+          // month_assuarance: result.p.month_assuarance,
+          price: 1000,
+          currency: 'USD',
+          imageLink: result.i.link_Image,
+          // sub_category: {
+          //   id: result.s.idSub_Category,
+          //   name: result.s.name
+          // },
+          // category: {
+          //   id: result.c.idCategory,
+          //   name: result.c.name
+          // },
           brand: {
             id: result.b.idbrand,
             name: result.b.name
