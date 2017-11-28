@@ -96,10 +96,37 @@ app.controller("sanPham", function ($scope, $http,$location) {
     console.log($location.$$absUrl);
     maLoaiSanPham = $location.$$absUrl.split('/')[4];
     console.log(maLoaiSanPham);
-    $http.get("/product/subcate/"+ maLoaiSanPham).then(function (result) {
+    $http.post("/product/subcate/"+ maLoaiSanPham).then(function (result) {
         console.log('startaaa');
         console.log(result);
         $scope.sanPhams = result.data;
+    });
+
+
+})
+app.controller("singleProduct", function ($scope, $http,$location) {
+    // console.log($stateParams);
+    $scope.onClickAddToCart = function() {
+      console.log("Clicked add to cart :))");
+    }
+    $scope.addToWishlist = function() {
+      console.log("Clicked add to Wishlist :)))");
+    }
+    console.log('$location');
+    console.log($location.$$absUrl);
+    maSanPham = $location.$$absUrl.split('/')[4];
+    console.log(maSanPham);
+    $http.post("/product/"+ maSanPham).then(function (result) {
+        console.log('startaaa');
+        console.log(result);
+        $scope.sanPham = result.data.product;
+        var desObj = JSON.parse($scope.sanPham.description);
+        if(Object.values) {
+          $scope.sanPham.description = Object.values(desObj);
+        } else {
+          $scope.sanPham.description = $.makeArray(desObj)[0];
+        }
+        console.log('$scope.sanPham.description: ', $scope.sanPham.description);
     });
 
 
