@@ -94,7 +94,7 @@ app.controller("sanPham", function ($scope, $http,$location) {
     // console.log($stateParams);
     console.log('$location');
     console.log($location.$$absUrl);
-    maLoaiSanPham = $location.$$absUrl.split('/')[3];
+    maLoaiSanPham = $location.$$absUrl.split('/')[4];
     console.log(maLoaiSanPham);
     $http.get("/product/subcate/"+ maLoaiSanPham).then(function (result) {
         console.log('startaaa');
