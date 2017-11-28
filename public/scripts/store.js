@@ -19,6 +19,24 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
             console.log(err);
         });
     }
+    $scope.timKiemSanPham = function() {
+        console.log('Tim kiem san pham');
+        console.log($scope.tenSanPham);
+        data = {
+            tenSanPham: $scope.tenSanPham
+        }
+        $http({
+            method: "POST",
+            url: "product/timKiemSanPham",
+            data: data
+        }).success(function (data) {
+
+            console.log("signup successful");
+            console.log(data);
+        }).error(function (err) {
+            alert("Unable to connect to the server.");
+        });
+    }
 })
 app.controller('sign-up', function ($http, $scope, $window) {
 
