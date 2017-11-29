@@ -26,17 +26,20 @@ app.themVaoGioHang = function(id, name, price){
        
 
     }
+
 app.controller("account", function ($scope, $http, $window, $rootScope) {
     // $window.localStorage.setItem('gioHang','') ;
     $rootScope.user = $window.localStorage.getItem('user');
     $scope.dang_xuat = function () {
-      console.log('CLickkk');
+        
+        console.log('CLickkk');
         $http({
             method: "POST",
             url: "users/logout"
         }).success(function () {
             $window.localStorage.setItem('user', '');
             $rootScope.user = $window.localStorage.getItem('user');
+            $window.localStorage.setItem('gioHang','');
             console.log("Log out successful");
             // console.log(data);
             // $window.location.href = '/';
@@ -63,7 +66,23 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
         });
     }
     $scope.xemGioHang = function()  {
-        $rootScope.gioHang = $window.localStorage.getItem('gioHang');
+        dataGioHang = $window.localStorage.getItem('gioHang');
+        console.log('dataGioHang');
+        console.log(dataGioHang);
+        // gioHang = JSON.parse(dataGioHang);
+        gioHang = dataGioHang.split(';');
+        console.log('gioHang');
+        console.log(gioHang);
+        gioHangjson = [];
+        for(sp in gioHang){
+            console.log(gioHang[sp]);
+            spJSON = JSON.parse(gioHang[sp]);
+            console.log(spJSON);
+            gioHangjson.push(spJSON);   
+        }
+        console.log('gio hang json');
+        console.log(gioHangjson);
+        $rootScope.gioHang = gioHangjson;
     }
 })
 app.controller('sign-up', function ($http, $scope, $window) {
@@ -177,4 +196,29 @@ app.controller("singleProduct", function ($scope, $http,$location) {
     });
 
 
+    $http.post('/product/sanPhamLienQuan/'+ maSanPham).then(function(result){
+
+        console.log('nhan goi y san pham lien quan');
+        console.log(result);
+        $scope.sanPhamLienQuan = result.data;
+
+    })
+
+
+})
+
+app.controller('sanPhamTrangChu', function ($scope, $http){
+    $http.get("/category").then(function (result) {
+        console.log('startaaa');
+        console.log(result);
+        $scope.loaiSanPham = result.data;
+    });
+    $scope.layDanhSachSanPham = function(id){
+        console.log('lay danh sach san pham '+ id);
+        $http.post("/product/subcate/"+id).then(function (result) {
+                console.log('startaaa');
+                console.log(result);
+                $scope.danhSachSanPham = result.data.products;
+            });
+    };
 })
