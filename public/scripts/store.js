@@ -182,8 +182,13 @@ app.controller("singleProduct", function ($scope, $http,$location) {
     console.log('$location');
     console.log($location.$$absUrl);
     maSanPham = $location.$$absUrl.split('/')[4];
+    maCuaHang = $location.$$absUrl.split('/')[5];
+    console.log('maSanPham');
+    console.log('maCuaHang');
+
     console.log(maSanPham);
-    $http.post("/product/"+ maSanPham).then(function (result) {
+     console.log(maCuaHang);
+    $http.post("/product/"+ maSanPham + maCuaHang).then(function (result) {
         console.log('xem chi tiet san pham');
         console.log(result);
         $scope.sanPham = result.data.product;
@@ -287,6 +292,7 @@ app.controller('gioHang',function($scope,$window, $rootScope){
         console.log('gioHangjson');
         console.log(gioHangjson);
         $window.localStorage.setItem('gioHang',gioHangjson);
+        $window.location.href = '/gioHang';
     }
     $scope.datHang = function(){
         gioHang = $window.localStorage.getItem('gioHang');

@@ -42,7 +42,7 @@
 						<div class="agile-products">
 							<div class="new-tag"><h6>20%<br>Off</h6></div>
 
-							<a href="/single/{{sanPham.id}}"><img src="{{sanPham.imageLink}}" class="img-responsive" alt="img"></a>
+							<a href="/single/{{sanPham.id}}/{{sanPham.store.id}}"><img src="{{sanPham.imageLink}}" class="img-responsive" alt="img"></a>
 
 							<div class="agile-product-text">
 								<h5><a href="/single/{{sanPham.id}}">{{sanPham.name}}</a></h5>
@@ -53,7 +53,7 @@
 									<input type="hidden" name="add" value="1" />
 									<input type="hidden" name="w3ls_item" value={{sanPham.name}}/>
 									<input type="hidden" name="amount" value={{sanPham.price}} /> -->
-									<button ng-click="onClickAddToCart(sanPham.id, sanPham.name, sanPham.price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<button ng-click="themVaoGioHang(sanPham.id,sanPham.store.id, sanPham.name, sanPham.price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 								</form>
 							</div>
 							<!-- {{sanPhams}} -->
