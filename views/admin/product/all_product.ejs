@@ -40,9 +40,9 @@
                                                 <td>{{x.name}}</td>
                                                 <td>{{x.code}}</td>
                                                 <td>{{x.description}}</td>
-                                                <td class="text-center">{{x.sub_Category_idSub_Category}}</td>
+                                                <td class="text-center">{{ listSubCategory[x.sub_Category_idSub_Category] }}</td>
                                                 <td class="text-center">{{x.month_assuarance}}</td>
-                                                <td class="text-center">{{x.brand_idbrand}}</td>
+                                                <td class="text-center">{{ listBrand[x.brand_idbrand] }}</td>
                                                 <td class="text-center">
                                                     <button class="btn-danger" ng-click="delete(x.idProduct)">delete</button>
                                                     <!-- <button>detail</button> -->

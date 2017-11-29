@@ -5,6 +5,7 @@ var adminController = require('../controllers/admin/account.controller');
 var categoryController = require('../controllers/admin/category.controller');
 var subCategoryController = require('../controllers/admin/subcategory.controller');
 var productController = require('../controllers/admin/product.controller');
+var brandController = require('../controllers/admin/brand.controller');
 
 var poolConnection = require('../models/pool.connection');
 var passport = require('passport');
@@ -92,3 +93,6 @@ router.post('/createProduct', productController.createProduct);
 router.delete('/deleteProduct/:id', productController.deleteProduct);
 router.post('/updateProduct/:id', productController.updateProduct);
 module.exports = router;
+
+////////////////Brands
+router.get('/getAllBrands', brandController.getAllBrands);

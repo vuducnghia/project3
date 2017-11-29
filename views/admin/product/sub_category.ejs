@@ -31,17 +31,17 @@
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>IDCategory</th>
-                                                <th>IDSubCategory</th>
-                                                <th>Category</th>
+                                                <th>ID</th>
+                                                <th>Name Subcategory</th>
+                                                <th>Parent Category</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="gradeU" ng-repeat="x in listCate">
-                                                <td>{{x.category_idCategory}}</td>
                                                 <td>{{x.idSub_Category}}</td>
                                                 <td>{{x.name}}</td>
+                                                <td>{{ listParentCate[x.category_idCategory] }}</td>
                                                 <td>
                                                     <button ng-click="delete(x.idSub_Category)">delete</button>
                                                     <!-- <button>detail</button> -->

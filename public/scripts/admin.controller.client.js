@@ -141,6 +141,18 @@ app.controller("manage_SubCategories", function ($scope, $http, $rootScope, $win
             alert("Unable to connect to the serverrrrr---/admin/getAllSubCategories");
         });
 
+        $http({
+            method: "GET",
+            url: "/admin/getAllCategories"
+        }).success(function (data) {
+            $scope.listParentCate = new Array();
+           for (var i = 0; i < data.length; i++) {
+               $scope.listParentCate[data[i].idCategory] = data[i].name;
+           }
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/getAllCategories");
+        });
+
     }
 
     $scope.createSubCategory = function () {
@@ -193,6 +205,32 @@ app.controller("manage_Product", function ($scope, $http, $rootScope, $window) {
             url: "/admin/getAllProduct"
         }).success(function (data) {
             $scope.listProduct = data
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/getAllSubCategories");
+        });
+
+        $http({
+            method: "GET",
+            url: "/admin/getAllSubCategories"
+        }).success(function (data) {
+            $scope.listSubCategory = new Array();
+           for (var i = 0; i < data.length; i++) {
+               $scope.listSubCategory[data[i].idSub_Category] = data[i].name;
+           }
+
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/getAllSubCategories");
+        });
+
+        $http({
+            method: "GET",
+            url: "/admin/getAllBrands"
+        }).success(function (data) {
+            $scope.listBrand = new Array();
+           for (var i = 0; i < data.length; i++) {
+               $scope.listBrand[data[i].idbrand] = data[i].name;
+           }
+
         }).error(function (err) {
             alert("Unable to connect to the serverrrrr---/admin/getAllSubCategories");
         });
