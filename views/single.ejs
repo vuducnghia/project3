@@ -80,7 +80,7 @@
 			<!-- recommendations -->
 			<div class="recommend">
 				(Mock)
-				<h3 class="w3ls-title">Our Recommendations </h3>
+				<h3 class="w3ls-title">Có thể bạn quan tâm... </h3>
 				<script>
 					$(document).ready(function() {
 						$("#owl-demo5").owlCarousel({
@@ -101,17 +101,17 @@
 						
 						<div class="glry-w3agile-grids agileits">
 							<div class="new-tag"><h6>20% <br> Off</h6></div>
-							<a href="products1.html"><img src={{sanPhamLienQuan[0].imageLink}} alt="img"></a>
+							<a href="/single/{{sanPhamLienQuan[0].id}}/{{sanPhamLienQuan[0].store.id}}">
+								<img src={{sanPhamLienQuan[0].imageLink}} alt="img">
+							</a>
 							<div class="view-caption agileits-w3layouts">
 								<h4><a href="products1.html">{{sanPhamLienQuan[0].brand.name}}</a></h4>
 								<p>{{sanPhamLienQuan[0].name}}</p>
-								<h5>$20</h5>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart" />
-									<input type="hidden" name="add" value="1" />
-									<input type="hidden" name="w3ls_item" value="Women Sandal" />
-									<input type="hidden" name="amount" value="20.00" />
-									<button type="submit" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+								<h5>{{sanPhamLienQuan[0].price}}</h5>
+								<form>
+									
+									<button type="submit" class="w3ls-cart" ng-click="onClickAddToCart(sanPhamLienQuan[0].id, sanPhamLienQuan[0].store.id, sanPhamLienQuan[0].name, sanPhamLienQuan[0].price)">
+									<i class="fa fa-cart-plus"  aria-hidden="true"></i> Add to cart</button>
 								</form>
 							</div>
 						</div>
@@ -119,17 +119,17 @@
 					<div class="item">
 						<div class="glry-w3agile-grids agileits">
 							<div class="new-tag"><h6>20% <br> Off</h6></div>
-							<a href="products1.html"><img src= {{sanPhamLienQuan[1].imageLink}} alt="img"></a>
+							<a href="/single/{{sanPhamLienQuan[1].id}}/{{sanPhamLienQuan[1].store.id}}">
+								<img src= {{sanPhamLienQuan[1].imageLink}} alt="img">
+							</a>
 							<div class="view-caption agileits-w3layouts">
-								<h4><a href="products1.html">{{sanPhamLienQuan[1].brand.name}}</a></h4>
+								<h4><a href="product">{{sanPhamLienQuan[1].brand.name}}</a></h4>
 								<p>{{sanPhamLienQuan[1].name}}</p>
-								<h5>$20</h5>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart" />
-									<input type="hidden" name="add" value="1" />
-									<input type="hidden" name="w3ls_item" value="Women Sandal" />
-									<input type="hidden" name="amount" value="20.00" />
-									<button type="submit" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+								<h5>{{sanPhamLienQuan[1].price}}</h5>
+								<form >
+								
+									<button type="submit" class="w3ls-cart" ng-click="onClickAddToCart( sanPhamLienQuan[1].id, sanPhamLienQuan[1].store.id, sanPhamLienQuan[1].name, sanPhamLienQuan[1].price)" >
+									<i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 								</form>
 							</div>
 						</div>
