@@ -1,6 +1,30 @@
 var poolConnection = require('../models/pool.connection');
 var bcrypt = require('bcryptjs');
 
+const getRelationInfoOfProduct = (id, callback) => {
+  poolConnection.getConnection((err, connection) => {
+    if(err) {
+      console.log("Loi 25454353670");
+      return callback(err, null);
+    }
+    const queryString = "SELECT brand_idbrand, sub_Category_idSub_Category FROM ecommerce.product "
+      + "where idProduct = ?;";
+    connection.query(queryString, [id], (err, results, fields) => {
+      if(err) {
+        console.log("Loi 01942985y23953");
+        return callback(err, null);
+      }
+      if(!results[0]) return callback(null, null);
+      const relationInfo = {
+        idBrand: results[0].brand_idbrand,
+        idSubcate: results[0].sub_Category_idSub_Category
+      }
+      return callback(null, relationInfo);
+    })
+    connection.release();
+  })
+}
+
 exports.findProductsByName = (query, callback) => {
   poolConnection.getConnection((err, connection) => {
     if(err) {
@@ -8,13 +32,13 @@ exports.findProductsByName = (query, callback) => {
       return callback(err, null);
     };
 
-    const name = query;
+    const name = '%'+query+'%';
     const queryString = "SELECT * FROM ecommerce.product p, ecommerce.sub_Category s, ecommerce.category c, ecommerce.brand b, ecommerce.imageProduct i "
-    +"where p.name = ? AND "
-    +"s.idSub_Category = p.sub_Category_idSub_Category AND "
-    +"c.idCategory = s.category_idCategory AND "
-    +"p.brand_idbrand = b.idbrand AND "
-    +"p.idProduct = i.product_idProduct;";
+      +"where p.name LIKE ? "
+      +"AND s.idSub_Category = p.sub_Category_idSub_Category "
+      +"AND c.idCategory = s.category_idCategory "
+      +"AND p.brand_idbrand = b.idbrand "
+      +"AND p.idProduct = i.product_idProduct;";
     connection.query({sql: queryString, nestTables: true}, [name], (err, results, fields) =>{
       if(err) {
         console.log('Something wrong when querry products by subcate id!');
@@ -33,31 +57,53 @@ exports.findProductsByName = (query, callback) => {
           }
         }
       })
-      products.push({
-          id: results[0].p.idProduct,
-          name: results[0].p.name,
-          price: 1000,
-          currency: 'USD',
-          imageLink: results[0].i.link_Image,
-          brand: {
-            id: results[0].b.idbrand,
-            name: results[0].b.name
-          }
-      });
-      products.push({
-          id: results[0].p.idProduct,
-          name: results[0].p.name,
-          price: 1000,
-          currency: 'USD',
-          imageLink: results[0].i.link_Image,
-          brand: {
-            id: results[0].b.idbrand,
-            name: results[0].b.name
-          }
-      });
       callback(null, products);
     })
     connection.release();
+  })
+}
+
+exports.getRelationProducts = (idProduct, callback) => {
+  const productInfo = {};
+  getRelationInfoOfProduct(idProduct, (err, relationInfo) => {
+    if(err) {
+      return callback(err, null);
+    }
+    if(!relationInfo) {
+      return callback(null, []);
+    }
+    poolConnection.getConnection((err, connection) => {
+      if(err) return callback(err, null);
+      const queryString = "SELECT * FROM ecommerce.product p, ecommerce.sub_Category s, ecommerce.category c, ecommerce.brand b, ecommerce.imageProduct i "
+        +"where p.sub_Category_idSub_Category = ? "
+        +"AND p.brand_idbrand = ? "
+        +"AND s.idSub_Category = p.sub_Category_idSub_Category "
+        +"AND c.idCategory = s.category_idCategory "
+        +"AND p.brand_idbrand = b.idbrand "
+        +"AND p.idProduct = i.product_idProduct;";
+      const queryParams = [relationInfo.idSubcate, relationInfo.idBrand];
+      connection.query({sql: queryString, nestTables: true}, queryParams, (err, results, fields) => {
+        if(err) return callback(err, null);
+        if(!results[0]) return callback(null, []);
+        const relationProducts = results.map((result) => {
+          return {
+            id: result.p.idProduct,
+            name: result.p.name,
+            price: 1000,
+            currency: 'USD',
+            imageLink: result.i.link_Image,
+            brand: {
+              id: result.b.idbrand,
+              name: result.b.name
+            }
+          }
+        }).filter((product) => {
+          return product.id != idProduct;
+        })
+        callback(null, relationProducts);
+      })
+      connection.release();
+    })
   })
 }
 
