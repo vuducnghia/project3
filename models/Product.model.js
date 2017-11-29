@@ -33,12 +33,20 @@ exports.findProductsByName = (query, callback) => {
     };
 
     const name = '%'+query+'%';
-    const queryString = "SELECT * FROM ecommerce.product p, ecommerce.sub_Category s, ecommerce.category c, ecommerce.brand b, ecommerce.imageProduct i "
+    const queryString = "SELECT * FROM ecommerce.product p, "
+    +"ecommerce.sub_Category s, "
+    +"ecommerce.category c, "
+    +"ecommerce.brand b, "
+    +"ecommerce.imageProduct i, "
+    +"ecommerce.store_product st_p, "
+    +"ecommerce.store st "
       +"where p.name LIKE ? "
       +"AND s.idSub_Category = p.sub_Category_idSub_Category "
       +"AND c.idCategory = s.category_idCategory "
       +"AND p.brand_idbrand = b.idbrand "
-      +"AND p.idProduct = i.product_idProduct;";
+      +"AND p.idProduct = i.product_idProduct "
+      +"AND st_p.product_idProduct = p.idProduct "
+      +"AND st_p.store_idstore = st.idstore;";
     connection.query({sql: queryString, nestTables: true}, [name], (err, results, fields) =>{
       if(err) {
         console.log('Something wrong when querry products by subcate id!');
@@ -48,12 +56,18 @@ exports.findProductsByName = (query, callback) => {
         return {
           id: result.p.idProduct,
           name: result.p.name,
-          price: 1000,
+          code: result.p.code,
+          price: result.st_p.price,
           currency: 'USD',
+          isStocking: result.st_p.count > 0 ? true : false,
           imageLink: result.i.link_Image,
           brand: {
             id: result.b.idbrand,
             name: result.b.name
+          },
+          store: {
+            id: result.st.idstore,
+            name: result.st.name,
           }
         }
       })
@@ -74,13 +88,21 @@ exports.getRelationProducts = (idProduct, callback) => {
     }
     poolConnection.getConnection((err, connection) => {
       if(err) return callback(err, null);
-      const queryString = "SELECT * FROM ecommerce.product p, ecommerce.sub_Category s, ecommerce.category c, ecommerce.brand b, ecommerce.imageProduct i "
+      const queryString = "SELECT * FROM ecommerce.product p, "
+      +"ecommerce.sub_Category s, "
+      +"ecommerce.category c, "
+      +"ecommerce.brand b, "
+      +"ecommerce.imageProduct i, "
+      +"ecommerce.store_product st_p, "
+      +"ecommerce.store st "
         +"where p.sub_Category_idSub_Category = ? "
         +"AND p.brand_idbrand = ? "
         +"AND s.idSub_Category = p.sub_Category_idSub_Category "
         +"AND c.idCategory = s.category_idCategory "
         +"AND p.brand_idbrand = b.idbrand "
-        +"AND p.idProduct = i.product_idProduct;";
+        +"AND p.idProduct = i.product_idProduct "
+        +"AND st_p.product_idProduct = p.idProduct "
+        +"AND st_p.store_idstore = st.idstore;";
       const queryParams = [relationInfo.idSubcate, relationInfo.idBrand];
       connection.query({sql: queryString, nestTables: true}, queryParams, (err, results, fields) => {
         if(err) return callback(err, null);
@@ -89,12 +111,18 @@ exports.getRelationProducts = (idProduct, callback) => {
           return {
             id: result.p.idProduct,
             name: result.p.name,
-            price: 1000,
+            code: result.p.code,
+            price: result.st_p.price,
             currency: 'USD',
+            isStocking: result.st_p.count > 0 ? true : false,
             imageLink: result.i.link_Image,
             brand: {
               id: result.b.idbrand,
               name: result.b.name
+            },
+            store: {
+              id: result.st.idstore,
+              name: result.st.name,
             }
           }
         }).filter((product) => {
@@ -115,7 +143,20 @@ exports.getBySubCateId = (idSubcate, callback) => {
       return callback(err, null);
     };
 
-    const querry = "SELECT * FROM ecommerce.product p, ecommerce.sub_Category s, ecommerce.category c, ecommerce.brand b, ecommerce.imageProduct i where p.sub_Category_idSub_Category = ? AND s.idSub_Category = p.sub_Category_idSub_Category AND c.idCategory = s.category_idCategory AND p.brand_idbrand = b.idbrand AND p.idProduct = i.product_idProduct;";
+    const querry = "SELECT * FROM ecommerce.product p, "
+    +"ecommerce.sub_Category s, "
+    +"ecommerce.category c, "
+    +"ecommerce.brand b, "
+    +"ecommerce.imageProduct i, "
+    +"ecommerce.store_product st_p, "
+    +"ecommerce.store st "
+      +"where p.sub_Category_idSub_Category = ? "
+      +"AND s.idSub_Category = p.sub_Category_idSub_Category "
+      +"AND c.idCategory = s.category_idCategory "
+      +"AND p.brand_idbrand = b.idbrand "
+      +"AND p.idProduct = i.product_idProduct "
+      +"AND st_p.product_idProduct = p.idProduct "
+      +"AND st_p.store_idstore = st.idstore;";
     const params = [idSubcate];
 
     connection.query({sql: querry, nestTables: true}, params, (err, results, fields) => {
@@ -127,13 +168,14 @@ exports.getBySubCateId = (idSubcate, callback) => {
         return {
           id: result.p.idProduct,
           name: result.p.name,
-          // code: result.p.code,
+          code: result.p.code,
           // description: result.p.description,
           // accessories: result.p.accessories,
           // product_assuarance_policy: result.p.product_assuarance_policy,
           // month_assuarance: result.p.month_assuarance,
-          price: 1000,
+          price: result.st_p.price,
           currency: 'USD',
+          isStocking: result.st_p.count > 0 ? true : false,
           imageLink: result.i.link_Image,
           // sub_category: {
           //   id: result.s.idSub_Category,
@@ -146,6 +188,10 @@ exports.getBySubCateId = (idSubcate, callback) => {
           brand: {
             id: result.b.idbrand,
             name: result.b.name
+          },
+          store: {
+            id: result.st.idstore,
+            name: result.st.name,
           }
         }
       })
@@ -162,7 +208,20 @@ exports.getById = (idProduct, callback) => {
       return callback(err, null);
     };
 
-    const querry = "SELECT * FROM ecommerce.product p, ecommerce.sub_Category s, ecommerce.category c, ecommerce.brand b, ecommerce.imageProduct i where p.idProduct = ? AND s.idSub_Category = p.sub_Category_idSub_Category AND c.idCategory = s.category_idCategory AND p.brand_idbrand = b.idbrand AND p.idProduct = i.product_idProduct;";
+    const querry = "SELECT * FROM ecommerce.product p, "
+    +"ecommerce.sub_Category s, "
+    +"ecommerce.category c, "
+    +"ecommerce.brand b, "
+    +"ecommerce.imageProduct i, "
+    +"ecommerce.store_product st_p, "
+    +"ecommerce.store st "
+      +"where p.idProduct = ? "
+      +"AND s.idSub_Category = p.sub_Category_idSub_Category "
+      +"AND c.idCategory = s.category_idCategory "
+      +"AND p.brand_idbrand = b.idbrand "
+      +"AND p.idProduct = i.product_idProduct "
+      +"AND st_p.product_idProduct = p.idProduct "
+      +"AND st_p.store_idstore = st.idstore;";
     const params = [idProduct];
 
     connection.query({sql: querry, nestTables: true}, params, (err, results, fields) => {
@@ -182,8 +241,9 @@ exports.getById = (idProduct, callback) => {
           accessories: result.p.accessories,
           product_assuarance_policy: result.p.product_assuarance_policy,
           month_assuarance: result.p.month_assuarance,
-          price: 1000,
+          price: result.st_p.price,
           currency: 'USD',
+          isStocking: result.st_p.count > 0 ? true : false,
           imageLink: result.i.link_Image,
           sub_category: {
             id: result.s.idSub_Category,
@@ -196,6 +256,10 @@ exports.getById = (idProduct, callback) => {
           brand: {
             id: result.b.idbrand,
             name: result.b.name
+          },
+          store: {
+            id: result.st.idstore,
+            name: result.st.name,
           }
         }
       callback(null, product);

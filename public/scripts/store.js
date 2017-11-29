@@ -25,7 +25,7 @@ app.themVaoGioHang = function(idSanPham, idCuaHang, name, price){
             window.localStorage.setItem('gioHang',JSON.stringify(data)) ;
         }
 
-       
+
 
     }
 
@@ -33,7 +33,7 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
     // $window.localStorage.setItem('gioHang','') ;
     $rootScope.user = $window.localStorage.getItem('user');
     $scope.dang_xuat = function () {
-        
+
         console.log('CLickkk');
         $http({
             method: "POST",
@@ -75,7 +75,7 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
         }
         $http({
             method: "POST",
-            url: "/product/timKiemCuaHang",
+            url: "/store/timkiemcuahang",
             data: data
         }).success(function (data) {
             console.log(data);
@@ -84,7 +84,7 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
             alert("Unable to connect to the server.");
         });
     }
-  
+
 })
 app.controller('sign-up', function ($http, $scope, $window) {
 
