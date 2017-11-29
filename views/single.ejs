@@ -55,13 +55,13 @@
 							</ul>
 						</div>
 						<p class="single-price-text">(Mock)Fusce a egestas nibh, eget ornare erat. Proin placerat, urna et consequat efficitur, sem odio blandit enim, sit amet euismod turpis est mattis lectus. Vestibulum maximus quam et quam egestas imperdiet. In dignissim auctor viverra.</p>
-						<!-- <form action="#" method="post"> -->
+						<form >
 							<!-- <input type="hidden" name="cmd" value="_cart" />
 							<input type="hidden" name="add" value="1" />
-							<input type="hidden" name="w3ls_item" value="Snow Blower" />
+							<input type="hidden" name="w3ls_item" value={{sanPham.name}}/>
 							<input type="hidden" name="amount" value={{sanPham.price}} /> -->
 							<button ng-click="onClickAddToCart(sanPham.id, sanPham.name, sanPham.price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-						<!-- </form> -->
+						</form>
 						<button class="w3ls-cart w3ls-cart-like" ng-click="addToWishlist()"><i class="fa fa-heart-o" aria-hidden="true"></i> Add to Wishlist</button>
 					</div>
 				   <div class="clearfix"> </div>
@@ -97,32 +97,14 @@
 					});
 				</script>
 				<div id="owl-demo5" class="owl-carousel">
-					<div class="item">
-						{{sanPhamLienQuan}}
-					<!-- 	<div class="glry-w3agile-grids agileits">
-							<div class="new-tag"><h6>20% <br> Off</h6></div>
-							<a href="products1.html"><img src="images/f2.png" alt="img"></a>
-							<div class="view-caption agileits-w3layouts">
-								<h4><a href="products1.html">Women Sandal</a></h4>
-								<p>Lorem ipsum dolor sit amet consectetur</p>
-								<h5>$20</h5>
-								<form action="#" method="post">
-									<input type="hidden" name="cmd" value="_cart" />
-									<input type="hidden" name="add" value="1" />
-									<input type="hidden" name="w3ls_item" value="Women Sandal" />
-									<input type="hidden" name="amount" value="20.00" />
-									<button type="submit" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-								</form>
-							</div>
-						</div> -->
-					</div>
-				<!-- 	<div class="item">
+					<div class="item" >
+						
 						<div class="glry-w3agile-grids agileits">
 							<div class="new-tag"><h6>20% <br> Off</h6></div>
-							<a href="products1.html"><img src="images/f2.png" alt="img"></a>
+							<a href="products1.html"><img src={{sanPhamLienQuan[0].imageLink}} alt="img"></a>
 							<div class="view-caption agileits-w3layouts">
-								<h4><a href="products1.html">Women Sandal</a></h4>
-								<p>Lorem ipsum dolor sit amet consectetur</p>
+								<h4><a href="products1.html">{{sanPhamLienQuan[0].brand.name}}</a></h4>
+								<p>{{sanPhamLienQuan[0].name}}</p>
 								<h5>$20</h5>
 								<form action="#" method="post">
 									<input type="hidden" name="cmd" value="_cart" />
@@ -133,7 +115,25 @@
 								</form>
 							</div>
 						</div>
-					</div> -->
+					</div>
+					<div class="item">
+						<div class="glry-w3agile-grids agileits">
+							<div class="new-tag"><h6>20% <br> Off</h6></div>
+							<a href="products1.html"><img src= {{sanPhamLienQuan[1].imageLink}} alt="img"></a>
+							<div class="view-caption agileits-w3layouts">
+								<h4><a href="products1.html">{{sanPhamLienQuan[1].brand.name}}</a></h4>
+								<p>{{sanPhamLienQuan[1].name}}</p>
+								<h5>$20</h5>
+								<form action="#" method="post">
+									<input type="hidden" name="cmd" value="_cart" />
+									<input type="hidden" name="add" value="1" />
+									<input type="hidden" name="w3ls_item" value="Women Sandal" />
+									<input type="hidden" name="amount" value="20.00" />
+									<button type="submit" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<!-- //recommendations -->
@@ -353,7 +353,7 @@
 		</div>
 	</div>
 	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
+	<script src="/js/minicart.js"></script>
 	<script>
         w3ls.render();
 
@@ -372,8 +372,8 @@
     </script>
 	<!-- //cart-js -->
 	<!-- menu js aim -->
-	<script src="js/jquery.menu-aim.js"> </script>
-	<script src="js/main.js"></script> <!-- Resource jQuery -->
+	<script src="/js/jquery.menu-aim.js"> </script>
+	<script src="/js/main.js"></script> <!-- Resource jQuery -->
 	<!-- //menu js aim -->
 	<!-- Bootstrap core JavaScript
     ================================================== -->
