@@ -74,7 +74,7 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
         }
         $http({
             method: "POST",
-            url: "/product/timkiemcuahang",
+            url: "/store/timkiemcuahang",
             data: data
         }).success(function (data) {
             console.log(data);
