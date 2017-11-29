@@ -10,6 +10,7 @@ var poolConnection = require('../models/pool.connection');
 var passport = require('passport');
 
 // router client
+////////////////////////////////////////////admin
 router.get('/', function (req, res) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/home', {title: 'Express'});
@@ -24,6 +25,12 @@ router.get('/login', function (req, res, next) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/account/login', {title: 'Express'});
 });
+
+router.get('/create_account_store', function (req, res, next) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('admin/account/create_account_store', {title: 'Express'});
+});
+
 /////////////////////// category
 router.get('/categories', function (req, res) {
   res.setHeader('Content-Type', 'text/html');
@@ -60,9 +67,11 @@ router.get('/product/:id', function (req, res) {
 
 // router backend
 
-
+// admin max level
 router.post('/sign_up', adminController.sign_up);
 router.post('/login', passport.authenticate('local-admin', { failureRedirect: '/admin/login' }), adminController.login);
+router.post('/createAdminStore', adminController.createAdminStore);
+router.post('/createStore', adminController.createStore);
 
 //////////////////////////////////////////////   CATEGORY
 router.get('/getAllCategories', categoryController.getAllCategories);
