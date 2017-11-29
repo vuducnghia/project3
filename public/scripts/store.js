@@ -23,7 +23,7 @@ app.themVaoGioHang = function(id, name, price){
             window.localStorage.setItem('gioHang',JSON.stringify(data)) ;
         }
 
-       
+
 
     }
 
@@ -31,7 +31,7 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
     // $window.localStorage.setItem('gioHang','') ;
     $rootScope.user = $window.localStorage.getItem('user');
     $scope.dang_xuat = function () {
-        
+
         console.log('CLickkk');
         $http({
             method: "POST",
@@ -78,7 +78,7 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
             console.log(gioHang[sp]);
             spJSON = JSON.parse(gioHang[sp]);
             console.log(spJSON);
-            gioHangjson.push(spJSON);   
+            gioHangjson.push(spJSON);
         }
         console.log('gio hang json');
         console.log(gioHangjson);
