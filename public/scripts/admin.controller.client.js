@@ -39,7 +39,32 @@ app.controller("account", function ($scope, $http, $rootScope, $window) {
             alert("Unable to connect to the serverrrrr.");
         });
     }
+    $scope.createAccountStore = function () {
+        console.log(11)
+        console.log($scope.account)
+        
+        $http({
+            method: "POST",
+            url: "/admin/createAdminStore",
+            data: $scope.account
+        }).success(function (data) {
+            console.log(data)
+            $scope.store.idstore = data
+            $http({
+                method: "POST",
+                url: "/admin/createStore",
+                data: $scope.store
+            }).success(function (data) {
+                console.log('success2')
+            }).error(function (err) {
+                alert("Unable to connect to the serverrrrr---/admin/createStore");
+            });
+        }).error(function (err) {
+            alert(err);
+        });
 
+        
+    }
 })
 
 app.controller("home", function ($scope, $http, $rootScope, $window) {
@@ -219,7 +244,7 @@ app.controller("manage_Product", function ($scope, $http, $rootScope, $window) {
                 id = y[y.length - 1];
                 data.idProduct = id
                 // console.log(data)
-                
+
                 $http({
                     method: "POST",
                     url: "/admin/updateProduct/" + id,
@@ -255,23 +280,3 @@ app.controller("manage_Product", function ($scope, $http, $rootScope, $window) {
     }
 
 })
-
-
-// app.controller("manage_subcategories", function ($scope, $http, $window) {
-//     console.log($window.location.href)
-//     var x = $window.location.href;
-//     var y = $window.location.href.split('/')
-//     id = y[y.length - 1]
-//     $http({
-//         method: "GET",
-//         url: "/admin/getSubCategoryByIdCate/" + id
-//     }).success(function (data) {
-//         $scope.listSubCate = data
-//         console.log('response: ', data);
-
-//     }).error(function (err) {
-//         alert("Unable to connect to the serverrrrr---getSubCategoryByIdCate");
-//     });
-
-
-// })
