@@ -4,7 +4,8 @@ app.themVaoGioHang = function(id, name, price){
         data = {
             id: id,
             name: name,
-            price: price
+            price: price,
+            number: 1
         }
         console.log('new Data');
         console.log(data);
@@ -35,7 +36,7 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
         console.log('CLickkk');
         $http({
             method: "POST",
-            url: "users/logout"
+            url: "/users/logout"
         }).success(function () {
             $window.localStorage.setItem('user', '');
             $rootScope.user = $window.localStorage.getItem('user');
@@ -56,7 +57,24 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
         }
         $http({
             method: "POST",
-            url: "product/timKiemSanPham",
+            url: "/product/timKiemSanPham",
+            data: data
+        }).success(function (data) {
+            console.log(data);
+
+        }).error(function (err) {
+            alert("Unable to connect to the server.");
+        });
+    }
+    $scope.timKiemCuaHang = function() {
+        console.log('Tim kiem cua hang');
+        console.log('Cau lenh tim kiem: ', $scope.queryCuaHang);
+        data = {
+            query: $scope.queryCuaHang
+        }
+        $http({
+            method: "POST",
+            url: "/product/timKiemCuaHang",
             data: data
         }).success(function (data) {
             console.log(data);
@@ -200,7 +218,7 @@ app.controller("singleProduct", function ($scope, $http,$location) {
 
         console.log('nhan goi y san pham lien quan');
         console.log(result);
-        $scope.sanPhamLienQuan = result.data;
+        $scope.sanPhamLienQuan = result.data.products;
 
     })
 

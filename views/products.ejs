@@ -8,7 +8,7 @@
 			<div class="col-md-9 product-w3ls-right">
 				<!-- breadcrumbs --> 
 				<ol class="breadcrumb breadcrumb1">
-					<li><a href="index.html">Home</a></li>
+					<li><a href="/">Home</a></li>
 					<li class="active">Products</li>
 				</ol> 
 				<div class="clearfix"> </div>
@@ -48,12 +48,12 @@
 								<h5><a href="/single/{{sanPham.id}}">{{sanPham.name}}</a></h5> 
 								<h6><del>$200</del> $100</h6> 
 								<form >
-									<input type="hidden" name="cmd" value="_cart" />
-									<input type="hidden" name="add" value="1" /> 
-									<input type="hidden" name="w3ls_item" value="Audio speaker" /> 
-									<input type="hidden" name="amount" value="100.00" /> 
-									<button type="submit" class="w3ls-cart pw3ls-cart" ng-click="themVaoGioHang(sanPham.id, sanPham.name, sanPham.price)" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-								</form> 
+									<!-- <input type="hidden" name="cmd" value="_cart" />
+									<input type="hidden" name="add" value="1" />
+									<input type="hidden" name="w3ls_item" value={{sanPham.name}}/>
+									<input type="hidden" name="amount" value={{sanPham.price}} /> -->
+									<button ng-click="onClickAddToCart(sanPham.id, sanPham.name, sanPham.price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+								</form>
 							</div>
 							<!-- {{sanPhams}} -->
 						</div> 
@@ -73,18 +73,14 @@
 			<div class="col-md-3 rsidebar">
 				<div class="rsidebar-top">
 					<div class="slider-left">
-						<h4>Filter By Price</h4>            
+						<h4>Giá</h4>            
 						<div class="row row1 scroll-pane">
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>0 - $100 </label>
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$100 - $200 </label> 
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$200 - $250  </label> 
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$250 - $300 </label> 
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$350 - $400 </label> 
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$450 - $500  </label> 
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>More</label> 
+							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Thấp</label>
+							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Trung bình </label> 
+							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Cao  </label> 
 						</div> 
 					</div>
-					<div class="sidebar-row">
+					<!-- <div class="sidebar-row">
 						<h4> Electronics</h4>
 						<ul class="faq">
 							<li class="item1"><a href="#">Mobile phones<span class="glyphicon glyphicon-menu-down"></span></a>
@@ -109,9 +105,9 @@
 									<li class="subitem1"><a href="#">Computer</a></li>										
 								</ul>
 							</li>
-						</ul>
+						</ul> -->
 						<!-- script for tabs -->
-						<script type="text/javascript">
+						<!-- <script type="text/javascript">
 							$(function() {
 							
 								var menu_ul = $('.faq > li > ul'),
@@ -132,10 +128,10 @@
 								});
 							
 							});
-						</script>
+						</script> -->
 						<!-- script for tabs -->
-					</div>
-					<div class="sidebar-row">
+					<!-- </div> -->
+					<!-- <div class="sidebar-row">
 						<h4>DISCOUNTS</h4>
 						<div class="row row1 scroll-pane">
 							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Upto - 10% (20)</label>
@@ -147,9 +143,9 @@
 							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>10% - 5% (2)</label>
 							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Other(50)</label>
 						</div>
-					</div>
+					</div> -->
 					<div class="sidebar-row">
-						<h4>Color</h4>
+						<h4>Nhà sản xuất</h4>
 						<div class="row row1 scroll-pane">
 							<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>White</label>
 							<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Pink</label>
