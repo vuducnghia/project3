@@ -1,0 +1,22 @@
+
+<% include partials/navbar %>
+
+
+	<div ng-controller= "gioHang">
+	<center>
+		<form>
+			<ul ng-repeat="sp in gioHang">
+				<li>
+					<h5>{{sp.name}}:  {{sp.price}}</h5>
+					<h5>Số lượng:  </h5>
+					<input type="" name="so_luong" ng-model="sp.number" >
+					<button ng-click="loaiBoSanPhamKhoiGioHang($index)">Loại bỏ</button>
+				</li>
+			</ul>
+			<div class="tongGioHang">{{tong}}</div>
+
+			<button ng-click="thayDoiSoLuongSanPham(gioHang)">Thay đổi</button>
+			<button ng-click="datHang(gioHang)">Đặt hàng</button>
+		</form>
+	</center>
+	</div>

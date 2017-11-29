@@ -1,8 +1,9 @@
 console.log('start');
 var app = angular.module('storeApp', []);
-app.themVaoGioHang = function(id, name, price){
+app.themVaoGioHang = function(idSanPham, idCuaHang, name, price){
         data = {
-            id: id,
+            idSanPham: idSanPham,
+            idCuaHang: idCuaHang,
             name: name,
             price: price,
             number: 1
@@ -17,8 +18,8 @@ app.themVaoGioHang = function(id, name, price){
         console.log('old Data');
         console.log(olderData);
         if(olderData.length!=0){
-             newData = olderData + ";" + JSON.stringify(data)
-            console.log(newData)
+            newData = olderData + ";" + JSON.stringify(data);
+            console.log(newData);
             window.localStorage.setItem('gioHang',newData) ;
         }else{
             window.localStorage.setItem('gioHang',JSON.stringify(data)) ;
@@ -83,25 +84,7 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
             alert("Unable to connect to the server.");
         });
     }
-    $scope.xemGioHang = function()  {
-        dataGioHang = $window.localStorage.getItem('gioHang');
-        console.log('dataGioHang');
-        console.log(dataGioHang);
-        // gioHang = JSON.parse(dataGioHang);
-        gioHang = dataGioHang.split(';');
-        console.log('gioHang');
-        console.log(gioHang);
-        gioHangjson = [];
-        for(sp in gioHang){
-            console.log(gioHang[sp]);
-            spJSON = JSON.parse(gioHang[sp]);
-            console.log(spJSON);
-            gioHangjson.push(spJSON);   
-        }
-        console.log('gio hang json');
-        console.log(gioHangjson);
-        $rootScope.gioHang = gioHangjson;
-    }
+  
 })
 app.controller('sign-up', function ($http, $scope, $window) {
 
@@ -201,7 +184,7 @@ app.controller("singleProduct", function ($scope, $http,$location) {
     maSanPham = $location.$$absUrl.split('/')[4];
     console.log(maSanPham);
     $http.post("/product/"+ maSanPham).then(function (result) {
-        console.log('startaaa');
+        console.log('xem chi tiet san pham');
         console.log(result);
         $scope.sanPham = result.data.product;
         var desObj = JSON.parse($scope.sanPham.description);
@@ -239,4 +222,77 @@ app.controller('sanPhamTrangChu', function ($scope, $http){
                 $scope.danhSachSanPham = result.data.products;
             });
     };
+})
+
+app.controller('gioHang',function($scope,$window, $rootScope){
+    dataGioHang = $window.localStorage.getItem('gioHang');
+    console.log('dataGioHang');
+    console.log(dataGioHang);
+    // gioHang = JSON.parse(dataGioHang);
+    gioHang = dataGioHang.split(';');
+    console.log('gioHang');
+    console.log(gioHang);
+    gioHangjson = [];
+    tong = 0;
+    for(sp in gioHang){
+        console.log(gioHang[sp]);
+        spJSON = JSON.parse(gioHang[sp]);
+        console.log(spJSON);
+        gioHangjson.push(spJSON);
+        
+    }
+    console.log('gio hang json');
+    console.log(gioHangjson);
+    for(i in gioHangjson){
+        tong += gioHangjson[i].price * gioHangjson[i].number;   
+    }
+    $rootScope.gioHang = gioHangjson;
+    $scope.tong = tong;
+
+    $scope.thayDoiSoLuongSanPham = function(gioHang){
+        console.log('dat hang');
+        console.log(gioHang);
+        gioHangjson = ''
+        for(sp in gioHang){
+            if(gioHangjson.length!=0){
+                gioHangjson = gioHangjson + ";" + JSON.stringify(gioHang[sp]);
+            }else{
+                 gioHangjson = gioHangjson  + JSON.stringify(gioHang[sp]);
+            }
+        }
+        console.log(gioHangjson);
+        $window.localStorage.setItem('gioHang',gioHangjson);
+    }
+    $scope.loaiBoSanPhamKhoiGioHang = function(index){
+        gioHang = $window.localStorage.getItem('gioHang');
+        console.log('loai bo san pham khoi gio hang');
+        
+        gioHangCu = gioHang.split(';')
+        console.log('gioHangCu');
+        console.log(gioHangCu);
+        console.log(index);
+        gioHangjson = ''
+        for(sp in gioHangCu){
+            console.log('sp');
+            console.log(gioHangCu[sp]);
+            if(sp != index){
+                if(gioHangjson.length!=0){
+                    gioHangjson = gioHangjson + ";" + gioHangCu[sp];
+                }else{
+                    gioHangjson = gioHangjson  + gioHangCu[sp];
+                }
+             }
+        }
+           
+        console.log('gioHangjson');
+        console.log(gioHangjson);
+        $window.localStorage.setItem('gioHang',gioHangjson);
+    }
+    $scope.datHang = function(){
+        gioHang = $window.localStorage.getItem('gioHang');
+        console.log('dat hang');
+        console.log(gioHang[0].number);
+
+    }
+
 })

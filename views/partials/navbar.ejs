@@ -141,10 +141,10 @@ $(document).ready(function() {
 							<li><a href="/offers">View Balance</a></li>
 						</ul>
 					</li>
-				<!-- 	<li class="dropdown head-dpdn">
-						<a href="/contact" class="dropdown-toggle"><i class="fa fa-map-marker" aria-hidden="true"></i> Store Finder</a>
-					</li>
 					<li class="dropdown head-dpdn">
+						<a href="/contact" class="dropdown-toggle"><i class="fa fa-map-marker" aria-hidden="true"></i> Contact us</a>
+					</li>
+				<!-- 	<li class="dropdown head-dpdn">
 						<a href="card.html" class="dropdown-toggle"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Credit Card</a>
 					</li>  -->
 					<li class="dropdown head-dpdn">
@@ -182,31 +182,14 @@ $(document).ready(function() {
 						<a href="/contact"><i class="fa fa-map-marker" aria-hidden="true"></i> CONTACT US</a>
 					</div>
 					<div class="cart">
-						<!-- <form action="#" method="post" class="last"> -->
-						<form class="last">
-							<!-- <input type="hidden" name="cmd" value="_cart" />
-							<input type="hidden" name="display" value="1" /> -->
-							<button class="gioHang w3view-cart" ng-click="xemGioHang()" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-							<!-- <script type="text/javascript">
-								$(".gioHang").click(function () {
-				                   alert({{gioHang[0]}});
-				               });
-							</script> -->
-						</form>
+					<a href='/gioHang'>
+						<button  class="gioHang w3view-cart"  type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button></a>
 					</div>
-					<div>
-						<ul ng-repeat="sp in gioHang">
-							<li>
-								<h5>{{sp.name}}</h5>
-								<input type="number" name="so_luong" value = {{sp.number}} ng-change="">
-								<h5 name="don_gia">{{sp.price}}</h5>
-							</li>
-						</ul>
-						<div class="tongGioHang">{{tong}}</div>
-					</div>
+					
 					<!-- {{gioHang}} -->
 					<div class="clearfix"> </div>
 				</div>
+					
 				<div class="clearfix"> </div>
 			</div>
 		</div><!-- //header-two -->
