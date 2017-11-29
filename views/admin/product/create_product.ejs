@@ -1,0 +1,16 @@
+<% extend('../layout/master') %>
+<div ng-app="admin">
+    <div ng-controller="manage_Product">
+        <form>
+            <input type="text" placeholder="name" ng-model="name">
+            <input type="text" placeholder="code" ng-model="code">
+            <input type="text" placeholder="description" ng-model="description">
+            <input type="text" placeholder="accessories" ng-model="accessories">
+            <input type="text" placeholder="sub_Category_idSub_Category" ng-model="sub_Category_idSub_Category">
+            <input type="text" placeholder="product_assuarance_policy" ng-model="product_assuarance_policy">
+            <input type="text" placeholder="month_assuarance" ng-model="month_assuarance">
+            <input type="text" placeholder="brand_idbrand" ng-model="brand_idbrand">
+            <button ng-click="createProduct()">Create New Product</button>
+        </form>
+    </div>
+</div>
