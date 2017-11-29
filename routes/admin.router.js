@@ -47,11 +47,15 @@ router.get('/allproduct', function (req, res) {
   res.render('admin/product/all_product', {title: 'Express'});
 });
 
-router.get('/create_product', function (req, res) {
+router.get('/product_create', function (req, res) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/product/create_product', {title: 'Express'});
 });
 
+router.get('/product/:id', function (req, res) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('admin/product/create_product', {title: 'Express'});
+});
 
 
 // router backend
@@ -73,9 +77,9 @@ router.delete('/deleteSubCategory/:id', subCategoryController.deleteSubCategory)
 
 ////////////////////////////////////PRODUCT               
 router.get('/getAllProduct', productController.getAllProduct);
-router.get('/getProductByIdSubCate/:id', productController.getProductByIdProduct);
+router.get('/getProductByIdProduct/:id', productController.getProductByIdProduct);
 // router.get('/getProductByIdSubCate/:id', productController.getProductByIdSubCate);  chua lams
 router.post('/createProduct', productController.createProduct);
 router.delete('/deleteProduct/:id', productController.deleteProduct);
-
+router.post('/updateProduct/:id', productController.updateProduct);
 module.exports = router;

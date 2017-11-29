@@ -162,7 +162,6 @@ app.controller("manage_SubCategories", function ($scope, $http, $rootScope, $win
 app.controller("manage_Product", function ($scope, $http, $rootScope, $window) {
 
     init();
-
     function init() {
         $http({
             method: "GET",
@@ -174,9 +173,24 @@ app.controller("manage_Product", function ($scope, $http, $rootScope, $window) {
         });
 
     }
+    $scope.initProductID = function () {
+        var y = $window.location.href.split('/')
+        id = y[y.length - 1];
+        if (y.length == 6)
+            $http({
+                method: "GET",
+                url: "/admin/getProductByIdProduct/" + id
+            }).success(function (data) {
+                $scope.data = data[0]
 
-    $scope.createProduct = function () {
-        // alert($scope.nameSubCategory)
+            }).error(function (err) {
+                alert("Unable to connect to the serverrrrr---/admin/updateProduct");
+            });
+    }
+    $scope.createOrUpdateProduct = function () {
+        console.log($window.location.href)
+        var y = $window.location.href.split('/')
+        console.log(y.length)
         if ($scope.name !== '') {
             var data = {
                 name: $scope.name,
@@ -188,38 +202,58 @@ app.controller("manage_Product", function ($scope, $http, $rootScope, $window) {
                 month_assuarance: $scope.month_assuarance,
                 brand_idbrand: $scope.brand_idbrand
             }
-            $http({
-                method: "POST",
-                url: "/admin/createProduct",
-                data: data
-            }).success(function (data) {
-                $scope.listCate = data
-            }).error(function (err) {
-                alert("Unable to connect to the serverrrrr---/admin/createSubCategory");
-            });
+            if (y.length == 5) {  // create
+                $http({
+                    method: "POST",
+                    url: "/admin/createProduct",
+                    data: data
+                }).success(function (data) {
+                    $scope.listCate = data
+                }).error(function (err) {
+                    alert("Unable to connect to the serverrrrr---/admin/createSubCategory");
+                });
 
-            init();
+                init();
+            }
+            else if (y.length == 6) {        // update
+                id = y[y.length - 1];
+                data.idProduct = id
+                // console.log(data)
+                
+                $http({
+                    method: "POST",
+                    url: "/admin/updateProduct/" + id,
+                    data: $scope.data
+                }).success(function (data) {
+                    console.log('success')
+                }).error(function (err) {
+                    alert("Unable to connect to the serverrrrr---/admin/createSubCategory");
+                });
+            }
         }
     }
 
     $scope.delete = function (id) {
-        alert(id + "dangerous, you don 't access")
-        $http({
-            method: "DELETE",
-            url: "/admin/deleteProduct/" + id
-        }).success(function (data) {
-            $scope.listCate = data
-            console.log('response: ', data);
-            init();
-        }).error(function (err) {
-            alert("Unable to connect to the serverrrrr---deleteSubCategory");
-        });
+        // alert(id + "dangerous, you don 't access")
+        // $http({
+        //     method: "DELETE",
+        //     url: "/admin/deleteProduct/" + id
+        // }).success(function (data) {
+        //     $scope.listCate = data
+        //     console.log('response: ', data);
+        //     init();
+        // }).error(function (err) {
+        //     alert("Unable to connect to the serverrrrr---deleteSubCategory");
+        // });
     }
-
+        ``
     $scope.Direction = function (id) {
-
         $window.location.href = '/admin/product_create';
     }
+    $scope.edit = function (id) {
+        $window.location.href = '/admin/product/' + id;
+    }
+
 })
 
 

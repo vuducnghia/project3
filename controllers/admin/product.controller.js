@@ -76,3 +76,18 @@ exports.getProductByIdProduct = (req, res) => {
         connection.release();
     })
 }
+
+exports.updateProduct = (req, res) => {
+    poolConnection.getConnection((err, connection) => {
+        const sellectQuery = "UPDATE `ecommerce`.`product` SET `name`='"+req.body.name+"', `description`='"+req.body.description+"', `accessories`='"+req.body.accessories+"', `sub_Category_idSub_Category`='"+req.body.sub_Category_idSub_Category+"', `product_assuarance_policy`='"+req.body.product_assuarance_policy+"', `month_assuarance`='"+req.body.month_assuarance+"', `brand_idbrand`='"+req.body.brand_idbrand+"' WHERE `idProduct`='"+req.body.idProduct+"';"
+        connection.query(sellectQuery, (error, results, fields) => {
+            if (err) {
+                console.log(err);
+                return res.json({ err_msg: 'Something wrong! get product 2' });
+            }
+            console.log(sellectQuery)
+            res.json(results);
+        });
+        connection.release();
+    })
+}
