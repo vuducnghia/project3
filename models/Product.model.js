@@ -201,7 +201,7 @@ exports.getBySubCateId = (idSubcate, callback) => {
   })
 };
 
-exports.getById = (idProduct, callback) => {
+exports.getById = (idProduct, idStore, callback) => {
   poolConnection.getConnection((err, connection) => {
     if(err) {
       console.log("error when get connection when catch product by id");
@@ -216,13 +216,14 @@ exports.getById = (idProduct, callback) => {
     +"ecommerce.store_product st_p, "
     +"ecommerce.store st "
       +"where p.idProduct = ? "
+      +"AND st.idstore = ? "
       +"AND s.idSub_Category = p.sub_Category_idSub_Category "
       +"AND c.idCategory = s.category_idCategory "
       +"AND p.brand_idbrand = b.idbrand "
       +"AND p.idProduct = i.product_idProduct "
       +"AND st_p.product_idProduct = p.idProduct "
       +"AND st_p.store_idstore = st.idstore;";
-    const params = [idProduct];
+    const params = [idProduct, idStore];
 
     connection.query({sql: querry, nestTables: true}, params, (err, results, fields) => {
       if(err) {

@@ -12,12 +12,16 @@ app.themVaoGioHang = function(idSanPham, idCuaHang, name, price){
         console.log(data);
         console.log('JSON.stringify(new data)');
         console.log(JSON.stringify(data));
-        olderData =window.localStorage.getItem('gioHang') ;
+        olderData =window.localStorage.getItem('gioHang');
+        if(!olderData) {
+          window.localStorage.setItem('gioHang', '') ;
+          olderData =window.localStorage.getItem('gioHang');
+        }
         // console.log('JSON.parse(olderData)');
         // console.log(JSON.parse(olderData));
         console.log('old Data');
         console.log(olderData);
-        if(olderData.length!=0){
+        if( olderData.length != 0){
             newData = olderData + ";" + JSON.stringify(data);
             console.log(newData);
             window.localStorage.setItem('gioHang',newData) ;
@@ -188,7 +192,7 @@ app.controller("singleProduct", function ($scope, $http,$location) {
 
     console.log(maSanPham);
      console.log(maCuaHang);
-    $http.post("/product/"+ maSanPham + maCuaHang).then(function (result) {
+    $http.post("/product/"+ maSanPham +'/'+ maCuaHang).then(function (result) {
         console.log('xem chi tiet san pham');
         console.log(result);
         $scope.sanPham = result.data.product;
@@ -244,12 +248,12 @@ app.controller('gioHang',function($scope,$window, $rootScope){
         spJSON = JSON.parse(gioHang[sp]);
         console.log(spJSON);
         gioHangjson.push(spJSON);
-        
+
     }
     console.log('gio hang json');
     console.log(gioHangjson);
     for(i in gioHangjson){
-        tong += gioHangjson[i].price * gioHangjson[i].number;   
+        tong += gioHangjson[i].price * gioHangjson[i].number;
     }
     $rootScope.gioHang = gioHangjson;
     $scope.tong = tong;
@@ -271,7 +275,7 @@ app.controller('gioHang',function($scope,$window, $rootScope){
     $scope.loaiBoSanPhamKhoiGioHang = function(index){
         gioHang = $window.localStorage.getItem('gioHang');
         console.log('loai bo san pham khoi gio hang');
-        
+
         gioHangCu = gioHang.split(';')
         console.log('gioHangCu');
         console.log(gioHangCu);
@@ -288,7 +292,7 @@ app.controller('gioHang',function($scope,$window, $rootScope){
                 }
              }
         }
-           
+
         console.log('gioHangjson');
         console.log(gioHangjson);
         $window.localStorage.setItem('gioHang',gioHangjson);

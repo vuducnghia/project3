@@ -8,7 +8,7 @@ var passport = require('passport');
 router.post('/subcate/:idSubcate', productController.getBySubCateId);
 router.post('/sanphamlienquan/:idProduct', productController.getRelationProducts);
 router.post('/timkiemsanpham', productController.findProductsByName);
-router.post('/:idProduct', productController.getById);
+router.post('/:idProduct/:idStore', productController.getById);
 
 
 module.exports = router;

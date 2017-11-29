@@ -29,7 +29,7 @@ router.get('/gioHang', function(req, res, next) {
   res.setHeader('Content-Type', 'text/html');
   res.render('gioHang', { title: 'Express' });
 });
-router.get('/single/:id', function(req, res, next) {
+router.get('/single/:idProduct/:idStore', function(req, res, next) {
   res.setHeader('Content-Type', 'text/html');
   res.render('single', { title: 'Express' });
 });
