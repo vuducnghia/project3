@@ -4,17 +4,19 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
     // $window.localStorage.setItem('user','') ;
     $rootScope.user = $window.localStorage.getItem('user');
     $scope.dang_xuat = function () {
+      console.log('CLickkk');
         $http({
             method: "POST",
-            url: "users/logout",
+            url: "users/logout"
         }).success(function () {
             $window.localStorage.setItem('user', '');
             $rootScope.user = $window.localStorage.getItem('user');
             console.log("Log out successful");
             // console.log(data);
-            $window.location.href = '/';
+            // $window.location.href = '/';
         }).error(function (err) {
-            alert("Unable to connect to the server.");
+            console.log("Unable to connect to the server.");
+            console.log(err);
         });
     }
 })
@@ -61,6 +63,7 @@ app.controller('dang_nhap', function ($http, $scope, $window, $rootScope, $locat
                 // $scope.account = data.user.username
                 // $rootScope.currentUser.username = data.user.username
                 $window.localStorage.setItem('user', data.user.username);
+                // $window.localStorage.setItem
                 $rootScope.user = $window.localStorage.getItem('user');
                 $window.location.href = '/';
                 // $location.url("/");
@@ -70,6 +73,7 @@ app.controller('dang_nhap', function ($http, $scope, $window, $rootScope, $locat
             });
     }
 });
+// app.controller('profile', function())
 app.controller("loaiSanPham", function ($scope, $http) {
     $http.get("/category").then(function (result) {
         console.log('startaaa');

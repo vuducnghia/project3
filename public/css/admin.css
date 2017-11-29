@@ -5,3 +5,7 @@
     background-color: #09192A;
     color: white;
 }
+
+.navbar-right{
+	margin-right: 0;
+}
