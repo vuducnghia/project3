@@ -211,6 +211,8 @@ app.controller("singleProduct", function ($scope, $http,$location) {
         console.log('nhan goi y san pham lien quan');
         console.log(result);
         $scope.sanPhamLienQuan = result.data.products;
+        console.log('lol');
+        console.log($scope.sanPhamLienQuan);
 
     })
 
