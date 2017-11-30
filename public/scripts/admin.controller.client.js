@@ -94,6 +94,7 @@ app.controller("manage_categories", function ($scope, $http, $rootScope, $window
 
     }
 
+
     $scope.createCategory = function () {
         if ($scope.nameCategory !== '') {
             var data = {
@@ -334,12 +335,13 @@ app.controller("manage_Product", function ($scope, $http, $rootScope, $window) {
         //     alert("Unable to connect to the serverrrrr---deleteSubCategory");
         // });
     }
-        ``
+    
     $scope.Direction = function (id) {
         $window.location.href = '/admin/product_create';
     }
     $scope.edit = function (id) {
         $window.location.href = '/admin/product/' + id;
+
     }
 
 })

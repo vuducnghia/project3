@@ -18,6 +18,7 @@ exports.getAllProduct = (req, res) => {
 }
 
 exports.createProduct = (req, res) => {
+
     if (req.body.name == null)
         return res.json({ err_msg: 'Dien day du thong tin ' });
 
