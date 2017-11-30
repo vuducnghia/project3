@@ -42,3 +42,9 @@ button{
 .create-product input, textarea{
 	min-width: 400px;
 }
+
+/*input category*/
+.new-category{
+	padding-left: 15px;
+	margin-left: 15px;
+}
