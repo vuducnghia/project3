@@ -417,3 +417,43 @@ app.controller('soSanhSanPham',function($scope, $http,$location){
 
 
 })
+
+app.controller('trangCaNhan',function($scope, $http){
+    
+    console.log('xem Trang Ca Nhan');
+    $http.post("/users/trangcanhan").then(function (result) {
+        console.log('xem Trang Ca Nhan');
+        console.log(result);
+        $scope.khachHang = result.data.user;
+    });
+    $http.post("/users/xemlichsumuahang").then(function (result) {
+        console.log('xem lich su mua hang');
+        console.log(result);
+        $scope.lichSu = result.data;
+    });
+    $scope.suaThongTin = function( username, email, phone, address){
+        data={
+            username: username,
+            email: email,
+            phone: phone,
+            address: address
+        }
+        console.log('data thay doi');
+        console.log(data);
+        $http({
+            method: "POST",
+            url: "/users/guiThongTin",
+            data: data
+        }).success(function (data) {
+
+            console.log("dat hang successful");
+            console.log(data);
+            // $window.location.href = '/logi';
+        }).error(function (err) {
+            alert("Unable to connect to the server.");
+        });
+    }
+
+
+})
+
