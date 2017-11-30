@@ -1,0 +1,24 @@
+<% extend('../layout/master') %>
+<div ng-app="admin">
+
+    <div class="create-product" ng-controller="manage_Product">
+        <form ng-init="initProductID()">
+            <p><label class="col-xs-2">Name:</label><input type="text" placeholder="name" ng-model="data.name"></p>
+            <p><label class="col-xs-2">Code:</label><input type="text" placeholder="code" ng-model="data.code"></p>
+            <p><label class="col-xs-2">Description:</label><textarea name="description" cols="40" rows="5" ng-model="data.description"></textarea></p>
+            <p><label class="col-xs-2">Accessories:</label><textarea name="accessories" cols="40" rows="5" ng-model="data.accessories"></textarea></p>
+            <p><label class="col-xs-2">Sub category:</label><input type="text" placeholder="sub_Category_idSub_Category" ng-model="data.sub_Category_idSub_Category"></p>
+            <p><label class="col-xs-2">Policy:</label><input type="text" placeholder="product_assuarance_policy" ng-model="data.product_assuarance_policy"></p>
+            <p><label class="col-xs-2">Assuarance:</label><input type="text" placeholder="month_assuarance" ng-model="data.month_assuarance"></p>
+            <p><label class="col-xs-2">Brand:</label>
+                <select>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4" selected>4</option>
+                </select>
+            </p>
+            <button class="btn-primary col-xs-2 col-xs-push-2" ng-click="createOrUpdateProduct()">Create Or Update</button>
+        </form>
+    </div>
+</div>
