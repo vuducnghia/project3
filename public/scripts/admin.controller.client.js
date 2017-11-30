@@ -100,11 +100,10 @@ app.controller("manage_categories", function ($scope, $http, $rootScope, $window
                 data: data
             }).success(function (data) {
                 $scope.listCate = data
+                init();
             }).error(function (err) {
                 alert("Unable to connect to the serverrrrr---/admin/createCategory");
             });
-
-            init();
         }
     }
 
