@@ -233,7 +233,7 @@ app.controller('sanPhamTrangChu', function ($scope, $http){
     };
 })
 
-app.controller('gioHang',function($scope,$window, $rootScope){
+app.controller('gioHang',function($scope,$window, $rootScope, $http){
     dataGioHang = $window.localStorage.getItem('gioHang');
     console.log('dataGioHang');
     console.log(dataGioHang);
@@ -271,6 +271,7 @@ app.controller('gioHang',function($scope,$window, $rootScope){
         }
         console.log(gioHangjson);
         $window.localStorage.setItem('gioHang',gioHangjson);
+        $window.location.href = '/gioHang';
     }
     $scope.loaiBoSanPhamKhoiGioHang = function(index){
         gioHang = $window.localStorage.getItem('gioHang');
@@ -300,8 +301,33 @@ app.controller('gioHang',function($scope,$window, $rootScope){
     }
     $scope.datHang = function(){
         gioHang = $window.localStorage.getItem('gioHang');
+        // if($rootScope.username)
         console.log('dat hang');
-        console.log(gioHang[0].number);
+        console.log(gioHang)
+
+        gioHangCuoi = gioHang.split(';')
+        gioHangjson = []
+        for(sp in gioHangCuoi){
+        console.log(gioHangCuoi[sp]);
+        spJSON = JSON.parse(gioHangCuoi[sp]);
+        console.log(spJSON);
+        gioHangjson.push(spJSON);
+        }
+
+        data = {'giohang': gioHangjson}
+        console.log(data);
+        $http({
+            method: "POST",
+            url: "order/dathang",
+            data: data
+        }).success(function (data) {
+
+            console.log("dat hang successful");
+            console.log(data);
+            // $window.location.href = '/logi';
+        }).error(function (err) {
+            alert("Unable to connect to the server.");
+        });
 
     }
 
