@@ -215,7 +215,9 @@ app.controller("singleProduct", function ($scope, $http,$location) {
         console.log($scope.sanPhamLienQuan);
 
     })
+    $scope.danhGia = function(x){
 
+    }
 
 })
 
@@ -301,7 +303,7 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
         $window.localStorage.setItem('gioHang',gioHangjson);
         $window.location.href = '/gioHang';
     }
-    $scope.datHang = function(noiNhan, sdtNguoiNhan){
+    $scope.datHang = function(tenNguoiNhan, noiNhan, sdtNguoiNhan){
         gioHang = $window.localStorage.getItem('gioHang');
         // if($rootScope.username)
         console.log('dat hang');
@@ -316,9 +318,14 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
             gioHangjson.push(spJSON);
         }
 
+
         data = {'giohang': gioHangjson,
-                 'noiNhan': noiNhan,
-                 'sdtNguoiNhan': sdtNguoiNhan
+                'thongTinNguoiNhan': {
+                    'tenNguoiNhan': tenNguoiNhan,
+                    'noiNhan': noiNhan,
+                    'sdtNguoiNhan': sdtNguoiNhan
+                }
+                 
                 }
         console.log(data);
         $http({

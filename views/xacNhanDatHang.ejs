@@ -11,12 +11,14 @@
 						<a href="/gioHang"><button ng-click="loaiBoSanPhamKhoiGioHang($index)">Loại bỏ</button></a>
 					</li>
 				</ul>
+				<div>Tên người nhận</div>
+				<input type="text" ng-model="tenNguoiNhan">
 				<div>Nơi nhận</div>
 				<input type="text" ng-model="noiNhan">
 				<div>Số điện thoại người nhận</div>
 				<input type="" name="" ng-model = "sdtNguoiNhan">
 				<div class="tongGioHang">{{tong}}</div>
-				<a href="/xacNhanDatHang"><button ng-click="datHang(noiNhan,sdtNguoiNhan)" >Đặt hàng</button></a>
+				<a href="/xacNhanDatHang"><button ng-click="datHang(tenNguoiNhan,noiNhan,sdtNguoiNhan)" >Đặt hàng</button></a>
 			</form>
 		</center>
 	</div>
