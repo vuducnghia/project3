@@ -82,12 +82,35 @@ app.controller("manage_categories", function ($scope, $http, $rootScope, $window
             method: "GET",
             url: "/admin/getAllCategories"
         }).success(function (data) {
-            $scope.listCate = []
-            data.forEach(function(item){
-                item.edit = false;
-                $scope.listCate.push(item);
-            })
-            console.log($scope.listCate)
+            //get subCategory
+            var allCate = data;
+            $http({
+                method: "GET",
+                url: "/admin/getAllSubCategories"
+            }).success(function (data) {
+                var allSubCate = data;
+                
+                $scope.listCate = []
+                allCate.forEach(function(item){
+
+                    item.edit = false;
+                    item.createSub = false;
+                    item.subCate = [];
+
+                    allSubCate.forEach(function(subItem){
+                        if(subItem.category_idCategory == item.idCategory){
+                            subItem.edit = false;
+                            item.subCate.push(subItem);
+                        }
+                    })
+                    $scope.listCate.push(item);
+                })
+
+                console.log($scope.listCate)
+            }).error(function (err) {
+                alert("Unable to connect to the serverrrrr---/admin/getAllCategories");
+            });
+
         }).error(function (err) {
             alert("Unable to connect to the serverrrrr---/admin/getAllCategories");
         });
@@ -150,6 +173,101 @@ app.controller("manage_categories", function ($scope, $http, $rootScope, $window
         }).error(function (err) {
             alert("Unable to connect to the serverrrrr---/admin/createSubCategory");
         });
+    }
+
+    $scope.editSub = function (subCate) {
+        subCate.edit = true;
+    }
+
+    $scope.save = function (subCate) {
+        subCate.edit = false;
+
+        $http({
+            method: "POST",
+            url: "/admin/updateSubCategory/" + subCate.idSub_Category,
+            data: subCate
+        }).success(function (data) {
+            console.log('success')
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/createSubCategory");
+        });
+    }
+
+    // add new sub category
+    $scope.addSubCate = function (category) {
+        category.createSub = true;
+    }
+    $scope.saveSubCate = function (category) {
+        category.createSub = false;
+
+        var data = {
+            category_idCategory: category.idCategory,
+            name: category.newCate
+        }
+        $http({
+            method: "POST",
+            url: "/admin/createSubCategory",
+            data: data
+        }).success(function (data) {
+            category.newCate = '';
+            init();
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/createSubCategory");
+        });
+    }
+    $scope.removeSubCate = function (category, sub) {
+        
+        $http({
+            method: "DELETE",
+            url: "/admin/deleteSubCategory/" + sub.idSub_Category
+        }).success(function (data) {
+            init();
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---deleteCategories");
+        });
+    }
+
+    $scope.searchCategory = function (keyword) {
+        data = {
+            keyword: keyword
+        }
+        $http({
+            method: "POST",
+            url: "/admin/searchCategory",
+            data: data
+        }).success(function (data) {
+            //get subCategory
+            var allCate = data;
+            $http({
+                method: "GET",
+                url: "/admin/getAllSubCategories"
+            }).success(function (data) {
+                var allSubCate = data;
+                
+                $scope.listCate = []
+                allCate.forEach(function(item){
+
+                    item.edit = false;
+                    item.createSub = false;
+                    item.subCate = [];
+
+                    allSubCate.forEach(function(subItem){
+                        if(subItem.category_idCategory == item.idCategory){
+                            subItem.edit = false;
+                            item.subCate.push(subItem);
+                        }
+                    })
+                    $scope.listCate.push(item);
+                })
+
+                console.log($scope.listCate)
+            }).error(function (err) {
+                alert("Unable to connect to the serverrrrr---/admin/getAllCategories");
+            });
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/createSubCategory");
+        });
+
     }
 })
 

@@ -80,12 +80,14 @@ router.get('/getAllCategories', categoryController.getAllCategories);
 router.post('/createCategory', categoryController.createCategory);
 router.delete('/deleteCategory/:id', categoryController.deleteCategory);
 router.post('/updateCategory/:id', categoryController.updateCategory);
+router.post('/searchCategory', categoryController.searchCategory);
 
 ///////////////////////    SubCATEGORY
 router.get('/getAllSubCategories', subCategoryController.getAllSubCategories);
 router.get('/getSubCategoryByIdCate/:id', subCategoryController.getSubCategoryByIdSubCate);
 router.post('/createSubCategory', subCategoryController.createSubCategory);
 router.delete('/deleteSubCategory/:id', subCategoryController.deleteSubCategory);
+router.post('/updateSubCategory/:id', subCategoryController.updateSubCategory);
 
 ////////////////////////////////////PRODUCT               
 router.get('/getAllProduct', productController.getAllProduct);

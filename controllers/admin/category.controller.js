@@ -91,3 +91,21 @@ exports.getSubCategoryByIdCate = (req, res) => {
         connection.release();
     })
 }
+
+
+exports.searchCategory = (req, res) => {
+
+    poolConnection.getConnection((err, connection) => {
+        if (err) return console.log(err);
+        const sellectQuery = "SELECT DISTINCT `idCategory`, `category`.`name` FROM `category`, `sub_Category` WHERE `category`.`idCategory`=`sub_Category`.`category_idCategory` AND (`category`.`name` LIKE '%" + req.body.keyword +"%' OR `sub_Category`.`name` LIKE '%" + req.body.keyword +"%')";
+        console.log(sellectQuery);
+        connection.query(sellectQuery, (error, results, fields) => {
+            if (err) {
+                console.log(err);
+                return res.json({ err_msg: 'Something wrong!' });
+            }
+            res.json(results);
+        });
+        connection.release();
+    })
+}
