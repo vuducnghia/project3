@@ -99,7 +99,7 @@ app.controller("manage_categories", function ($scope, $http, $rootScope, $window
                 url: "/admin/createCategory",
                 data: data
             }).success(function (data) {
-                $scope.listCate = data
+                // $scope.listCate = data
                 init();
             }).error(function (err) {
                 alert("Unable to connect to the serverrrrr---/admin/createCategory");
@@ -108,16 +108,22 @@ app.controller("manage_categories", function ($scope, $http, $rootScope, $window
     }
 
     $scope.delete = function (id) {
-        alert(id + "dangerous, you don 't access")
-        // $http({
-        //     method: "DELETE",
-        //     url: "/admin/deleteCategory/" + id
-        // }).success(function (data) {
-        //     $scope.listCate = data
-        //     console.log('response: ', data);
-        // }).error(function (err) {
-        //     alert("Unable to connect to the serverrrrr---deleteCategories");
-        // });
+        
+        var confirm = window.confirm("This category will delete. Delete category?");
+
+        if(confirm){
+            $http({
+                method: "DELETE",
+                url: "/admin/deleteCategory/" + id
+            }).success(function (data) {
+                // $scope.listCate = data
+                // console.log('response: ', data);
+                init();
+            }).error(function (err) {
+                alert("Unable to connect to the serverrrrr---deleteCategories");
+            });
+        }
+        
     }
 
     $scope.edit = function (id, nameCategory) {
