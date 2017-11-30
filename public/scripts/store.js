@@ -301,7 +301,7 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
         $window.localStorage.setItem('gioHang',gioHangjson);
         $window.location.href = '/gioHang';
     }
-    $scope.datHang = function(){
+    $scope.datHang = function(noiNhan, sdtNguoiNhan){
         gioHang = $window.localStorage.getItem('gioHang');
         // if($rootScope.username)
         console.log('dat hang');
@@ -310,13 +310,16 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
         gioHangCuoi = gioHang.split(';')
         gioHangjson = []
         for(sp in gioHangCuoi){
-        console.log(gioHangCuoi[sp]);
-        spJSON = JSON.parse(gioHangCuoi[sp]);
-        console.log(spJSON);
-        gioHangjson.push(spJSON);
+            console.log(gioHangCuoi[sp]);
+            spJSON = JSON.parse(gioHangCuoi[sp]);
+            console.log(spJSON);
+            gioHangjson.push(spJSON);
         }
 
-        data = {'giohang': gioHangjson}
+        data = {'giohang': gioHangjson,
+                 'noiNhan': noiNhan,
+                 'sdtNguoiNhan': sdtNguoiNhan
+                }
         console.log(data);
         $http({
             method: "POST",
@@ -330,7 +333,5 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
         }).error(function (err) {
             alert("Unable to connect to the server.");
         });
-
     }
-
 })

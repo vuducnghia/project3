@@ -3,7 +3,7 @@
 
 	<div ng-controller= "gioHang">
 	<center>
-		<form>
+
 			<ul ng-repeat="sp in gioHang">
 				<li>
 					<h5>{{sp.name}}:  {{sp.price}}</h5>
@@ -15,10 +15,11 @@
 			<div class="tongGioHang">{{tong}}</div>
 
 			<button ng-click="thayDoiSoLuongSanPham(gioHang)">Thay đổi</button>
-			<button ng-click="datHang(gioHang)">Đặt hàng</button>
-		</form>
+			<a href="/xacNhanDatHang"><button>Đặt hàng</button></a>
+		
 	</center>
 	</div>
+
 	<div class="w3agile-ftr-top">
 		<div class="container">
 			<div class="ftr-toprow">
