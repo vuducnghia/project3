@@ -27,6 +27,10 @@
 								<li data-thumb={{sanPham.imageLink}}>
 								   <div class="thumb-image"> <img src={{sanPham.imageLink}} data-imagezoom="true" class="img-responsive" alt=""> </div>
 								</li> -->
+								<label style="float: right;margin-top:180px;" ng-hide="show" ng-click="showItem()">So sánh với >>>></label>
+								<input type="text" style="margin-top:180px;" name="review" ng-model="sanPhamDuocSoSanh"  ng-show="show" id="input-review">
+								<a href='/sosanh/{{sanPham.id}}/{{sanPhamDuocSoSanh}}'><label style="float: right;margin-top:180px;" ng-show="show" >So sánh</label></a>
+								<!-- ng-click="soSanhSanPham(sanPham.id, sanPham.store.id, tenSanPhamDuocSoSanh)" -->
 							</ul>
 						</div>
 					</div>

@@ -37,5 +37,9 @@ router.get('/single/:idProduct/:idStore', function(req, res, next) {
   res.setHeader('Content-Type', 'text/html');
   res.render('single', { title: 'Express' });
 });
+router.get('/soSanh/:idProduct1/:tenProduct2', function(req, res, next) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('soSanhSanPham', { title: 'Express' });
+});
 
 module.exports = router;

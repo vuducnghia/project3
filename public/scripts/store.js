@@ -178,6 +178,7 @@ app.controller("sanPham", function ($scope, $http,$location,$window) {
 })
 app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $window) {
     // console.log($stateParams);
+    $scope.show = false;
     $scope.onClickAddToCart = app.themVaoGioHang;
 
     $scope.addToWishlist = function() {
@@ -268,6 +269,11 @@ app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $
                 alert("Unable to connect to the server.");
             });
         }
+    }
+    $scope.showItem = function() {
+        console.log($scope.show);
+        $scope.show = true;
+        console.log($scope.show);
     }
 
 })
@@ -392,4 +398,22 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
             alert("Unable to connect to the server.");
         });
     }
+})
+
+app.controller('soSanhSanPham',function($scope, $http,$location){
+    console.log('$location');
+    console.log($location.$$absUrl);
+    masanPham1 = $location.$$absUrl.split('/')[4];
+    tenSanPham2 = $location.$$absUrl.split('/')[5];
+    console.log('idsanPham1');
+    console.log(idsanPham1);
+    console.log('tenSanPham2');
+    console.log(tenSanPham2);
+     $http.post("/product/soSanh/"+ maSanPham1+ tenSanPham2).then(function (result) {
+        console.log('startaaa');
+        console.log(result);
+        $scope.sanPham = result.data;
+    });
+
+
 })
