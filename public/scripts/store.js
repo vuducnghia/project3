@@ -176,7 +176,7 @@ app.controller("sanPham", function ($scope, $http,$location,$window) {
 
 
 })
-app.controller("singleProduct", function ($scope, $http,$location) {
+app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $window) {
     // console.log($stateParams);
     $scope.onClickAddToCart = app.themVaoGioHang;
 
@@ -215,7 +215,60 @@ app.controller("singleProduct", function ($scope, $http,$location) {
         console.log($scope.sanPhamLienQuan);
 
     })
+    
+    $scope.danhGia = function(rate, maSanPham, maCuaHang){
+        console.log($rootScope.user);
+        if($rootScope.user == ''){
+            $window.location.href = '/login';
+        }else{
+            
+            data = {
+                'maSanPham': maSanPham,
+                'maCuaHang': maCuaHang,
+                'rate': rate
+            }
+            console.log(data);
+            $http({
+                method: "POST",
+                url: "product/danhGia",
+                data: data
+            }).success(function (data) {
 
+                console.log("danh gia san pham thanh cong");
+                console.log(data);
+                // $window.location.href = '/logi';
+             }).error(function (err) {
+                alert("Unable to connect to the server.");
+            });
+        }
+    }
+    $scope.guiPhanHoiSanPham = function(userReview, maSanPham, maCuaHang){
+        console.log($rootScope.user);
+        if($rootScope.user == ''){
+            $window.location.href = '/login';
+        }else{
+            
+            data = {
+                'maSanPham': maSanPham,
+                'maCuaHang': maCuaHang,
+                'userReview': userReview
+            }
+            console.log('data phan hoi san pham');
+            console.log(data);
+            $http({
+                method: "POST",
+                url: "product/phanHoiSanPham",
+                data: data
+            }).success(function (data) {
+
+                console.log("gui phan hoi san pham thanh cong");
+                console.log(data);
+                // $window.location.href = '/logi';
+             }).error(function (err) {
+                alert("Unable to connect to the server.");
+            });
+        }
+    }
 
 })
 
@@ -301,7 +354,7 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
         $window.localStorage.setItem('gioHang',gioHangjson);
         $window.location.href = '/gioHang';
     }
-    $scope.datHang = function(){
+    $scope.datHang = function(tenNguoiNhan, noiNhan, sdtNguoiNhan){
         gioHang = $window.localStorage.getItem('gioHang');
         // if($rootScope.username)
         console.log('dat hang');
@@ -310,13 +363,21 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
         gioHangCuoi = gioHang.split(';')
         gioHangjson = []
         for(sp in gioHangCuoi){
-        console.log(gioHangCuoi[sp]);
-        spJSON = JSON.parse(gioHangCuoi[sp]);
-        console.log(spJSON);
-        gioHangjson.push(spJSON);
+            console.log(gioHangCuoi[sp]);
+            spJSON = JSON.parse(gioHangCuoi[sp]);
+            console.log(spJSON);
+            gioHangjson.push(spJSON);
         }
 
-        data = {'giohang': gioHangjson}
+
+        data = {'giohang': gioHangjson,
+                'thongTinNguoiNhan': {
+                    'tenNguoiNhan': tenNguoiNhan,
+                    'noiNhan': noiNhan,
+                    'sdtNguoiNhan': sdtNguoiNhan
+                }
+                 
+                }
         console.log(data);
         $http({
             method: "POST",
@@ -330,7 +391,5 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
         }).error(function (err) {
             alert("Unable to connect to the server.");
         });
-
     }
-
 })

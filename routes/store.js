@@ -29,6 +29,10 @@ router.get('/gioHang', function(req, res, next) {
   res.setHeader('Content-Type', 'text/html');
   res.render('gioHang', { title: 'Express' });
 });
+router.get('/xacNhanDatHang', function(req, res, next) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('xacNhanDatHang', { title: 'Express' });
+});
 router.get('/single/:idProduct/:idStore', function(req, res, next) {
   res.setHeader('Content-Type', 'text/html');
   res.render('single', { title: 'Express' });
