@@ -215,11 +215,13 @@ app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $
         console.log($scope.sanPhamLienQuan);
 
     })
+    
     $scope.danhGia = function(rate, maSanPham, maCuaHang){
         console.log($rootScope.user);
         if($rootScope.user == ''){
             $window.location.href = '/login';
         }else{
+            
             data = {
                 'maSanPham': maSanPham,
                 'maCuaHang': maCuaHang,
@@ -233,6 +235,33 @@ app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $
             }).success(function (data) {
 
                 console.log("danh gia san pham thanh cong");
+                console.log(data);
+                // $window.location.href = '/logi';
+             }).error(function (err) {
+                alert("Unable to connect to the server.");
+            });
+        }
+    }
+    $scope.guiPhanHoiSanPham = function(userReview, maSanPham, maCuaHang){
+        console.log($rootScope.user);
+        if($rootScope.user == ''){
+            $window.location.href = '/login';
+        }else{
+            
+            data = {
+                'maSanPham': maSanPham,
+                'maCuaHang': maCuaHang,
+                'userReview': userReview
+            }
+            console.log('data phan hoi san pham');
+            console.log(data);
+            $http({
+                method: "POST",
+                url: "product/phanHoiSanPham",
+                data: data
+            }).success(function (data) {
+
+                console.log("gui phan hoi san pham thanh cong");
                 console.log(data);
                 // $window.location.href = '/logi';
              }).error(function (err) {

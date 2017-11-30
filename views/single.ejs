@@ -42,7 +42,11 @@
 								<li><i ng-click="danhGia(4, sanPham.id,sanPham.store.id)" class="fa fa-star-o" aria-hidden="true"></i></li>
 								<li><i ng-click="danhGia(5, sanPham.id,sanPham.store.id)" class="fa fa-star-o" aria-hidden="true"></i></li>
 								<li class="rating">(Mock)20 reviews</li>
-								<li><a href="#">Add your review</a></li>
+								<li>
+									
+									<input type="text" name="review" ng-model="userReview" id="input-review">
+									<label ng-click="guiPhanHoiSanPham(userReview,sanPham.id,sanPham.store.id)">Add your review</label>
+								</li>
 							</ul>
 						</div>
 						<div class="single-price">
