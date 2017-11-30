@@ -82,7 +82,12 @@ app.controller("manage_categories", function ($scope, $http, $rootScope, $window
             method: "GET",
             url: "/admin/getAllCategories"
         }).success(function (data) {
-            $scope.listCate = data
+            $scope.listCate = []
+            data.forEach(function(item){
+                item.edit = false;
+                $scope.listCate.push(item);
+            })
+            console.log($scope.listCate)
         }).error(function (err) {
             alert("Unable to connect to the serverrrrr---/admin/getAllCategories");
         });
@@ -127,9 +132,23 @@ app.controller("manage_categories", function ($scope, $http, $rootScope, $window
         
     }
 
-    $scope.edit = function (id, nameCategory) {
-
+    $scope.edit = function (category) {
+        category.edit = true;
         // $window.location.href = '/admin/categories/' + nameCategory+'/' + id;
+        
+    }
+    $scope.save = function (category) {
+        category.edit = false;
+        // $window.location.href = '/admin/categories/' + nameCategory+'/' + id;
+        $http({
+            method: "POST",
+            url: "/admin/updateCategory/" + category.idCategory,
+            data: category
+        }).success(function (data) {
+            console.log('success')
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/createSubCategory");
+        });
     }
 })
 

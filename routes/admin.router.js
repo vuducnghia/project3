@@ -78,6 +78,7 @@ router.post('/createStore', adminController.createStore);
 router.get('/getAllCategories', categoryController.getAllCategories);
 router.post('/createCategory', categoryController.createCategory);
 router.delete('/deleteCategory/:id', categoryController.deleteCategory);
+router.post('/updateCategory/:id', categoryController.updateCategory);
 
 ///////////////////////    SubCATEGORY
 router.get('/getAllSubCategories', subCategoryController.getAllSubCategories);

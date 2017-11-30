@@ -63,6 +63,21 @@ exports.deleteCategory = (req, res) => {
     })
 }
 
+exports.updateCategory = (req, res) => {
+    poolConnection.getConnection((err, connection) => {
+        const sellectQuery = "UPDATE `ecommerce`.`category` SET `name`='"+req.body.name+"' WHERE `idCategory`='"+req.body.idCategory+"';"
+        connection.query(sellectQuery, (error, results, fields) => {
+            if (err) {
+                console.log(err);
+                return res.json({ err_msg: 'Something wrong! get product 2' });
+            }
+            console.log(sellectQuery)
+            res.json(results);
+        });
+        connection.release();
+    })
+}
+
 exports.getSubCategoryByIdCate = (req, res) => {
     poolConnection.getConnection((err, connection) => {
         const sellectQuery = 'SELECT * FROM ecommerce.sub_Category WHERE category_idCategory ="' + req.params.id + '"';

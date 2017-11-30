@@ -38,12 +38,15 @@
                                         <tbody>
                                             <tr class="gradeU" ng-repeat="x in listCate">
                                                 <td class="text-center">{{x.idCategory}}</td>
-                                                <td class="text-center">{{x.name}}</td>
                                                 <td class="text-center">
-                                                    <button class="btn-danger" ng-click="delete(x.idCategory)">delete</button>
-                                                    <button class="btn-primary" ng-click="edit(x.idCategory, x.name)">edit</button>
+                                                    <span ng-hide="x.edit" ng-dblclick="edit(x)">{{x.name}}</span>
+                                                    <input type="text" ng-model="x.name" ng-show="x.edit" ng-keypress="($event.which === 13)?save(x):0">
                                                 </td>
-
+                                                <td class="text-center">
+                                                    <button class="btn-primary" ng-click="save(x)" ng-show="x.edit">Save</button>
+                                                    <button class="btn-default" ng-click="edit(x)" ng-hide="x.edit">Edit</button>
+                                                    <button class="btn-danger" ng-click="delete(x.idCategory)">Delete</button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
