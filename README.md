@@ -19,3 +19,7 @@ Chay project:
 npm start
 
 Mo dia chi http://localhost:3000
+
+Cam nhan web
+
+Nhan xet

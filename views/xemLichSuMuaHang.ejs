@@ -1,41 +1,13 @@
 <% include partials/navbar %>
 
-	<!-- //header -->
-	<!-- login-page -->
-	<div class="login-page">
-		<div class="container">
-			<h3 class="w3ls-title w3ls-title1">Login to your account</h3>
-			<div class="login-body" ng-controller="dang_nhap">
+<div ng-controller="trangCaNhan">
+	<label>Lich su mua hang:</label>
+	<!-- <input ng-model="khachHang.username"></input> -->
+	<label>{{lichsu}}</label>
+	
+</div>
 
-				<form >
-					<input type="text" class="user" name="username" ng-model="username" placeholder="Enter your username" required="">
-					<input type="password" name="password" ng-model = "password" class="lock" placeholder="Password" required="">
-					<input type="submit" value="Login" ng-click="dangNhap(username, password)">
-					<div class="forgot-grid">
-						<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Remember me</label>
-						<div class="forgot">
-							<a href="#">Forgot Password?</a>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</form>
-			</div>
-			<h6> Not a Member? <a href="/signup">Sign Up Now »</a> </h6>
-			<div class="login-page-bottom social-icons">
-				<h5>Recover your social account</h5>
-				<ul>
-					<li><a href="#" class="fa fa-facebook icon facebook"> </a></li>
-					<li><a href="#" class="fa fa-twitter icon twitter"> </a></li>
-					<li><a href="#" class="fa fa-google-plus icon googleplus"> </a></li>
-					<li><a href="#" class="fa fa-dribbble icon dribbble"> </a></li>
-					<li><a href="#" class="fa fa-rss icon rss"> </a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- //login-page -->
-	<!-- footer-top -->
-	<div class="w3agile-ftr-top">
+<div class="w3agile-ftr-top">
 		<div class="container">
 			<div class="ftr-toprow">
 				<div class="col-md-4 ftr-top-grids">
@@ -86,7 +58,9 @@
 					<li><a href="#" class="fa fa-rss icon rss"> </a></li>
 				</ul>
 				<ul class="apps">
-					<li><h4>Download Our app : </h4> </li>
+					<li>
+						<h4>Download Our app : </h4>
+					</li>
 					<li><a href="#" class="fa fa-apple"></a></li>
 					<li><a href="#" class="fa fa-windows"></a></li>
 					<li><a href="#" class="fa fa-android"></a></li>
@@ -163,31 +137,92 @@
 		</div>
 	</div>
 	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
+	<script src="/js/minicart.js"></script>
 	<script>
-        w3ls.render();
+									w3ls.render();
 
-        w3ls.cart.on('w3sb_checkout', function (evt) {
-        	var items, len, i;
+									w3ls.cart.on('w3sb_checkout', function (evt) {
+										var items, len, i;
 
-        	if (this.subtotal() > 0) {
-        		items = this.items();
+										if (this.subtotal() > 0) {
+											items = this.items();
 
-        		for (i = 0, len = items.length; i < len; i++) {
-        			items[i].set('shipping', 0);
-        			items[i].set('shipping2', 0);
-        		}
-        	}
-        });
-    </script>
+											for (i = 0, len = items.length; i < len; i++) {
+												items[i].set('shipping', 0);
+												items[i].set('shipping2', 0);
+											}
+										}
+									});
+	</script>
 	<!-- //cart-js -->
+	<!-- countdown.js -->
+	<script src="/js/jquery.knob.js"></script>
+	<script src="/js/jquery.throttle.js"></script>
+	<script src="/js/jquery.classycountdown.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('#countdown1').ClassyCountdown({
+				end: '1388268325',
+				now: '1387999995',
+				labels: true,
+				style: {
+					element: "",
+					textResponsive: .5,
+					days: {
+						gauge: {
+							thickness: .10,
+							bgColor: "rgba(0,0,0,0)",
+							fgColor: "#1abc9c",
+							lineCap: 'round'
+						},
+						textCSS: 'font-weight:300; color:#fff;'
+					},
+					hours: {
+						gauge: {
+							thickness: .10,
+							bgColor: "rgba(0,0,0,0)",
+							fgColor: "#05BEF6",
+							lineCap: 'round'
+						},
+						textCSS: ' font-weight:300; color:#fff;'
+					},
+					minutes: {
+						gauge: {
+							thickness: .10,
+							bgColor: "rgba(0,0,0,0)",
+							fgColor: "#8e44ad",
+							lineCap: 'round'
+						},
+						textCSS: ' font-weight:300; color:#fff;'
+					},
+					seconds: {
+						gauge: {
+							thickness: .10,
+							bgColor: "rgba(0,0,0,0)",
+							fgColor: "#f39c12",
+							lineCap: 'round'
+						},
+						textCSS: ' font-weight:300; color:#fff;'
+					}
+
+				},
+				onEndCallback: function () {
+					console.log("Time out!");
+				}
+			});
+		});
+	</script>
+	<!-- //countdown.js -->
 	<!-- menu js aim -->
-	<script src="js/jquery.menu-aim.js"> </script>
-	<script src="js/main.js"></script> <!-- Resource jQuery -->
+	<script src="/js/jquery.menu-aim.js">
+
+	</script>
+	<script src="/js/main.js"></script>
+	<!-- Resource jQuery -->
 	<!-- //menu js aim -->
 	<!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/bootstrap.js"></script>
+	<!-- Placed at the end of the document so the pages load faster -->
 </body>
+
 </html>

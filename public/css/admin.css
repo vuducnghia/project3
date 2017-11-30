@@ -1,3 +1,11 @@
+button{
+	border-radius:5px;
+}
+
+.panel{
+	border: 1px solid black;
+}
+
 .sign-up form p input{
     width: 300px;
 }
@@ -8,4 +16,35 @@
 
 .navbar-right{
 	margin-right: 0;
+}
+
+.all-product #page-wrapper{
+	padding: 0;
+}
+
+.all-product table thead tr th{
+	padding: 15px 10px;
+}
+
+.all-product table{
+	border-collapse:collapse; 
+	table-layout:fixed;
+}
+
+.admin-category .ng-pristine{
+	padding-left: 15px;
+}
+
+.admin-category .panel-heading{
+	border-bottom: none;
+}
+
+.create-product input, textarea{
+	min-width: 400px;
+}
+
+/*input category*/
+.new-category{
+	padding-left: 15px;
+	margin-left: 15px;
 }

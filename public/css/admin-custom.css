@@ -18,7 +18,10 @@ body {
 }
 
 #page-wrapper {
-    padding: 15px 15px;
+    padding: 15px 0 !important;
+}
+
+#page-wrapper {
     min-height: 600px;
     background:#E5EBF2;
    

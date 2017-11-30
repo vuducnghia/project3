@@ -118,11 +118,13 @@ app.controller('sign-up', function ($http, $scope, $window) {
     }
 });
 app.controller('dang_nhap', function ($http, $scope, $window, $rootScope, $location) {
-
-    $scope.dangNhap = function (user) {
-
-        console.log('lol');
-        console.log($scope);
+    $window.localStorage.setItem('user', '');//Thanh fix
+    $rootScope.user = null;
+    $scope.dangNhap = function (username, password) {
+        var user = {
+          username: username,
+          password: password
+        }
 
         $http.post('/users/login', user)
             .success(function (data) {
@@ -172,6 +174,7 @@ app.controller("sanPham", function ($scope, $http,$location,$window) {
 })
 app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $window) {
     // console.log($stateParams);
+    $scope.show = false;
     $scope.onClickAddToCart = app.themVaoGioHang;
 
     $scope.addToWishlist = function() {
@@ -262,6 +265,11 @@ app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $
                 alert("Unable to connect to the server.");
             });
         }
+    }
+    $scope.showItem = function() {
+        console.log($scope.show);
+        $scope.show = true;
+        console.log($scope.show);
     }
 
 })
@@ -386,4 +394,61 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
             alert("Unable to connect to the server.");
         });
     }
+})
+
+app.controller('soSanhSanPham',function($scope, $http,$location){
+    console.log('$location');
+    console.log($location.$$absUrl);
+    masanPham1 = $location.$$absUrl.split('/')[4];
+    tenSanPham2 = $location.$$absUrl.split('/')[5];
+    console.log('idsanPham1');
+    console.log(idsanPham1);
+    console.log('tenSanPham2');
+    console.log(tenSanPham2);
+     $http.post("/product/soSanh/"+ maSanPham1+ tenSanPham2).then(function (result) {
+        console.log('startaaa');
+        console.log(result);
+        $scope.sanPham = result.data;
+    });
+
+
+})
+
+app.controller('trangCaNhan',function($scope, $http){
+
+    console.log('xem Trang Ca Nhan');
+    $http.post("/users/trangcanhan").then(function (result) {
+        console.log('xem Trang Ca Nhan');
+        console.log(result);
+        $scope.khachHang = result.data.user;
+    });
+    $http.post("/users/xemlichsumuahang").then(function (result) {
+        console.log('xem lich su mua hang');
+        console.log(result);
+        $scope.lichSu = result.data;
+    });
+    $scope.suaThongTin = function( username, email, phone, address){
+        data={
+            username: username,
+            email: email,
+            phone: phone,
+            address: address
+        }
+        console.log('data thay doi');
+        console.log(data);
+        $http({
+            method: "POST",
+            url: "/users/guiThongTin",
+            data: data
+        }).success(function (data) {
+
+            console.log("dat hang successful");
+            console.log(data);
+            // $window.location.href = '/logi';
+        }).error(function (err) {
+            alert("Unable to connect to the server.");
+        });
+    }
+
+
 })

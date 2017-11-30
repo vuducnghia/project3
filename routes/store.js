@@ -1,4 +1,5 @@
 var express = require('express');
+var passport = require('passport');
 var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -6,6 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 router.get('/login', function(req, res, next) {
+  if(req.isAuthenticated()) return res.redirect('/');
   res.setHeader('Content-Type', 'text/html');
   res.render('login', { title: 'Express' });
 });
@@ -36,6 +38,10 @@ router.get('/xacNhanDatHang', function(req, res, next) {
 router.get('/single/:idProduct/:idStore', function(req, res, next) {
   res.setHeader('Content-Type', 'text/html');
   res.render('single', { title: 'Express' });
+});
+router.get('/soSanh/:idProduct1/:tenProduct2', function(req, res, next) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('soSanhSanPham', { title: 'Express' });
 });
 
 module.exports = router;

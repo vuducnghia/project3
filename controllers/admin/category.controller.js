@@ -1,11 +1,10 @@
 var poolConnection = require('../../models/pool.connection');
 
-
-exports.getAllProduct = (req, res) => {
+exports.getAllCategories = (req, res) => {
 
     poolConnection.getConnection((err, connection) => {
         if (err) return console.log(err);
-        const sellectQuery = 'SELECT pro.* FROM ecommerce.product pro;';
+        const sellectQuery = 'SELECT cat.* FROM ecommerce.category cat;';
         connection.query(sellectQuery, (error, results, fields) => {
             if (err) {
                 console.log(err);
@@ -17,29 +16,29 @@ exports.getAllProduct = (req, res) => {
     })
 }
 
-exports.createProduct = (req, res) => {
-
+exports.createCategory = (req, res) => {
     if (req.body.name == null)
         return res.json({ err_msg: 'Dien day du thong tin ' });
 
     poolConnection.getConnection((err, connection) => {
         if (err) return console.log(err);
 
-        const sellectQuery0 = 'SELECT pro.* FROM ecommerce.product pro;';
+        const sellectQuery0 = 'SELECT cat.* FROM ecommerce.category cat;';
         connection.query(sellectQuery0, (error, results, fields) => {
             if (err) {
-                return res.json({ err_msg: 'Something wrong! createproduct 1' });
+                return res.json({ err_msg: 'Something wrong! createCategory 1' });
             }
             for (var i = 0; i < results.length; ++i) {
                 if (req.body.name == results[i].name)
                     return res.json({ err_msg: 'data exsisted!' });
             }
 
-            const sellectQuery ="INSERT INTO `ecommerce`.`product` (`name`, `code`, `description`, `accessories`, `sub_Category_idSub_Category`, `product_assuarance_policy`, `month_assuarance`, `brand_idbrand`) VALUES ('"+req.body.name + "','"+ req.body.code + "','"+ req.body.description + "','"+ req.body.accessories + "','"+ req.body.sub_Category_idSub_Category + "','"+ req.body.product_assuarance_policy + "','"+ req.body.month_assuarance + "','"+ req.body.brand_idbrand + "');";
+            const sellectQuery = 'INSERT INTO ecommerce.category SET name = "' + req.body.name + '"';
+
             connection.query(sellectQuery, (error, results, fields) => {
                 if (err) {
                     console.log(err);
-                    return res.json({ err_msg: 'Something wrong! createproduct 2' });
+                    return res.json({ err_msg: 'Something wrong! createCategory 2' });
                 }
                 res.json(results);
             });
@@ -48,15 +47,15 @@ exports.createProduct = (req, res) => {
     })
 }
 
-exports.deleteProduct = (req, res) => {
+exports.deleteCategory = (req, res) => {
     poolConnection.getConnection((err, connection) => {
-        const sellectQuery = 'DELETE FROM ecommerce.product  WHERE idProduct ="' + req.params.id + '"';
+        const sellectQuery = 'DELETE FROM ecommerce.category  WHERE idCategory ="' + req.params.id + '"';
         console.log(sellectQuery)
 
         connection.query(sellectQuery, (error, results, fields) => {
             if (err) {
                 console.log(err);
-                return res.json({ err_msg: 'Something wrong! deleteProduct 2' });
+                return res.json({ err_msg: 'Something wrong! createCategory 2' });
             }
             res.json(results);
         });
@@ -64,29 +63,29 @@ exports.deleteProduct = (req, res) => {
     })
 }
 
-exports.getProductByIdProduct = (req, res) => {
+exports.updateCategory = (req, res) => {
     poolConnection.getConnection((err, connection) => {
-        const sellectQuery = 'SELECT * FROM ecommerce.product WHERE idProduct ="' + req.params.id + '"';
-        connection.query(sellectQuery, (error, results, fields) => {
-            if (err) {
-                console.log(err);
-                return res.json({ err_msg: 'Something wrong! get product 2' });
-            }
-            res.json(results);
-        });
-        connection.release();
-    })
-}
-
-exports.updateProduct = (req, res) => {
-    poolConnection.getConnection((err, connection) => {
-        const sellectQuery = "UPDATE `ecommerce`.`product` SET `name`='"+req.body.name+"', `description`='"+req.body.description+"', `accessories`='"+req.body.accessories+"', `sub_Category_idSub_Category`='"+req.body.sub_Category_idSub_Category+"', `product_assuarance_policy`='"+req.body.product_assuarance_policy+"', `month_assuarance`='"+req.body.month_assuarance+"', `brand_idbrand`='"+req.body.brand_idbrand+"' WHERE `idProduct`='"+req.body.idProduct+"';"
+        const sellectQuery = "UPDATE `ecommerce`.`category` SET `name`='"+req.body.name+"' WHERE `idCategory`='"+req.body.idCategory+"';"
         connection.query(sellectQuery, (error, results, fields) => {
             if (err) {
                 console.log(err);
                 return res.json({ err_msg: 'Something wrong! get product 2' });
             }
             console.log(sellectQuery)
+            res.json(results);
+        });
+        connection.release();
+    })
+}
+
+exports.getSubCategoryByIdCate = (req, res) => {
+    poolConnection.getConnection((err, connection) => {
+        const sellectQuery = 'SELECT * FROM ecommerce.sub_Category WHERE category_idCategory ="' + req.params.id + '"';
+        connection.query(sellectQuery, (error, results, fields) => {
+            if (err) {
+                console.log(err);
+                return res.json({ err_msg: 'Something wrong! createCategory 2' });
+            }
             res.json(results);
         });
         connection.release();
