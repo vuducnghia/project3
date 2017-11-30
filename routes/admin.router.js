@@ -11,7 +11,7 @@ var poolConnection = require('../models/pool.connection');
 var passport = require('passport');
 
 // router client
-////////////////////////////////////////////admin
+////////////////////////////////////////////admin max
 router.get('/', function (req, res) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/home', {title: 'Express'});
@@ -31,6 +31,7 @@ router.get('/create_account_store', function (req, res, next) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/account/create_account_store', {title: 'Express'});
 });
+/////////////////////////////////////////////// admin store
 
 /////////////////////// category
 router.get('/categories', function (req, res) {

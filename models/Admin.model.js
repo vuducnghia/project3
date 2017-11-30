@@ -8,7 +8,7 @@ exports.getById = (id, callback) => {
       const sellectQuery = 'SELECT * FROM ecommerce.admin WHERE idAdmin = ?;';
       connection.query(sellectQuery, [id], (err, results, fields) => {
         const user = results[0];
-        if(!user) { return callback({err_msg: 'Khong tim thay user'}, null) }
+        if(!user) { return callback({err_msg: 'Khong tim thay admin'}, null) }
         callback(null, user);
       })
       connection.release();

@@ -2,7 +2,8 @@ var poolConnection = require('../../models/pool.connection');
 
 
 exports.getAllProduct = (req, res) => {
-
+    console.log('user:   ')
+    console.log(req.user)
     poolConnection.getConnection((err, connection) => {
         if (err) return console.log(err);
         const sellectQuery = 'SELECT pro.* FROM ecommerce.product pro;';
