@@ -91,6 +91,7 @@ exports.login = (req, res, next) => {
   // })(req, res, next);
   console.log('login controller');
   // console.log('current user: ', req.user);
+  if(!req.user) return res.json({errAuthen: 'Xac thuc fail!!!'});
   res.json({user: req.user});
 
 

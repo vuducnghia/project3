@@ -7,14 +7,15 @@ exports.makeOrder = (order, user, callback) => {
       return callback(err, null);
     }
     console.log("orderInfo: ", order);
-    const queryString = "INSERT INTO `ecommerce`.`order` (`name`, `totalPrice`, `shipping_Address`, `user_idUser`, `store_idstore`, `status`) VALUES (?, ?, ?, ?, ?, ?);"
+    const queryString = "INSERT INTO `ecommerce`.`order` (`name`, `totalPrice`, `shipping_Address`, `user_idUser`, `store_idstore`, `status`, `create_Date`) VALUES (?, ?, ?, ?, ?, ?, ?);"
     const params = [
       order.customerInfo.name,
       order.totalPrice,
       order.customerInfo.address,
-      user.idUser,
+      1,
       order.storeId,
-      0
+      0,
+      order.createDate
     ];
     connection.query({sql: queryString}, params, (err, results, fields) => {
       if(err) {
@@ -30,6 +31,7 @@ exports.makeOrder = (order, user, callback) => {
 }
 
 const makeOrder_Store_Product = (order_idorder, store_product_store_idstore, store_product_product_idProduct, quantity) => {
+  console.log('aaaaaaaa: ', order_idorder, store_product_store_idstore, store_product_product_idProduct, quantity);
   poolConnection.getConnection((err, connection) => {
     if(err) {
       console.log("Loi 36456rhfhe");
@@ -42,6 +44,12 @@ const makeOrder_Store_Product = (order_idorder, store_product_store_idstore, sto
       store_product_product_idProduct,
       quantity
     ]
+    connection.query({sql: queryString}, params, (err, results, fields) => {
+      if(err) {
+        console.log(err);
+      }
+
+    })
     connection.release();
   })
 }

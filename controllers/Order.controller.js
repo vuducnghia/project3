@@ -23,9 +23,9 @@ exports.makeOrder = (req, res) => {
     return res.json({err_msg: "Thieu id cua store!!"});
   }
   storeIds.forEach((storeId) => {
-    const createdDate = Date();
+    const createdDate = new Date().toISOString().slice(0, 19).replace('T', ' ');;
     const orderInfo = {
-      create_date: createdDate,
+      createDate: createdDate,
       storeId: storeId,
       totalPrice: 0,
       customerInfo: {

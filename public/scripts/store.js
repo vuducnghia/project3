@@ -126,19 +126,13 @@ app.controller('dang_nhap', function ($http, $scope, $window, $rootScope, $locat
 
         $http.post('/users/login', user)
             .success(function (data) {
-                console.log("Login successful");
                 console.log(data);
-
-                // $rootScope.currentUser = data.user;
-                // $scope.account = data.user.username
-                // $rootScope.currentUser.username = data.user.username
                 $window.localStorage.setItem('user', data.user.username);
-                // $window.localStorage.setItem
                 $rootScope.user = $window.localStorage.getItem('user');
                 $window.location.href = '/';
-                // $location.url("/");
             }).error(function (err) {
-                console.log(err);
+                console.log("err: ", err);
+                if(err == 'Unauthorized') return $window.location.href = '/login';
                 alert("Unable to connect to the server.");
             });
     }
@@ -215,13 +209,13 @@ app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $
         console.log($scope.sanPhamLienQuan);
 
     })
-    
+
     $scope.danhGia = function(rate, maSanPham, maCuaHang){
         console.log($rootScope.user);
         if($rootScope.user == ''){
             $window.location.href = '/login';
         }else{
-            
+
             data = {
                 'maSanPham': maSanPham,
                 'maCuaHang': maCuaHang,
@@ -247,7 +241,7 @@ app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $
         if($rootScope.user == ''){
             $window.location.href = '/login';
         }else{
-            
+
             data = {
                 'maSanPham': maSanPham,
                 'maCuaHang': maCuaHang,
@@ -376,7 +370,7 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
                     'noiNhan': noiNhan,
                     'sdtNguoiNhan': sdtNguoiNhan
                 }
-                 
+
                 }
         console.log(data);
         $http({
