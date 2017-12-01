@@ -71,7 +71,7 @@ router.get('/product/:id', function (req, res) {
 
 // admin max level
 router.post('/sign_up', adminController.sign_up);
-router.post('/login', passport.authenticate('local-admin', { failureRedirect: '/admin/login' }), adminController.login);
+router.post('/login_admin', passport.authenticate('local-admin', { failureRedirect: '/admin/login' }), adminController.login);
 router.post('/createAdminStore', adminController.createAdminStore);
 router.post('/createStore', adminController.createStore);
 

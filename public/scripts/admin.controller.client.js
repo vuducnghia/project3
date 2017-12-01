@@ -29,7 +29,7 @@ app.controller("account", function ($scope, $http, $rootScope, $window) {
         console.log(data);
         $http({
             method: "POST",
-            url: "/admin/login",
+            url: "/admin/login_admin",
             data: data
         }).success(function (data) {
 

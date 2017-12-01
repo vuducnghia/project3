@@ -63,6 +63,7 @@ exports.sign_up = (req, res) => {
 }
 
 exports.login = (req, res) => {
+    console.log(req.user)
     res.json({ admin: req.user });
 }
 
