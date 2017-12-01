@@ -463,3 +463,21 @@ app.controller("manage_Product", function ($scope, $http, $rootScope, $window) {
     }
 
 })
+
+app.controller("manage_user", function ($scope, $http, $rootScope, $window) {
+
+    init();
+    function init() {
+        $http({
+            method: "GET",
+            url: "/admin/getAllUsers"
+        }).success(function (data) {
+            $scope.listUser = data
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/getAllSubUsers");
+        });
+
+    }
+    
+
+})
