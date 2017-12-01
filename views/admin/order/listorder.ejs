@@ -1,0 +1,58 @@
+<% extend('../layout/master') %>
+    <div ng-app="admin">
+        <div class="admin-order" ng-controller="manage_order">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Order
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Advanced Tables -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Order
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">ID</th>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center">Total Price</th>
+                                                <th class="text-center">Create date</th>
+                                                <th class="text-center">Shipping Address</th>
+                                                <th class="text-center">Customer</th>
+                                                <th class="text-center">Store</th>
+                                                <th class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="gradeU" ng-repeat="order in listOrder">
+                                                <td class="text-center">{{order.idorder}}</td>
+                                                <td class="text-center">{{order.name}}</td>
+                                                <td class="text-center">{{order.totalPrice}}</td>
+                                                <td class="text-center">{{order.create_Date | date:'dd-M-yyyy'}}</td>
+                                                <td class="text-center">{{order.shipping_Address}}</td>
+                                                <td class="text-center">{{order.name_customer}}</td>
+                                                <td class="text-center">{{order.name_store}}</td>
+                                                <td class="text-center">
+                                                    <a href="#">Change Status</a> / <a href="#">View</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

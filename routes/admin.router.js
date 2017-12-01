@@ -6,6 +6,8 @@ var categoryController = require('../controllers/admin/category.controller');
 var subCategoryController = require('../controllers/admin/subcategory.controller');
 var productController = require('../controllers/admin/product.controller');
 var brandController = require('../controllers/admin/brand.controller');
+var userController = require('../controllers/admin/user.controller');
+var orderController = require('../controllers/admin/order.controller');
 
 var poolConnection = require('../models/pool.connection');
 var passport = require('passport');
@@ -27,12 +29,21 @@ router.get('/login', function (req, res, next) {
   res.render('admin/account/login', {title: 'Express'});
 });
 
-router.get('/create_account_store', function (req, res, next) {
+router.get('/create_account', function (req, res, next) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/account/create_account_store', {title: 'Express'});
+  res.render('admin/account/create_account', {title: 'Express'});
 });
 /////////////////////////////////////////////// admin store
 
+//User
+router.get('/users', function (req, res) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('admin/account/list_users', {title: 'Manage User'});
+});
+
+
+
+////////////////////##################$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4444
 /////////////////////// category
 router.get('/categories', function (req, res) {
   res.setHeader('Content-Type', 'text/html');
@@ -67,24 +78,45 @@ router.get('/product/:id', function (req, res) {
 });
 
 
+
+
+//Order
+router.get('/orders', function (req, res) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('admin/order/listorder', {title: 'Manage Order'});
+});
+
+
+
+
+
+
+
+
+////////////####################################################################33
 // router backend
 
 // admin max level
 router.post('/sign_up', adminController.sign_up);
 router.post('/login_admin', passport.authenticate('local-admin', { failureRedirect: '/admin/login' }), adminController.login);
 router.post('/createAdminStore', adminController.createAdminStore);
+router.post('/createAdminSystemAndSale', adminController.createAdminSystemAndSale);
+
 router.post('/createStore', adminController.createStore);
 
 //////////////////////////////////////////////   CATEGORY
 router.get('/getAllCategories', categoryController.getAllCategories);
 router.post('/createCategory', categoryController.createCategory);
 router.delete('/deleteCategory/:id', categoryController.deleteCategory);
+router.post('/updateCategory/:id', categoryController.updateCategory);
+router.post('/searchCategory', categoryController.searchCategory);
 
 ///////////////////////    SubCATEGORY
 router.get('/getAllSubCategories', subCategoryController.getAllSubCategories);
 router.get('/getSubCategoryByIdCate/:id', subCategoryController.getSubCategoryByIdSubCate);
 router.post('/createSubCategory', subCategoryController.createSubCategory);
 router.delete('/deleteSubCategory/:id', subCategoryController.deleteSubCategory);
+router.post('/updateSubCategory/:id', subCategoryController.updateSubCategory);
 
 ////////////////////////////////////PRODUCT               
 router.get('/getAllProduct', productController.getAllProduct);
@@ -97,3 +129,9 @@ module.exports = router;
 
 ////////////////Brands
 router.get('/getAllBrands', brandController.getAllBrands);
+
+/////////////////user
+router.get('/getAllUsers', userController.getAllUsers);
+
+/////////////////Order
+router.get('/getAllOrders', orderController.getAllOrders);

@@ -47,43 +47,57 @@
 	</div>
 	<!-- //banner -->
 	<!-- welcome -->
-	<div class="welcome">
+	<div class="welcome" ng-controller = "sanPhamTrangChu">
 		<div class="container">
 			<div class="welcome-info">
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					<ul id="myTab" class=" nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab">
-							<i class="fa fa-laptop" aria-hidden="true"></i>
-							<h5>Electronics</h5>
-						</a></li>
-						<li role="presentation"><a href="#carl" role="tab" id="carl-tab" data-toggle="tab">
-							<i class="fa fa-female" aria-hidden="true"></i>
-							<h5>Fashion</h5>
-						</a></li>
-						<li role="presentation"><a href="#james" role="tab" id="james-tab" data-toggle="tab">
-							<i class="fa fa-gift" aria-hidden="true"></i>
-							<h5>Photo & Gifts</h5>
-						</a></li>
-						<li role="presentation"><a href="#decor" role="tab" id="decor-tab" data-toggle="tab">
-							<i class="fa fa-home" aria-hidden="true"></i>
-							<h5>Home Decor</h5>
-						</a></li>
-						<li role="presentation"><a href="#sports" role="tab" id="sports-tab" data-toggle="tab">
-							<i class="fa fa-motorcycle" aria-hidden="true"></i>
-							<h5>Sports</h5>
-						</a></li>
+						<li role="presentation" ng-click="layDanhSachSanPham(loaiSanPham[0].id)">
+							<a href="#home" id="home-tab" role="tab" data-toggle="tab">
+								<i class="fa fa-laptop" aria-hidden="true"></i>
+								<h5>{{loaiSanPham[0].name}}</h5>
+							</a>
+						</li>
+						<li role="presentation" ng-click="layDanhSachSanPham(loaiSanPham[1].id)">
+							<a href="#carl" role="tab" id="carl-tab" data-toggle="tab">
+								<i class="fa fa-female" aria-hidden="true"></i>
+								<h5>{{loaiSanPham[1].name}}</h5>
+							</a>
+						</li>
+						<li role="presentation" ng-click="layDanhSachSanPham(loaiSanPham[2].id)">
+							<a href="#james" role="tab" id="james-tab" data-toggle="tab">
+								<i class="fa fa-gift" aria-hidden="true"></i>
+								<h5>{{loaiSanPham[2].name}}</h5>
+							</a>
+						</li>
+						<li role="presentation" ng-click="layDanhSachSanPham(loaiSanPham[3].id)">
+							<a href="#decor" role="tab" id="decor-tab" data-toggle="tab">
+								<i class="fa fa-home" aria-hidden="true"></i>
+								<h5>{{loaiSanPham[3].name}}</h5>
+							</a>
+						</li>
+						<li role="presentation" ng-click="layDanhSachSanPham(loaiSanPham[4].id)">
+							<a href="#sports" role="tab" id="sports-tab" data-toggle="tab">
+								<i class="fa fa-motorcycle" aria-hidden="true"></i>
+								<h5>{{loaiSanPham[4].name}}</h5>
+							</a>
+						</li>
 					</ul>
 					<div class="clearfix"> </div>
+						<ul ng-repeat="sanPham in danhSachSanPham">
+							<li>{{sanPham.name}}</li>
+						</ul>
 					<h3 class="w3ls-title">Featured Products</h3>
-					<div id="myTabContent" class="tab-content">
+					<div id="myTabContent" class="tab-content" >
 						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-							<div class="tabcontent-grids">
-								<div id="owl-demo" class="owl-carousel">
-									<div class="item">
+						
+							<div class="tabcontent-grids"  >
+								<div id="owl-demo" class="owl-carousel" >
+									<div class="item" >
 										<div class="glry-w3agile-grids agileits">
 											<a href="products.html"><img src="images/e1.png" alt="img"></a>
 											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products.html">Audio speaker</a></h4>
+												<h4><a href="products.html">sanPham.name</a></h4>
 												<p>Lorem ipsum dolor sit amet consectetur</p>
 												<h5>$100</h5>
 												<form action="#" method="post">
@@ -1178,7 +1192,7 @@
 		</div>
 	</div>
 	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
+	<script src="/js/minicart.js"></script>
 	<script>
 									w3ls.render();
 
@@ -1197,9 +1211,9 @@
 	</script>
 	<!-- //cart-js -->
 	<!-- countdown.js -->
-	<script src="js/jquery.knob.js"></script>
-	<script src="js/jquery.throttle.js"></script>
-	<script src="js/jquery.classycountdown.js"></script>
+	<script src="/js/jquery.knob.js"></script>
+	<script src="/js/jquery.throttle.js"></script>
+	<script src="/js/jquery.classycountdown.js"></script>
 	<script>
 		$(document).ready(function () {
 			$('#countdown1').ClassyCountdown({
@@ -1255,10 +1269,10 @@
 	</script>
 	<!-- //countdown.js -->
 	<!-- menu js aim -->
-	<script src="js/jquery.menu-aim.js">
+	<script src="/js/jquery.menu-aim.js">
 
 	</script>
-	<script src="js/main.js"></script>
+	<script src="/js/main.js"></script>
 	<!-- Resource jQuery -->
 	<!-- //menu js aim -->
 	<!-- Bootstrap core JavaScript

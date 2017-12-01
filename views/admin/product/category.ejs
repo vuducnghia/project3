@@ -23,7 +23,9 @@
                                 <div>
                                     <input type="text" placeholder="Name new category" ng-model="nameCategory" class="new-category">
                                     <button class="btn-info" ng-click="createCategory()">Create New Category</button>
+                                    <input type="text" name="search" class="pull-right" style="margin-right: 15px;" placeholder="search" ng-model="keyword" ng-keypress="($event.which === 13)?searchCategory(keyword):0">
                                 </div>
+
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
@@ -32,18 +34,34 @@
                                             <tr>
                                                 <th class="text-center">ID</th>
                                                 <th class="text-center">Category</th>
+                                                <th class="text-center">Sub Category</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr class="gradeU" ng-repeat="x in listCate">
                                                 <td class="text-center">{{x.idCategory}}</td>
-                                                <td class="text-center">{{x.name}}</td>
                                                 <td class="text-center">
-                                                    <button class="btn-danger" ng-click="delete(x.idCategory)">delete</button>
-                                                    <button class="btn-primary" ng-click="edit(x.idCategory, x.name)">edit</button>
+                                                    <span ng-hide="x.edit" ng-dblclick="edit(x)">{{x.name}}</span>
+                                                    <input type="text" ng-model="x.name" ng-show="x.edit" ng-keypress="($event.which === 13)?save(x):0">
                                                 </td>
-
+                                                <td>
+                                                    <ul>
+                                                        <li ng-repeat="sub in x.subCate" style="padding-right: 100px">
+                                                            <span ng-hide="sub.edit" ng-dblclick="editSub(sub)">{{ sub.name }}</span>
+                                                            <input type="text" ng-model="sub.name" ng-show="sub.edit" ng-keypress="($event.which === 13)?save(sub):0" ng-blur="save(sub)" >
+                                                            <span class="glyphicon glyphicon-remove pull-right" ng-click="removeSubCate(x, sub)"></span>
+                                                        </li>
+                                                        <input type="text" ng-show="x.createSub" ng-model="x.newCate"  ng-blur="saveSubCate(x)" >
+                                                        <span class="glyphicon glyphicon-plus" ng-hide="x.createSub" ng-click="addSubCate(x)"></span>
+                                                        <span class="glyphicon glyphicon-floppy-saved" ng-show="x.createSub" ng-click="saveSubCate(x)"></span>
+                                                    </ul>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button class="btn-primary" ng-click="save(x)" ng-show="x.edit">Save</button>
+                                                    <button class="btn-default" ng-click="edit(x)" ng-hide="x.edit">Edit</button>
+                                                    <button class="btn-danger" ng-click="delete(x.idCategory)">Delete</button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

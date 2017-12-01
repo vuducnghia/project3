@@ -99,3 +99,62 @@ exports.logout = (req, res) => {
   req.logout();
   res.json({msg: 'You are out of my system!'});
 }
+
+
+exports.xemtrangcanhan = (req, res) => {
+  // const user = req.user;
+  // console.log(user);
+  res.json({user: req.user});
+}
+exports.capnhat = (req, res) => {
+  const user = {
+    username: req.body.username ? req.body.username : null,
+    email: req.body.email ? req.body.email : null,
+    phone: req.body.phone ? req.body.phone : null,
+    address: req.body.address ? req.body.address : null
+  }
+  // const user = req.user;
+   //Validate request
+  if (user.username === null || user.password === null || user.email === null) {
+    return res.json({err_msg: 'Dien day du thong tin username, password va email!'});
+  }
+  console.log(user);
+  console.log(req.user);
+
+  poolConnection.getConnection((err,connection) => {
+    const query = "UPDATE `ecommerce`.`user` SET `username`=?, `email`= ?,`phone`= ?,  `address` = ? WHERE `idUser`=?;"
+    const params = [user.username, user.email, user.phone,  user.address, req.user.idUser];
+
+    connection.query(query,params,function(err,results){
+      if(err){
+        console.log(err);
+        return res.json({msg: 'khong ket noi duoc voi database'});
+      }else{
+        console.log(results);
+        return res.json({msg: 'cap nhat thong tin thanh cong'});
+        
+      }
+    })
+
+  })
+}
+exports.xemlichsumuahang = (req, res) => {
+  console.log(req.user);
+  poolConnection.getConnection((err,connection) => {
+    console.log('truy van lich su mua hang');
+    const query = "SELECT * FROM ecommerce.history_view WHERE `user_idUser`=?;"
+    params = [req.user.idUser];
+    connection.query(query, params, function(err,results){
+      if(err){
+        console.log(err);
+        return res.json({msg: 'khong ket noi duoc voi database'});
+      }else{
+        console.log(results);
+        console.log('truy van thanh cong lich su mua hang');
+        return res.json({msg: 'xem lich su thanh cong'});
+        
+      }
+    })
+
+  })
+}
