@@ -7,6 +7,7 @@ var subCategoryController = require('../controllers/admin/subcategory.controller
 var productController = require('../controllers/admin/product.controller');
 var brandController = require('../controllers/admin/brand.controller');
 var userController = require('../controllers/admin/user.controller');
+var orderController = require('../controllers/admin/order.controller');
 
 var poolConnection = require('../models/pool.connection');
 var passport = require('passport');
@@ -66,11 +67,18 @@ router.get('/product/:id', function (req, res) {
   res.render('admin/product/create_product', {title: 'Express'});
 });
 
+//User
 router.get('/users', function (req, res) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/user/list', {title: 'Manage User'});
 });
 
+
+//Order
+router.get('/orders', function (req, res) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('admin/order/listorder', {title: 'Manage Order'});
+});
 
 // router backend
 
@@ -109,3 +117,6 @@ router.get('/getAllBrands', brandController.getAllBrands);
 
 /////////////////user
 router.get('/getAllUsers', userController.getAllUsers);
+
+/////////////////Order
+router.get('/getAllOrders', orderController.getAllOrders);

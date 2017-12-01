@@ -481,3 +481,22 @@ app.controller("manage_user", function ($scope, $http, $rootScope, $window) {
     
 
 })
+
+app.controller("manage_order", function ($scope, $http, $rootScope, $window) {
+
+    init();
+
+    function init() {
+        $http({
+            method: "GET",
+            url: "/admin/getAllOrders"
+        }).success(function (data) {
+            $scope.listOrder = data
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/getAllOrders");
+        });
+
+    }
+    
+
+})
