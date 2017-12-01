@@ -62,6 +62,11 @@ router.get('/product_create', function (req, res) {
   res.render('admin/product/create_product', {title: 'Express'});
 });
 
+router.get('/product/brands', function (req, res) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('admin/product/brand', {title: 'Brands'});
+});
+
 router.get('/product/:id', function (req, res) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/product/create_product', {title: 'Express'});
@@ -79,6 +84,7 @@ router.get('/orders', function (req, res) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/order/listorder', {title: 'Manage Order'});
 });
+
 
 // router backend
 
@@ -114,6 +120,8 @@ module.exports = router;
 
 ////////////////Brands
 router.get('/getAllBrands', brandController.getAllBrands);
+router.post('/updateBrand', brandController.updateBrand);
+router.post('/createBrand', brandController.createBrand);
 
 /////////////////user
 router.get('/getAllUsers', userController.getAllUsers);

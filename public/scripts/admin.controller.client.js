@@ -463,6 +463,64 @@ app.controller("manage_Product", function ($scope, $http, $rootScope, $window) {
     }
 
 })
+app.controller("manage_brand", function ($scope, $http, $rootScope, $window) {
+
+    init();
+    function init() {
+        $http({
+            method: "GET",
+            url: "/admin/getAllBrands"
+        }).success(function (data) {
+            $scope.listBrand = [];
+            data.forEach(function(item){
+                item.edit = false;
+                $scope.listBrand.push(item);
+            })
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/getAllBrands");
+        });
+
+    }
+
+    $scope.createBrand = function () {
+        if ($scope.nameBrand !== '') {
+            var data = {
+                name: $scope.nameBrand
+            }
+            $http({
+                method: "POST",
+                url: "/admin/createBrand",
+                data: data
+            }).success(function (data) {
+                // $scope.listCate = data
+                $scope.nameBrand = '';
+                init();
+            }).error(function (err) {
+                alert("Unable to connect to the serverrrrr---/admin/createBrand");
+            });
+        }
+    }
+
+    $scope.edit = function (brand) {
+        brand.edit = true;
+        
+    }
+    $scope.save = function (brand) {
+        brand.edit = false;
+
+        $http({
+            method: "POST",
+            url: "/admin/updateBrand/",
+            data: brand
+        }).success(function (data) {
+            console.log('success')
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admineSubCategory");
+        });
+    }
+
+})
+
 
 app.controller("manage_user", function ($scope, $http, $rootScope, $window) {
 
