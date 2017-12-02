@@ -25,8 +25,7 @@ app.controller("account", function ($scope, $http, $rootScope, $window) {
             username: $scope.username,
             password: $scope.password,
         }
-        console.log('asad: ', data);
-        console.log(data);
+
         $http({
             method: "POST",
             url: "/admin/login_admin",
@@ -34,13 +33,27 @@ app.controller("account", function ($scope, $http, $rootScope, $window) {
         }).success(function (data) {
 
             console.log('response: ', data);
+            $rootScope.role = data.level;
             $window.location.href = '/admin';
         }).error(function (err) {
             alert("Unable to connect to the serverrrrr.");
         });
     }
-    $scope.createAccount = function () {
+    $scope.logout = function () {
+        console.log(1213)
+        $http({
+            method: "POST",
+            url: "/admin/logout"
+        }).success(function (data) {
 
+            console.log('response: ', data);
+            $window.location.href = '/admin/login';
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr.");
+        });
+    }
+    $scope.createAccount = function () {
+        // console.log($rootScope.level)
         console.log($scope.account.level)
         if ($scope.account.level === '1' || $scope.account.level === '2') {
             console.log(11111)
@@ -55,7 +68,7 @@ app.controller("account", function ($scope, $http, $rootScope, $window) {
                 alert(err);
             });
         }
-        else{
+        else {
             $http({
                 method: "POST",
                 url: "/admin/createAdminStore",
@@ -496,7 +509,7 @@ app.controller("manage_brand", function ($scope, $http, $rootScope, $window) {
             url: "/admin/getAllBrands"
         }).success(function (data) {
             $scope.listBrand = [];
-            data.forEach(function(item){
+            data.forEach(function (item) {
                 item.edit = false;
                 $scope.listBrand.push(item);
             })
@@ -527,7 +540,7 @@ app.controller("manage_brand", function ($scope, $http, $rootScope, $window) {
 
     $scope.edit = function (brand) {
         brand.edit = true;
-        
+
     }
     $scope.save = function (brand) {
         brand.edit = false;
