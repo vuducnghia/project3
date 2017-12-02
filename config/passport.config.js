@@ -14,6 +14,7 @@ passport.use('local', new LocalStrategy((username, password, next) => {
     const params = [username];
     connection.query(sellectQuery, params, (err, results, fields) => {
       if (err) {
+        console.log(err);
         return next(err);
       };
       if(!results || results.length === 0) {

@@ -7,6 +7,7 @@ var passport = require('passport');
 
 router.post('/subcate/:idSubcate', productController.getBySubCateId);
 router.post('/sanphamlienquan/:idProduct', productController.getRelationProducts);
+router.post('/phanhoisanpham', productController.reviewProduct);
 router.post('/timkiemsanpham', productController.findProductsByName);
 router.post('/:idProduct/:idStore', productController.getById);
 
