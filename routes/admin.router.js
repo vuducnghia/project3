@@ -11,84 +11,116 @@ var orderController = require('../controllers/admin/order.controller');
 
 var poolConnection = require('../models/pool.connection');
 var passport = require('passport');
+///////////////////////////// phan quyen
+var auth_adminSystem = function auth_adminSystem(req, res, next) {
+  console.log(req.user.level)
+  if (req.user.level === 1){
+    next()
+  }
+  console.log('thoat')
+}
+function auth_adminSale(req, res, next) {
+  console.log(req.user)
+  if (req.user.level === '1')
+    next()
+}
+function auth_adminStore(req, res, next) {
+  console.log(req.user)
+  if (req.user.level === undefined)
+    next()
+}
+function isLoggedIn(req, res, next) {
 
-// router client
+  // if user is authenticated in the session, carry on 
+  if (req.isAuthenticated())
+    return next();
+
+  // if they aren't redirect them to the home page
+  res.redirect('/admin/login');
+}
+
+///////////////////////////////////////////////////////////////////////////// router client
 ////////////////////////////////////////////admin max
-router.get('/', function (req, res) {
+router.get('/', isLoggedIn, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/home', {title: 'Express'});
+  res.render('admin/home', { title: 'Express' });
 });
 
-router.get('/sign_up', function (req, res, next) {
+router.get('/sign_up', isLoggedIn, function (req, res, next) {  // k can dung nua
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/account/sign_up', {title: 'Express'});
+  res.render('admin/account/sign_up', { title: 'Express' });
 });
 
 router.get('/login', function (req, res, next) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/account/login', {title: 'Express'});
+  res.render('admin/account/login', { title: 'Express' });
 });
 
-router.get('/create_account', function (req, res, next) {
+router.get('/logout', isLoggedIn, function (req, res, next) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/account/create_account', {title: 'Express'});
+  res.render('admin/account/login', { title: 'Express' });
+});
+
+router.get('/create_account', isLoggedIn, function (req, res, next) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('admin/account/create_account', { title: 'Express' });
 });
 /////////////////////////////////////////////// admin store
 
 //User
-router.get('/users', function (req, res) {
+router.get('/users', isLoggedIn, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/account/list_users', {title: 'Manage User'});
+  res.render('admin/account/list_users', { title: 'Manage User' });
 });
 
 
 
 ////////////////////##################$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4444
 /////////////////////// category
-router.get('/categories', function (req, res) {
+router.get('/categories', isLoggedIn, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/product/category', {title: 'Express'});
+  res.render('admin/product/category', { title: 'Express' });
 });
 
-router.get('/categories/:id', function (req, res) {
+router.get('/categories/:id', isLoggedIn, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/product/edit_category', {title: 'Express'});
+  res.render('admin/product/edit_category', { title: 'Express' });
 });
 
 //////////////////////////   Sub category
-router.get('/subcategory', function (req, res) {
+router.get('/subcategory', isLoggedIn, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/product/sub_category', {title: 'Express'});
+  res.render('admin/product/sub_category', { title: 'Express' });
 });
 
 //////////////////////////   product
-router.get('/allproduct', function (req, res) {
+router.get('/allproduct', isLoggedIn, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/product/all_product', {title: 'Express'});
+  res.render('admin/product/all_product', { title: 'Express' });
 });
 
-router.get('/product_create', function (req, res) {
+router.get('/product_create', isLoggedIn, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/product/create_product', {title: 'Express'});
+  res.render('admin/product/create_product', { title: 'Express' });
 });
 
-router.get('/product/brands', function (req, res) {
+router.get('/product/brands', isLoggedIn, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/product/brand', {title: 'Brands'});
+  res.render('admin/product/brand', { title: 'Brands' });
 });
 
-router.get('/product/:id', function (req, res) {
+router.get('/product/:id', isLoggedIn, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/product/create_product', {title: 'Express'});
+  res.render('admin/product/create_product', { title: 'Express' });
 });
 
 
 
 
 //Order
-router.get('/orders', function (req, res) {
+router.get('/orders', isLoggedIn, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/order/listorder', {title: 'Manage Order'});
+  res.render('admin/order/listorder', { title: 'Manage Order' });
 });
 
 
@@ -103,11 +135,18 @@ router.get('/orders', function (req, res) {
 
 // admin max level
 router.post('/sign_up', adminController.sign_up);
+router.post('/logout', adminController.logout);
 router.post('/login_admin', passport.authenticate('local-admin', { failureRedirect: '/admin/login' }), adminController.login);
-router.post('/createAdminStore', adminController.createAdminStore);
-router.post('/createAdminSystemAndSale', adminController.createAdminSystemAndSale);
+// router.post('/login_admin', passport.authenticate('local-admin', { successRedirect: '/',failureRedirect: '/admin/login' }));
+router.post('/createAdminStore',auth_adminSystem, adminController.createAdminStore);
+// router.post('/createAdminSystemAndSale', adminController.createAdminSystemAndSale);
+
+
+router.post('/createAdminSystemAndSale', auth_adminSystem, adminController.createAdminSystemAndSale);
+
 
 router.post('/createStore', adminController.createStore);
+
 
 //////////////////////////////////////////////   CATEGORY
 router.get('/getAllCategories', categoryController.getAllCategories);
