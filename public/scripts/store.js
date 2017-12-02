@@ -118,6 +118,7 @@ app.controller('sign-up', function ($http, $scope, $window) {
     }
 });
 app.controller('dang_nhap', function ($http, $scope, $window, $rootScope, $location) {
+    console.log('$window.lastUrl: ', $window.lastUrl);
     $window.localStorage.setItem('user', '');//Thanh fix
     $rootScope.user = null;
     $scope.dangNhap = function (username, password) {
@@ -131,7 +132,8 @@ app.controller('dang_nhap', function ($http, $scope, $window, $rootScope, $locat
                 console.log(data);
                 $window.localStorage.setItem('user', data.user.username);
                 $rootScope.user = $window.localStorage.getItem('user');
-                $window.location.href = '/';
+                $window.history.back();
+                // $window.location.href = '/';
             }).error(function (err) {
                 console.log("err: ", err);
                 if(err == 'Unauthorized') return $window.location.href = '/login';
@@ -215,54 +217,45 @@ app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $
 
     $scope.danhGia = function(rate, maSanPham, maCuaHang){
         console.log($rootScope.user);
-        if($rootScope.user == ''){
-            $window.location.href = '/login';
-        }else{
-
-            data = {
-                'maSanPham': maSanPham,
-                'maCuaHang': maCuaHang,
-                'rate': rate
-            }
-            console.log(data);
-            $http({
-                method: "POST",
-                url: "product/danhGia",
-                data: data
-            }).success(function (data) {
-
-                console.log("danh gia san pham thanh cong");
-                console.log(data);
-                // $window.location.href = '/logi';
-             }).error(function (err) {
-                alert("Unable to connect to the server.");
-            });
-        }
+        $scope.rate = rate;
     }
     $scope.guiPhanHoiSanPham = function(userReview, maSanPham, maCuaHang){
         console.log($rootScope.user);
         if($rootScope.user == ''){
             $window.location.href = '/login';
         }else{
-
-            data = {
-                'maSanPham': maSanPham,
-                'maCuaHang': maCuaHang,
-                'userReview': userReview
-            }
-            console.log('data phan hoi san pham');
-            console.log(data);
+          if(!userReview || !maSanPham || !maCuaHang || !$scope.rate) {
+            return console.log("Some thing wrong: ", {
+              maSanPham: maSanPham,
+              maCuaHang: maCuaHang,
+              userReview: userReview,
+              rate: $scope.rate
+            });
+          }
+            console.log('data phan hoi san pham: ');
+            console.log({
+              maSanPham: maSanPham,
+              maCuaHang: maCuaHang,
+              userReview: userReview,
+              rate: $scope.rate
+            });
             $http({
                 method: "POST",
-                url: "product/phanHoiSanPham",
-                data: data
+                url: "/product/phanhoisanpham",
+                data: {
+                  maSanPham: maSanPham,
+                  maCuaHang: maCuaHang,
+                  userReview: userReview,
+                  rate: $scope.rate
+                }
             }).success(function (data) {
-
-                console.log("gui phan hoi san pham thanh cong");
-                console.log(data);
-                // $window.location.href = '/logi';
+                if(!data.isAuthenticated) {
+                  return $window.location.href = '/login';
+                }
+                console.log(data.msg);
              }).error(function (err) {
-                alert("Unable to connect to the server.");
+               console.log(err);
+                // alert("Unable to connect to the server.");
             });
         }
     }
