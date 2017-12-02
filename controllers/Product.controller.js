@@ -60,3 +60,36 @@ exports.getRelationProducts = (req, res) => {
     res.json({products: fiveRelationProducts});
   })
 }
+
+exports.reviewProduct = (req, res) => {
+  console.log('Im heeeeeereeeeeee');
+  console.log('req.user: ', req.user);
+  if(!req.user || !req.isAuthenticated()) return res.json({error_msg: "Can dang nhap!", isAuthenticated: false});
+  const review = {
+    idUser: req.user.idUser,
+    idStore: req.body.maCuaHang,
+    idProduct: req.body.maSanPham,
+    content: req.body.userReview,
+    rate: req.body.rate
+  }
+  console.log('review: ', review);
+  poolConnection.getConnection((err, connection) => {
+    if(err) {
+      console.log(err);
+      return res.json({error_msg: "Some thing wrong when connect to DB when review!!"})
+    }
+    const queryString = "INSERT INTO `ecommerce`.`review_product` "
+    +"(`user_idUser`, `store_product_store_idstore`, `store_product_product_idProduct`, `content`, `rate`) "
+    +"VALUES (?, ?, ?, ?, ?);";
+    const params = [review.idUser, review.idStore, review.idProduct, review.content, review.rate];
+    connection.query({sql: queryString}, params, (err, results, fields) => {
+      if(err) {
+        console.log(err);
+        if(err.code == 'ER_DUP_ENTRY') return res.json({error_msg: "Ban da review san pham nay roi!"})
+        return res.json({error_msg: "Some thing wrong when review!!"})
+      }
+      res.json({msg: 'Review success!'});
+    })
+    connection.release();
+  })
+}

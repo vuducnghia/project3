@@ -91,6 +91,7 @@ exports.login = (req, res, next) => {
   // })(req, res, next);
   console.log('login controller');
   // console.log('current user: ', req.user);
+  if(!req.user) return res.json({errAuthen: 'Xac thuc fail!!!'});
   res.json({user: req.user});
 
 
@@ -132,7 +133,7 @@ exports.capnhat = (req, res) => {
       }else{
         console.log(results);
         return res.json({msg: 'cap nhat thong tin thanh cong'});
-        
+
       }
     })
 
@@ -152,7 +153,7 @@ exports.xemlichsumuahang = (req, res) => {
         console.log(results);
         console.log('truy van thanh cong lich su mua hang');
         return res.json({msg: 'xem lich su thanh cong'});
-        
+
       }
     })
 

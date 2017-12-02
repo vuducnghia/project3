@@ -16,7 +16,7 @@ var poolConnection = require('./models/pool.connection');
 //Load config
 require('./polyfill/index').usePolyfill();
 const passportConfig = require('./config/passport.config');
-const passportConfigAdmin = require('./config/passport.admin.config');
+// const passportConfigAdmin = require('./config/passport.admin.config');
 
 
 //Load routers
@@ -26,6 +26,7 @@ var users = require('./routes/users');
 var category = require('./routes/category');
 var product = require('./routes/product');
 var cuahang = require('./routes/cuahang');
+var order = require('./routes/order');
 
 var app = express();
 
@@ -72,6 +73,7 @@ app.use('/category', category);
 app.use('/admin', admin);
 app.use('/product', product);
 app.use('/store', cuahang);
+app.use('/order', order);
 app.use('/', store);
 
 // catch 404 and forward to error handler

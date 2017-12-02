@@ -8,9 +8,9 @@
 			<div class="login-body" ng-controller="dang_nhap">
 
 				<form >
-					<input type="text" class="user" name="username" ng-model="user.username" placeholder="Enter your username" required="">
-					<input type="password" name="password" ng-model = "user.password" class="lock" placeholder="Password" required="">
-					<input type="submit" value="Login" ng-click="dangNhap(user)">
+					<input type="text" class="user" name="username" ng-model="username" placeholder="Enter your username" required="">
+					<input type="password" name="password" ng-model = "password" class="lock" placeholder="Password" required="">
+					<input type="submit" value="Login" ng-click="dangNhap(username, password)">
 					<div class="forgot-grid">
 						<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Remember me</label>
 						<div class="forgot">
