@@ -1,0 +1,26 @@
+.confirm_page p{
+    color: black;
+}
+
+.confirm_page form{
+    padding: 30px 50px;
+    max-width: 700px;
+    margin: 50px auto;
+    border: 2px solid blue;
+}
+
+.confirm_page input{
+    width: 300px;
+}
+
+.confirm_page li{
+    list-style: none;
+}
+
+.confirm_page div{
+    padding-bottom: 10px;
+ }
+
+.confirm_page .bold{
+    font-weight: bold;
+}

@@ -1,23 +1,33 @@
 
 <% include partials/navbar %>
 
-	<div ng-controller= "gioHang">
-	<center>
-
-			<ul ng-repeat="sp in gioHang">
-				<li>
-					<h5>{{sp.name}}:  {{sp.price}}</h5>
-					<h5>Số lượng:  </h5>
-					<input type="" name="so_luong" ng-model="sp.number" >
-					<a href="/gioHang"><button ng-click="loaiBoSanPhamKhoiGioHang($index)">Loại bỏ</button></a>
-				</li>
-			</ul>
-			<div class="tongGioHang">{{tong}}</div>
-
-			<button ng-click="thayDoiSoLuongSanPham(gioHang)">Thay đổi</button>
-			<a href="/xacNhanDatHang"><button>Đặt hàng</button></a>
-		
-	</center>
+	<div class="cart2" ng-controller= "gioHang">
+		<ul ng-repeat="sp in gioHang">
+			<li class="row">
+				<div class="image col-xs-2 col-xs-push-2 text-center">
+					<img src="https://cdn1.tgdd.vn/Products/Images/42/106211/samsung-galaxy-note8-1-200x200.jpg" alt="">
+				</div>
+				<div class="col-xs-6 col-xs-push-2">
+					<p>Tên sản phẩm: {{sp.name}}</p>
+					<p>Giá tiền: {{sp.price}}</p>
+					<p>Số lượng: <input class="number" type="number" name="so_luong" ng-model="sp.number" ></p>
+				</div>
+				<div class="col-xs-2">
+					<a href="/gioHang"><button class="btn-danger" ng-click="loaiBoSanPhamKhoiGioHang($index)">Loại bỏ</button></a>
+				</div>
+			</li>
+		</ul>
+		<div class="row">
+			<div class="col-xs-4 col-xs-push-5 tongGioHang">
+				<p>Tổng thanh toán: {{tong}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3 col-xs-push-5 dathang">
+				<button class="btn-success col-xs-5" ng-click="thayDoiSoLuongSanPham(gioHang)">Thay đổi</button>
+				<a class="col-xs-5" href="/xacNhanDatHang"><button class="btn-primary col-xs-12">Đặt hàng</button></a>
+			</div>
+		</div>
 	</div>
 
 	<div class="w3agile-ftr-top">
