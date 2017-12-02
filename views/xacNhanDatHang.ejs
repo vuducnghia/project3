@@ -1,26 +1,36 @@
 
 <% include partials/navbar %>
 
-	<div ng-controller= "gioHang">
-		<center>
-			<form>
+	<div class="confirm_page" ng-controller= "gioHang">
+		<form>
+			<div class="row">
+				<p class="col-xs-5 bold">Tên người nhận: </p>
+				<input type="text" ng-model="tenNguoiNhan">
+			</div>
+			<div class="row">
+				<p class="col-xs-5 bold">Nơi nhận: </p>
+				<input type="text" ng-model="noiNhan">
+			</div>
+			<div class="row">
+				<p class="col-xs-5 bold">Số điện thoại người nhận: </p>
+				<input type="text" ng-model="sdtNguoiNhan">
+			</div>
+			<div>
+				<br>
+				<p class="bold">Danh sách các mặt hàng đặt mua: </p>
 				<ul ng-repeat="sp in gioHang">
 					<li>
-						<h5>{{sp.name}}:  {{sp.price}}</h5>
-						<h5>Số lượng: {{sp.number}} </h5>
-						<a href="/gioHang"><button ng-click="loaiBoSanPhamKhoiGioHang($index)">Loại bỏ</button></a>
+						<p>Tên sản phẩm: {{sp.name}}</p>
+						<p>Giá tiền: {{sp.price}}</p>
+						<p>Số lượng: {{sp.number}}</p>
 					</li>
 				</ul>
-				<div>Tên người nhận</div>
-				<input type="text" ng-model="tenNguoiNhan">
-				<div>Nơi nhận</div>
-				<input type="text" ng-model="noiNhan">
-				<div>Số điện thoại người nhận</div>
-				<input type="" name="" ng-model = "sdtNguoiNhan">
-				<div class="tongGioHang">{{tong}}</div>
-				<a href="/xacNhanDatHang"><button ng-click="datHang(tenNguoiNhan,noiNhan,sdtNguoiNhan)" >Đặt hàng</button></a>
-			</form>
-		</center>
+				<div class="tongGioHang"><p class="bold">Tổng tiền: {{tong}}</p></div>
+				<div class="text-center">
+					<a href="/xacNhanDatHang"><button class="btn-primary" ng-click="datHang(tenNguoiNhan,noiNhan,sdtNguoiNhan)" >Đặt hàng</button></a>
+				</div>
+			</div>
+		</form>
 	</div>
 
 	<div class="w3agile-ftr-top">

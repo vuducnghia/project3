@@ -27,9 +27,11 @@
 								<li data-thumb={{sanPham.imageLink}}>
 								   <div class="thumb-image"> <img src={{sanPham.imageLink}} data-imagezoom="true" class="img-responsive" alt=""> </div>
 								</li> -->
-								<label style="float: right;margin-top:180px;" ng-hide="show" ng-click="showItem()">So sánh với >>>></label>
-								<input type="text" style="margin-top:180px;" name="review" ng-model="sanPhamDuocSoSanh"  ng-show="show" id="input-review">
-								<a href='/sosanh/{{sanPham.id}}/{{sanPhamDuocSoSanh}}'><label style="float: right;margin-top:180px;" ng-show="show" >So sánh</label></a>
+								<a style="float: right;margin-top:180px;font-size: 20px" ng-hide="show" ng-click="showItem()">So sánh với >>>></a>
+								<div class="row">
+									<input class="col-xs-9" type="text" style="margin-top:180px;" name="review" ng-model="sanPhamDuocSoSanh"  ng-show="show" id="input-review">
+									<a href='/sosanh/{{sanPham.id}}/{{sanPhamDuocSoSanh}}'><label style="float: right;margin-top:180px;font-size: 20px;" ng-show="show" >So sánh</label></a>
+								</div>
 								<!-- ng-click="soSanhSanPham(sanPham.id, sanPham.store.id, tenSanPhamDuocSoSanh)" -->
 							</ul>
 						</div>
@@ -40,18 +42,17 @@
 						<p>(Mock)Processing Time: Item will be shipped out within 2-3 working days. </p>
 						<div class="single-rating">
 							<ul>
-								<li><i ng-click="danhGia(1, sanPham.id,sanPham.store.id)" class="fa fa-star-o" aria-hidden="true"></i></li>
-								<li><i ng-click="danhGia(2, sanPham.id,sanPham.store.id)" class="fa fa-star-o" aria-hidden="true"></i></li>
-								<li><i ng-click="danhGia(3, sanPham.id,sanPham.store.id)" class="fa fa-star-o" aria-hidden="true"></i></li>
-								<li><i ng-click="danhGia(4, sanPham.id,sanPham.store.id)" class="fa fa-star-o" aria-hidden="true"></i></li>
-								<li><i ng-click="danhGia(5, sanPham.id,sanPham.store.id)" class="fa fa-star-o" aria-hidden="true"></i></li>
+								<li class="star star1"><i ng-click="danhGia(1, sanPham.id,sanPham.store.id)" class="fa fa-star-o" aria-hidden="true"></i></li>
+								<li class="star star2"><i ng-click="danhGia(2, sanPham.id,sanPham.store.id)" class="fa fa-star-o" aria-hidden="true"></i></li>
+								<li class="star star3"><i ng-click="danhGia(3, sanPham.id,sanPham.store.id)" class="fa fa-star-o" aria-hidden="true"></i></li>
+								<li class="star star4"><i ng-click="danhGia(4, sanPham.id,sanPham.store.id)" class="fa fa-star-o" aria-hidden="true"></i></li>
+								<li class="star star5"><i ng-click="danhGia(5, sanPham.id,sanPham.store.id)" class="fa fa-star-o" aria-hidden="true"></i></li>
 								<li class="rating">(Mock)20 reviews</li>
-								<li>
-									
-									<input type="text" name="review" ng-model="userReview" id="input-review">
-									<label ng-click="guiPhanHoiSanPham(userReview,sanPham.id,sanPham.store.id)">Add your review</label>
-								</li>
 							</ul>
+							<div class="row" style="margin: 0">
+								<textarea ng-model="userReview" id="input-review" name="review" cols="30" rows="5" class="col-xs-8"></textarea>
+								<a class="col-xs-8 text-center" style="font-size: 20px;" ng-click="guiPhanHoiSanPham(userReview,sanPham.id,sanPham.store.id)">Add your review</a>
+							</div>
 						</div>
 						<div class="single-price">
 							<ul>
@@ -382,6 +383,7 @@
 	<!-- menu js aim -->
 	<script src="/js/jquery.menu-aim.js"> </script>
 	<script src="/js/main.js"></script> <!-- Resource jQuery -->
+	<script src="/js/singer.js"></script>
 	<!-- //menu js aim -->
 	<!-- Bootstrap core JavaScript
     ================================================== -->

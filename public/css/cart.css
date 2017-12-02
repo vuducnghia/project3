@@ -1,0 +1,48 @@
+.cart2 button{
+    border-radius: 5px;
+}
+
+.cart2 ul{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 30px;
+}
+
+.cart2 ul li .number{
+    width: 35px;
+}
+
+.cart2 ul li p{
+    font-weight: bold;
+    color: black;
+}
+
+.cart2 ul li .image img{
+    width: 150px;
+    height: 150px;
+}
+
+.cart2 .tongGioHang{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 25px;
+}
+
+.cart2 .tongGioHang p{
+    color: black;
+}
+
+.cart2 .dathang{
+    padding-bottom: 50px;
+}
+
+.cart2 .btn-success{
+    width: 100px;
+    height: 30px;
+    padding: 0;
+}
+
+.cart2 .btn-primary{
+    width: 100px;
+    height:30px;
+    padding:0;
+}

@@ -34,6 +34,7 @@ ul,label{
 }
 body a:hover{
 	text-decoration:none;
+    cursor: pointer;
 }
 /*-- header --*/
 .w3ls-header {
@@ -1166,6 +1167,7 @@ p {
 	-o-transition:.5s all;
 	-ms-transition:.5s all;
 	transition:.5s all;
+    min-height: 380px;
 }
 .agile-product-text h5{ 
     font-size: 1em;
@@ -1173,6 +1175,7 @@ p {
     font-family: 'Offside', cursive;
 	margin-top: 1em;
     text-transform: capitalize;
+    min-height: 50px;
 }
 .agile-product-text h5 a {
     color: #0280e1; 
@@ -2049,7 +2052,8 @@ h5.sitemap-text-title {
     color: #999; 
 }
 .single-top-right ul li a:hover{ 
-    color: #0280e1; 
+    color: #0280e1;
+    cursor: pointer;
 }
 .single-price ul li {
     margin-right: 1em;
