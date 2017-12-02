@@ -177,14 +177,14 @@ exports.getBySubCateId = (idSubcate, callback) => {
           currency: 'USD',
           isStocking: result.st_p.count > 0 ? true : false,
           imageLink: result.i.link_Image,
-          // sub_category: {
-          //   id: result.s.idSub_Category,
-          //   name: result.s.name
-          // },
-          // category: {
-          //   id: result.c.idCategory,
-          //   name: result.c.name
-          // },
+          sub_category: {
+            id: result.s.idSub_Category,
+            name: result.s.name
+          },
+          category: {
+            id: result.c.idCategory,
+            name: result.c.name
+          },
           brand: {
             id: result.b.idbrand,
             name: result.b.name

@@ -166,14 +166,97 @@ app.controller("sanPham", function ($scope, $http,$location,$window) {
     console.log($location.$$absUrl);
     maLoaiSanPham = $location.$$absUrl.split('/')[4];
     console.log(maLoaiSanPham);
+   
     $http.post("/product/subcate/"+ maLoaiSanPham).then(function (result) {
         console.log('startaaa');
         console.log(result);
-        $scope.sanPhams = result.data;
+        nhaSanXuat=[];
+        $scope.sanPhams = result.data.products;
+        for(sp in result.data.products){
+            if(nhaSanXuat.indexOf(result.data.products[sp].brand.name) < 0 ){
+                nhaSanXuat.push(result.data.products[sp].brand.name);
+
+            }
+        }
+        $scope.nhaSanXuat = nhaSanXuat;
     });
-
+   
+    
     $scope.themVaoGioHang = app.themVaoGioHang;
+    $scope.filterByBrand = function(nsx, clicks ,stt){
+        console.log(nsx);
+        // console.log($scope.isClick);
+        $http.post("/product/subcate/"+ maLoaiSanPham).then(function (result) {
+            console.log('loc san pham boi ' + nsx);
+            console.log(result);
+            sanPhamLoc = [];
+            console.log(stt);
+            for(i in nhaSanXuat){
+                if(i != stt){
+                    clicks[i] = false;
+                }
+            }
+            console.log(clicks);
+            for(sp in result.data.products){
+                if(result.data.products[sp].brand.name == nsx){
+                    sanPhamLoc.push(result.data.products[sp]);
+                }
+            }
+            $scope.isClick = clicks;
+            $scope.sanPhams = sanPhamLoc;
+        });
+    }
+    $scope.filterByPrice = function(x, isClick){
+        console.log(isClick);
+        if(x == 1){
+            $scope.value2 = false;
+            $scope.value3 = false;
+        }else if(x == 2){
+            $scope.value1 = false;
+            $scope.value3 = false;
+        }
+        if(x == 3){
+            $scope.value1 = false;
+            $scope.value2 = false;
+        }
+        donGia = 5000000;
+        nguong1= 5000000;
+        nguong2= 12000000;
+        sanPhamLoc1 = [];
+        sanPhamLoc2 = [];
+        sanPhamLoc3 = [];
+        $http.post("/product/subcate/"+ maLoaiSanPham).then(function (result) {
+            console.log('loc san pham boi ' + x);
+            console.log(result);
+            danhSachSanPham = [];
+            for(var i=0; i<8 ; i++){
+                danhSachSanPham.push(result.data.products[i]);
+            }
 
+            for(sp in danhSachSanPham){
+                console.log(parseInt(danhSachSanPham[sp].price) );
+                if(danhSachSanPham[sp].price < nguong1){
+                    sanPhamLoc1.push(danhSachSanPham[sp]);
+                }else if(nguong1<=danhSachSanPham[sp].price && danhSachSanPham[sp].price < nguong2){
+                    sanPhamLoc2.push(danhSachSanPham[sp]);
+                }else{
+                    sanPhamLoc3.push(danhSachSanPham[sp]);
+                }
+            }
+            if(x==1){
+                $scope.sanPhams = sanPhamLoc1;
+            }else if(x==2){
+                $scope.sanPhams = sanPhamLoc2;
+            }else{
+                $scope.sanPhams = sanPhamLoc3;
+            }
+            console.log('sanPhamLoc1');
+            console.log(sanPhamLoc1);
+            console.log('sanPhamLoc2');
+            console.log(sanPhamLoc2);
+        });
+        
+    }
 
 })
 app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $window) {
