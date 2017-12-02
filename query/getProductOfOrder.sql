@@ -1,0 +1,5 @@
+SELECT * FROM `order_has_store_product` as `op`, `order`, `store_product` WHERE `order`.`idorder` = `op`.`order_idorder` and `store_product`.`product_idProduct` = `op`.`store_product_product_idProduct` and `order`.`idorder` = 1;
+
+SELECT * FROM `order_has_store_product` as `op`, `order`, `store_product`, `product` WHERE `order`.`idorder` = `op`.`order_idorder` and `store_product`.`product_idProduct` = `op`.`store_product_product_idProduct` and `product`.`idProduct` = `store_product`.`product_idProduct` and `order`.`idorder` = 1;
+
+SELECT `store_product`.`product_idProduct`, `product`.`name`, `store_product`.`price`, `op`.`quantity` FROM `order_has_store_product` as `op`, `order`, `store_product`, `product` WHERE `order`.`idorder` = `op`.`order_idorder` and `store_product`.`product_idProduct` = `op`.`store_product_product_idProduct` and `product`.`idProduct` = `store_product`.`product_idProduct` and `order`.`idorder` = 1;

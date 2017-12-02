@@ -90,10 +90,10 @@ router.get('/orders', function (req, res) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/order/listorder', {title: 'Manage Order'});
 });
-
-
-
-
+router.get('/orders/:id', function (req, res) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('admin/order/vieworder', {title: 'View Order'});
+});
 
 
 
@@ -142,3 +142,5 @@ router.get('/getAllUsers', userController.getAllUsers);
 
 /////////////////Order
 router.get('/getAllOrders', orderController.getAllOrders);
+router.get('/detailOrder/:id', orderController.detailOrder);
+router.get('/productOrder/:id', orderController.productOrder);
