@@ -132,8 +132,10 @@ app.controller('dang_nhap', function ($http, $scope, $window, $rootScope, $locat
                 console.log(data);
                 $window.localStorage.setItem('user', data.user.username);
                 $rootScope.user = $window.localStorage.getItem('user');
-                $window.history.back();
-                // $window.location.href = '/';
+                if($window.history && $window.history.back) {
+                  return $window.history.back();
+                }
+                $window.location.href = '/';
             }).error(function (err) {
                 console.log("err: ", err);
                 if(err == 'Unauthorized') return $window.location.href = '/login';
