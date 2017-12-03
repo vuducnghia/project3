@@ -1,19 +1,25 @@
 <% include partials/navbar %>
 
-<div ng-controller="trangCaNhan">
-	<label>username:</label>
-	<input ng-model="khachHang.username"></input>
-
-	<label>email:</label>
-	<input ng-model="khachHang.email"></input>
-
-	<label>Số điện thoại:</label>
-	<input ng-model="khachHang.phone"></input>
-
-	<label>Địa chỉ:</label>
-	<input ng-model="khachHang.address"></input>
-
-	<button ng-click="suaThongTin(khachHang.username, khachHang.email, khachHang.phone, khachHang.address)">Thay đổi thông tin tài khoản</button>
+<div class="my-profile" ng-controller="trangCaNhan">
+	<div class="content-form">
+		<div class="row">
+			<label class="col-xs-2">username:</label>
+			<input type="text" ng-model="khachHang.username">
+		</div>
+		<div class="row">
+			<label class="col-xs-2">email:</label>
+			<input type="text" ng-model="khachHang.email">
+		</div>
+		<div class="row">
+			<label class="col-xs-2">Số điện thoại:</label>
+			<input ng-model="khachHang.phone">
+		</div>
+		<div class="row">
+			<label class="col-xs-2">Địa chỉ:</label>
+			<input ng-model="khachHang.address">
+		</div>
+		<button class="btn-success" ng-click="suaThongTin(khachHang.username, khachHang.email, khachHang.phone, khachHang.address)">Thay đổi thông tin tài khoản</button>
+	</div>
 </div>
 
 <div class="w3agile-ftr-top">

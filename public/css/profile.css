@@ -1,0 +1,18 @@
+.my-profile .content-form{
+    max-width: 1000px;
+    margin: 15px auto;
+    padding-left: 200px;
+}
+
+.my-profile .content-form .row{
+    margin: 15px 0;
+}
+
+.my-profile .content-form input{
+    width: 300px;
+}
+
+.my-profile .content-form button{
+    margin-left: 100px;
+    border-radius: 5px;
+}
