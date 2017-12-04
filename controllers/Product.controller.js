@@ -93,3 +93,22 @@ exports.reviewProduct = (req, res) => {
     connection.release();
   })
 }
+
+exports.soSanhSanPham = (req, res) => {
+  const idProduct = req.params.idProduct;
+  const idStore1 = req.params.idStore1;
+  const nameProduct = req.params.nameProduct;
+  Product.findProductsByName(nameProduct, (err, products) => {
+    if(err) return console.log(err);
+    const idProductCompare = products[0].id;
+    const idStore2 = products[0].store.id;
+
+    Product.compare2Products(idProduct, idStore1, idProductCompare, idStore2, (err, compareResult) => {
+      if(err) {
+        console.log(err);
+        return res.json({error_msg: 'St wrong when compare 2 products!!!'})
+      }
+      return res.json({compareResult: compareResult});
+    })
+  })
+}

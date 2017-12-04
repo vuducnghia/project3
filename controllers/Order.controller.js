@@ -4,6 +4,7 @@ var poolConnection = require('../models/pool.connection');
 
 exports.makeOrder = (req, res) => {
   console.log('user: ', req.user);
+  if(!req.isAuthenticated()) return res.json({err_msg: 'Xac thuc khong thanh cong', isAuthenticated: false});
   const giohang = req.body.giohang;
   const thongTinNguoiNhan = req.body.thongTinNguoiNhan;
   const storeIdsCatched = [];

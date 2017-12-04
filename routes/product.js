@@ -9,6 +9,7 @@ router.post('/subcate/:idSubcate', productController.getBySubCateId);
 router.post('/sanphamlienquan/:idProduct', productController.getRelationProducts);
 router.post('/phanhoisanpham', productController.reviewProduct);
 router.post('/timkiemsanpham', productController.findProductsByName);
+router.post('/sosanh/:idProduct/:idStore1/:nameProduct', productController.soSanhSanPham);
 router.post('/:idProduct/:idStore', productController.getById);
 
 

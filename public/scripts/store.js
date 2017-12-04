@@ -166,7 +166,7 @@ app.controller("sanPham", function ($scope, $http,$location,$window) {
     console.log($location.$$absUrl);
     maLoaiSanPham = $location.$$absUrl.split('/')[4];
     console.log(maLoaiSanPham);
-   
+
     $http.post("/product/subcate/"+ maLoaiSanPham).then(function (result) {
         console.log('startaaa');
         console.log(result);
@@ -180,8 +180,8 @@ app.controller("sanPham", function ($scope, $http,$location,$window) {
         }
         $scope.nhaSanXuat = nhaSanXuat;
     });
-   
-    
+
+
     $scope.themVaoGioHang = app.themVaoGioHang;
     $scope.filterByBrand = function(nsx, clicks ,stt){
         console.log(nsx);
@@ -255,7 +255,7 @@ app.controller("sanPham", function ($scope, $http,$location,$window) {
             console.log('sanPhamLoc2');
             console.log(sanPhamLoc2);
         });
-        
+
     }
 
 })
@@ -470,10 +470,10 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
             url: "order/dathang",
             data: data
         }).success(function (data) {
-
+            if(data.isAuthenticated == false) return $window.location.href = '/login';
             console.log("dat hang successful");
             console.log(data);
-            // $window.location.href = '/logi';
+            // $window.location.href = '/login';
         }).error(function (err) {
             alert("Unable to connect to the server.");
         });
@@ -484,12 +484,13 @@ app.controller('soSanhSanPham',function($scope, $http,$location){
     console.log('$location');
     console.log($location.$$absUrl);
     masanPham1 = $location.$$absUrl.split('/')[4];
-    tenSanPham2 = $location.$$absUrl.split('/')[5];
+    storeidSP1 = $location.$$absUrl.split('/')[5];
+    tenSanPham2 = $location.$$absUrl.split('/')[6];
     console.log('idsanPham1');
     console.log(idsanPham1);
     console.log('tenSanPham2');
     console.log(tenSanPham2);
-     $http.post("/product/soSanh/"+ maSanPham1+ tenSanPham2).then(function (result) {
+     $http.post("/product/sosanh/"+ maSanPham1+ "/" + "/" + storeidSP1 + tenSanPham2).then(function (result) {
         console.log('startaaa');
         console.log(result);
         $scope.sanPham = result.data;

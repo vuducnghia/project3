@@ -201,7 +201,7 @@ exports.getBySubCateId = (idSubcate, callback) => {
   })
 };
 
-exports.getById = (idProduct, idStore, callback) => {
+const getById = (idProduct, idStore, callback) => {
   poolConnection.getConnection((err, connection) => {
     if(err) {
       console.log("error when get connection when catch product by id");
@@ -268,3 +268,43 @@ exports.getById = (idProduct, idStore, callback) => {
     connection.release();
   })
 };
+
+exports.getById = getById;
+
+exports.compare2Products = (id1, storeId1, id2, storeId2, callback) => {
+  console.log(id1);
+  console.log(storeId1);
+  console.log(id2);
+  console.log(storeId2);
+  poolConnection.getConnection((err, connection) => {
+    if(err) return callback(err, null);
+
+    getById(id1, storeId1, (err, product1) => {
+      console.log('product1: ', product1);
+      if(err) return console.log(err);
+      getById(id2, storeId2, (err, product2) => {
+        if(err) return console.log(err);
+        console.log(product2);
+        const compareObj = {
+          product1: {
+            id: product1.id,
+            name: product1.name,
+            price: product1.price,
+            imageLink: product1.imageLink,
+            description: product1.description
+          },
+          product2: {
+            id: product2.id,
+            name: product2.name,
+            price: product2.price,
+            imageLink: product2.imageLink,
+            description: product2.description
+          },
+        }
+        callback(null, compareObj);
+      })
+    })
+
+    connection.release();
+  })
+}

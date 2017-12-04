@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('.single-rating').find('.star').click(function () {
-        alert("a");
+        // alert("a");
         var className = $(this).attr('class');
         var index = className.substring(9);
         for( var i = 1; i <= 5; i++){

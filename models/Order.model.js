@@ -7,7 +7,7 @@ exports.makeOrder = (order, user, callback) => {
       return callback(err, null);
     }
     console.log("orderInfo: ", order);
-    const queryString = "INSERT INTO `ecommerce`.`order` (`name`, `totalPrice`, `shipping_Address`, `user_idUser`, `store_idstore`, `status`, `create_Date`) VALUES (?, ?, ?, ?, ?, ?, ?);"
+    const queryString = "INSERT INTO `ecommerce`.`order` (`name`, `totalPrice`, `shipping_Address`, `user_idUser`, `store_idstore`, `status`, `create_Date`, `phone`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);"
     const params = [
       order.customerInfo.name,
       order.totalPrice,
@@ -15,7 +15,8 @@ exports.makeOrder = (order, user, callback) => {
       1,
       order.storeId,
       0,
-      order.createDate
+      order.createDate,
+      order.customerInfo.phone
     ];
     connection.query({sql: queryString}, params, (err, results, fields) => {
       if(err) {
