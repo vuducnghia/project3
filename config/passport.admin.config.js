@@ -19,6 +19,10 @@ passport.use('local-admin', new LocalStrategy((username, password, next) => {
       if(!results || results.length === 0) {
         return next(null, false);
       }
+      console.log('active account : ')
+      console.log(results[0].active)
+      if(results[0].active == 0)
+        return next(null, false);
       const admin = results[0];
       bcrypt.compare(password, admin.password)
       .then((res) => {

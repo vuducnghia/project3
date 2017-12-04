@@ -28,8 +28,8 @@
                                                 <th class="text-center">Email</th>
                                                 <th class="text-center">Phone</th>
                                                 <th class="text-center">Address</th>
-                                                <th class="text-center">role</th>
-                                                <!-- <th class="text-center">Action</th> -->
+                                                <th class="text-center">Role</th>
+                                                <th class="text-center">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -40,8 +40,7 @@
                                                 <td class="text-center">{{user.phone}}</td>
                                                 <td class="text-center">{{user.address}}</td>
                                                 <td class="text-center">{{(user.level == 1)?'admin system':((user.level == 2)?'admin sale':'manager store')}}</td>
-                                                <!-- <td class="text-center">{{user.address}}</td> -->
-                                                
+                                                <td><button ng-click="changeActive(user)">{{(user.active == 1?'active':'inactive')}}</button></td>
                                             </tr>
                                         </tbody>
                                     </table>

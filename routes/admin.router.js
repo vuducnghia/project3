@@ -15,19 +15,20 @@ var passport = require('passport');
 var auth_adminSystem = function auth_adminSystem(req, res, next) {
   console.log(req.user.level)
   if (req.user.level === 1) {
-    next()
+    return next()
   }
-  console.log('thoat')
+  console.log("khong du quyen")
 }
 function auth_adminSale(req, res, next) {
   console.log(req.user)
-  if (req.user.level === '1')
-    next()
+  if (req.user.level === 2)
+    return next()
+  alert("khong du quyen")
 }
 function auth_adminStore(req, res, next) {
   console.log(req.user)
   if (req.user.level === undefined)
-    next()
+    return next()
 }
 function isLoggedIn(req, res, next) {
 
@@ -125,11 +126,11 @@ router.get('/product/:id', isLoggedIn, function (req, res) {
 
 
 //Order
-router.get('/orders', isLoggedIn, function (req, res) {
+router.get('/orders', isLoggedIn, auth_adminSale,function (req, res) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/order/listorder', { title: 'Manage Order' });
 });
-router.get('/orders/:id', function (req, res) {
+router.get('/orders/:id',isLoggedIn, auth_adminSale, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/order/vieworder', {title: 'View Order'});
 });
@@ -144,7 +145,6 @@ router.get('/orders/:id', function (req, res) {
 router.post('/sign_up', adminController.sign_up);
 router.post('/logout', adminController.logout);
 router.post('/login_admin', passport.authenticate('local-admin', { failureRedirect: '/admin/login' }), adminController.login);
-// router.post('/login_admin', passport.authenticate('local-admin', { successRedirect: '/',failureRedirect: '/admin/login' }));
 router.post('/createAdminStore', auth_adminSystem, adminController.createAdminStore);
 // router.post('/createAdminSystemAndSale', adminController.createAdminSystemAndSale);
 
@@ -185,6 +185,7 @@ router.post('/createBrand', brandController.createBrand);
 
 /////////////////user
 router.get('/getAllUsers', userController.getAllUsers);
+router.post('/changeActive', userController.changeActive);
 
 /////////////////Order
 router.get('/getAllOrders', orderController.getAllOrders);

@@ -18,11 +18,43 @@ exports.getAllUsers = (req, res) => {
                     console.log(err);
                     return res.json({ err_msg: 'Something wrong! ecommerce.admin_store' });
                 }
-                
+
                 list_users = list_users.concat(results);
                 res.json(list_users);
             });
             connection.release();
         })
     })
+}
+
+exports.changeActive = (req, res) => {
+    poolConnection.getConnection((err, connection) => {
+        if (req.body.idadmin_store != undefined) {
+
+            const sellectQuery = "UPDATE `ecommerce`.`admin_store` SET `active`='" + req.body.active + "' WHERE `idadmin_store`='" + req.body.idadmin_store + "';"
+            connection.query(sellectQuery, (error, results, fields) => {
+                if (err) {
+                    console.log(err);
+                    return res.json({ err_msg: 'Something wrong! changeActive1' });
+                }
+
+                res.json(results);
+            });
+            connection.release();
+        }
+        else if (req.body.idadmin != undefined) {
+            poolConnection.getConnection((err, connection) => {
+                const sellectQuery = "UPDATE `ecommerce`.`admin` SET `active`='" + req.body.active + "' WHERE `idadmin`='" + req.body.idadmin + "';"
+                connection.query(sellectQuery, (error, results, fields) => {
+                    if (err) {
+                        console.log(err);
+                        return res.json({ err_msg: 'Something wrong! changeActive 2' });
+                    }
+                    res.json(results);
+                });
+                connection.release();
+            })
+        }
+    })
+
 }

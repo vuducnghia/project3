@@ -104,7 +104,7 @@ exports.createAdminStore = (req, res) => {
                             return res.json({ err_msg: 'account existed' });
                     }
 
-                    const insertQuery = "INSERT INTO `ecommerce`.`admin_store` (`username`, `password`, `phone`, `address`, `email`) VALUES ('" + account.username + "', '" + account.password + "', '" + account.phone + "', '" + account.address + "', '" + account.email + "');"
+                    const insertQuery = "INSERT INTO `ecommerce`.`admin_store` (`username`, `password`, `phone`, `address`, `email`,`active`) VALUES ('" + account.username + "', '" + account.password + "', '" + account.phone + "', '" + account.address + "', '" + account.email + "','1');"
                     connection.query(insertQuery, (error, results, fields) => {
                         if (err) {
                             console.log(err);
@@ -154,7 +154,7 @@ exports.createAdminSystemAndSale = (req, res) => {
                             return res.json({ err_msg: 'account existed' });
                     }
 
-                    const insertQuery = "INSERT INTO `ecommerce`.`admin` (`username`, `password`, `phone`, `address`, `email`,`level`) VALUES ('" + account.username + "', '" + account.password + "', '" + account.phone + "', '" + account.address + "', '" + account.email + "', '" + account.level + "');"
+                    const insertQuery = "INSERT INTO `ecommerce`.`admin` (`username`, `password`, `phone`, `address`, `email`,`level`, `active`) VALUES ('" + account.username + "', '" + account.password + "', '" + account.phone + "', '" + account.address + "', '" + account.email + "', '" + account.level + "','1');"
                     connection.query(insertQuery, (error, results, fields) => {
                         if (err) {
                             console.log(err);

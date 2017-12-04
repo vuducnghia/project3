@@ -55,8 +55,9 @@ app.controller("account", function ($scope, $http, $rootScope, $window) {
     $scope.createAccount = function () {
         // console.log($rootScope.level)
         console.log($scope.account.level)
+        // $scope.account.active = 1;
         if ($scope.account.level === '1' || $scope.account.level === '2') {
-            console.log(11111)
+            
             $http({
                 method: "POST",
                 url: "/admin/createAdminSystemAndSale",
@@ -567,16 +568,33 @@ app.controller("manage_user", function ($scope, $http, $rootScope, $window) {
             method: "GET",
             url: "/admin/getAllUsers"
         }).success(function (data) {
-            console.log(data.length)
             $scope.listUser = data
             console.log(data)
         }).error(function (err) {
             alert("Unable to connect to the serverrrrr---/admin/getAllSubUsers");
         });
-
     }
 
-
+    $scope.changeActive = function(user){
+        if(user.level ==1){
+            alert('impossible dream :kaka')
+            return;
+        }
+            
+        if(user.active == 0)
+            user.active = 1;
+        else 
+            user.active = 0;
+        $http({
+            method: "POST",
+            url: "/admin/changeActive",
+            data : user
+        }).success(function (data) {
+            console.log(data)
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/changeActive");
+        });
+    }
 })
 
 app.controller("manage_order", function ($scope, $http, $rootScope, $window) {
