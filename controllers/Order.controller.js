@@ -1,3 +1,4 @@
+"use strict";
 var Order = require('../models/Order.model');
 var poolConnection = require('../models/pool.connection');
 

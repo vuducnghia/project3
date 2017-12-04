@@ -84,163 +84,121 @@
 						</li>
 					</ul>
 					<div class="clearfix"> </div>
-						<ul ng-repeat="sanPham in danhSachSanPham">
+						<!-- <ul ng-repeat="sanPham in danhSachSanPham">
 							<li>{{sanPham.name}}</li>
-						</ul>
+						</ul> -->
 					<h3 class="w3ls-title">Featured Products</h3>
 					<div id="myTabContent" class="tab-content" >
 						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
 						
 							<div class="tabcontent-grids"  >
 								<div id="owl-demo" class="owl-carousel" >
-									<div class="item" >
-										<div class="glry-w3agile-grids agileits">
-											<a href="products.html"><img src="images/e1.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products.html">sanPham.name</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$100</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Audio speaker" />
-													<input type="hidden" name="amount" value="100.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[0].store.id}}">
+											<img src="{{danhSachSanPham[0].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[0].store.id}}">{{danhSachSanPham[0].name}}</a></h4>
+												<h5>{{danhSachSanPham[0].price}}</h5>
+												<h6>{{danhSachSanPham[0].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[0].store.id, danhSachSanPham[0].name, danhSachSanPham[0].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>Sale</h6>
-											</div>
-											<a href="products.html"><img src="images/e2.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products.html">Refrigerator</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$300</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Refrigerator" />
-													<input type="hidden" name="amount" value="300.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[1].store.id}}">
+											<img src="{{danhSachSanPham[1].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[1].id}}/{{danhSachSanPham[1].store.id}}">{{danhSachSanPham[1].name}}</a></h4>
+												<h5>{{danhSachSanPham[1].price}}</h5>
+												<h6>{{danhSachSanPham[1].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[2].store.id, danhSachSanPham[2].name, danhSachSanPham[2].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>New</h6>
-											</div>
-											<a href="products.html"><img src="images/e3.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products.html">Smart Phone</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$70</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Smart Phone" />
-													<input type="hidden" name="amount" value="70.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[3].id}}/{{danhSachSanPham[3].store.id}}">
+											<img src="{{danhSachSanPham[3].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[3].id}}/{{danhSachSanPham[3].store.id}}">{{danhSachSanPham[3].name}}</a></h4>
+												<h5>{{danhSachSanPham[3].price}}</h5>
+												<h6>{{danhSachSanPham[3].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[3].store.id, danhSachSanPham[3].name, danhSachSanPham[3].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products.html"><img src="images/e4.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products.html">Digital Camera</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$80</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Digital Camera" />
-													<input type="hidden" name="amount" value="80.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">
+											<img src="{{danhSachSanPham[4].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">{{danhSachSanPham[4].name}}</a></h4>
+												<h5>{{danhSachSanPham[4].price}}</h5>
+												<h6>{{danhSachSanPham[4].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[4].store.id, danhSachSanPham[4].name, danhSachSanPham[4].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products.html"><img src="images/e1.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products.html">Audio speaker</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$100</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Audio speaker" />
-													<input type="hidden" name="amount" value="100.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">
+											<img src="{{danhSachSanPham[4].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">{{danhSachSanPham[4].name}}</a></h4>
+												<h5>{{danhSachSanPham[4].price}}</h5>
+												<h6>{{danhSachSanPham[4].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[4].id,danhSachSanPham[4].store.id, danhSachSanPham[4].name, danhSachSanPham[4].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>Sale</h6>
-											</div>
-											<a href="products.html"><img src="images/e2.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products.html">Refrigerator</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$300</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Refrigerator" />
-													<input type="hidden" name="amount" value="300.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[5].id}}/{{danhSachSanPham[5].store.id}}">
+											<img src="{{danhSachSanPham[5].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[5].id}}/{{danhSachSanPham[5].store.id}}">{{danhSachSanPham[5].name}}</a></h4>
+												<h5>{{danhSachSanPham[5].price}}</h5>
+												<h6>{{danhSachSanPham[5].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[5].id,danhSachSanPham[5].store.id, danhSachSanPham[5].name, danhSachSanPham[5].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>New</h6>
-											</div>
-											<a href="products.html"><img src="images/e3.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products.html">Smart Phone</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$70</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Smart Phone" />
-													<input type="hidden" name="amount" value="70.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[6].id}}/{{danhSachSanPham[6].store.id}}">
+											<img src="{{danhSachSanPham[6].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[6].id}}/{{danhSachSanPham[6].store.id}}">{{danhSachSanPham[6].name}}</a></h4>
+												<h5>{{danhSachSanPham[6].price}}</h5>
+												<h6>{{danhSachSanPham[6].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[6].id,danhSachSanPham[6].store.id, danhSachSanPham[6].name, danhSachSanPham[6].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products.html"><img src="images/e4.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products.html">Digital Camera</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$80</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Digital Camera" />
-													<input type="hidden" name="amount" value="80.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-												</form>
-											</div>
-										</div>
-									</div>
+
 								</div>
 							</div>
 						</div>
@@ -262,150 +220,107 @@
 									});
 								</script>
 								<div id="owl-demo1" class="owl-carousel">
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products1.html"><img src="images/f1.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products1.html">T Shirt</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$10</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="T Shirt" />
-													<input type="hidden" name="amount" value="10.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[0].store.id}}">
+											<img src="{{danhSachSanPham[0].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[0].store.id}}">{{danhSachSanPham[0].name}}</a></h4>
+												<h5>{{danhSachSanPham[0].price}}</h5>
+												<h6>{{danhSachSanPham[0].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[0].store.id, danhSachSanPham[0].name, danhSachSanPham[0].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>20% <br> Off</h6>
-											</div>
-											<a href="products1.html"><img src="images/f2.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products1.html">Women Sandal</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$20</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Women Sandal" />
-													<input type="hidden" name="amount" value="20.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[1].store.id}}">
+											<img src="{{danhSachSanPham[1].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[1].id}}/{{danhSachSanPham[1].store.id}}">{{danhSachSanPham[1].name}}</a></h4>
+												<h5>{{danhSachSanPham[1].price}}</h5>
+												<h6>{{danhSachSanPham[1].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[2].store.id, danhSachSanPham[2].name, danhSachSanPham[2].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products1.html"><img src="images/f3.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products1.html">Jewellery</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$60</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Jewellery" />
-													<input type="hidden" name="amount" value="60.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[3].id}}/{{danhSachSanPham[3].store.id}}">
+											<img src="{{danhSachSanPham[3].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[3].id}}/{{danhSachSanPham[3].store.id}}">{{danhSachSanPham[3].name}}</a></h4>
+												<h5>{{danhSachSanPham[3].price}}</h5>
+												<h6>{{danhSachSanPham[3].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[3].store.id, danhSachSanPham[3].name, danhSachSanPham[3].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>New</h6>
-											</div>
-											<a href="products1.html"><img src="images/f4.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products1.html">Party dress</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$15</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Party dress" />
-													<input type="hidden" name="amount" value="15.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">
+											<img src="{{danhSachSanPham[4].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">{{danhSachSanPham[4].name}}</a></h4>
+												<h5>{{danhSachSanPham[4].price}}</h5>
+												<h6>{{danhSachSanPham[4].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[4].store.id, danhSachSanPham[4].name, danhSachSanPham[4].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products1.html"><img src="images/f1.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products1.html">T Shirt</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$10</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="T Shirt" />
-													<input type="hidden" name="amount" value="10.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">
+											<img src="{{danhSachSanPham[4].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">{{danhSachSanPham[4].name}}</a></h4>
+												<h5>{{danhSachSanPham[4].price}}</h5>
+												<h6>{{danhSachSanPham[4].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[4].id,danhSachSanPham[4].store.id, danhSachSanPham[4].name, danhSachSanPham[4].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>20% <br> Off</h6>
-											</div>
-											<a href="products1.html"><img src="images/f2.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products1.html">Women Sandal</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$20</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Women Sandal" />
-													<input type="hidden" name="amount" value="20.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[5].id}}/{{danhSachSanPham[5].store.id}}">
+											<img src="{{danhSachSanPham[5].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[5].id}}/{{danhSachSanPham[5].store.id}}">{{danhSachSanPham[5].name}}</a></h4>
+												<h5>{{danhSachSanPham[5].price}}</h5>
+												<h6>{{danhSachSanPham[5].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[5].id,danhSachSanPham[5].store.id, danhSachSanPham[5].name, danhSachSanPham[5].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products1.html"><img src="images/f3.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products1.html">Jewellery</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$60</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Jewellery" />
-													<input type="hidden" name="amount" value="60.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-												</form>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>New</h6>
-											</div>
-											<a href="products1.html"><img src="images/f4.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products1.html">Party dress</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$15</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Party dress" />
-													<input type="hidden" name="amount" value="15.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[6].id}}/{{danhSachSanPham[6].store.id}}">
+											<img src="{{danhSachSanPham[6].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[6].id}}/{{danhSachSanPham[6].store.id}}">{{danhSachSanPham[6].name}}</a></h4>
+												<h5>{{danhSachSanPham[6].price}}</h5>
+												<h6>{{danhSachSanPham[6].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[6].id,danhSachSanPham[6].store.id, danhSachSanPham[6].name, danhSachSanPham[6].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
@@ -431,156 +346,107 @@
 									});
 								</script>
 								<div id="owl-demo2" class="owl-carousel">
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>New</h6>
-											</div>
-											<a href="products6.html"><img src="images/p1.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products6.html">Coffee Mug</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$14</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Coffee Mug" />
-													<input type="hidden" name="amount" value="14.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[0].store.id}}">
+											<img src="{{danhSachSanPham[0].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[0].store.id}}">{{danhSachSanPham[0].name}}</a></h4>
+												<h5>{{danhSachSanPham[0].price}}</h5>
+												<h6>{{danhSachSanPham[0].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[0].store.id, danhSachSanPham[0].name, danhSachSanPham[0].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>20% <br> Off</h6>
-											</div>
-											<a href="products6.html"><img src="images/p2.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products6.html">Teddy bear</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$20</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Teddy bear" />
-													<input type="hidden" name="amount" value="20.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[1].store.id}}">
+											<img src="{{danhSachSanPham[1].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[1].id}}/{{danhSachSanPham[1].store.id}}">{{danhSachSanPham[1].name}}</a></h4>
+												<h5>{{danhSachSanPham[1].price}}</h5>
+												<h6>{{danhSachSanPham[1].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[2].store.id, danhSachSanPham[2].name, danhSachSanPham[2].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>Sale</h6>
-											</div>
-											<a href="products6.html"><img src="images/p3.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products6.html">Chocolates</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$60</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Chocolates" />
-													<input type="hidden" name="amount" value="60.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[3].id}}/{{danhSachSanPham[3].store.id}}">
+											<img src="{{danhSachSanPham[3].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[3].id}}/{{danhSachSanPham[3].store.id}}">{{danhSachSanPham[3].name}}</a></h4>
+												<h5>{{danhSachSanPham[3].price}}</h5>
+												<h6>{{danhSachSanPham[3].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[3].store.id, danhSachSanPham[3].name, danhSachSanPham[3].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products6.html"><img src="images/p4.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products6.html">Gift Card</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$22</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Gift Card" />
-													<input type="hidden" name="amount" value="22.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">
+											<img src="{{danhSachSanPham[4].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">{{danhSachSanPham[4].name}}</a></h4>
+												<h5>{{danhSachSanPham[4].price}}</h5>
+												<h6>{{danhSachSanPham[4].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[4].store.id, danhSachSanPham[4].name, danhSachSanPham[4].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>New</h6>
-											</div>
-											<a href="products6.html"><img src="images/p1.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products6.html">Coffee Mug</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$14</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Coffee Mug" />
-													<input type="hidden" name="amount" value="14.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">
+											<img src="{{danhSachSanPham[4].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">{{danhSachSanPham[4].name}}</a></h4>
+												<h5>{{danhSachSanPham[4].price}}</h5>
+												<h6>{{danhSachSanPham[4].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[4].id,danhSachSanPham[4].store.id, danhSachSanPham[4].name, danhSachSanPham[4].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>20% <br> Off</h6>
-											</div>
-											<a href="products6.html"><img src="images/p2.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products6.html">Teddy bear</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$20</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Teddy bear" />
-													<input type="hidden" name="amount" value="20.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[5].id}}/{{danhSachSanPham[5].store.id}}">
+											<img src="{{danhSachSanPham[5].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[5].id}}/{{danhSachSanPham[5].store.id}}">{{danhSachSanPham[5].name}}</a></h4>
+												<h5>{{danhSachSanPham[5].price}}</h5>
+												<h6>{{danhSachSanPham[5].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[5].id,danhSachSanPham[5].store.id, danhSachSanPham[5].name, danhSachSanPham[5].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>Sale</h6>
-											</div>
-											<a href="products6.html"><img src="images/p3.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products6.html">Chocolates</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$60</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Chocolates" />
-													<input type="hidden" name="amount" value="60.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-												</form>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products6.html"><img src="images/p4.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products6.html">Gift Card</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$22</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Gift Card" />
-													<input type="hidden" name="amount" value="22.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[6].id}}/{{danhSachSanPham[6].store.id}}">
+											<img src="{{danhSachSanPham[6].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[6].id}}/{{danhSachSanPham[6].store.id}}">{{danhSachSanPham[6].name}}</a></h4>
+												<h5>{{danhSachSanPham[6].price}}</h5>
+												<h6>{{danhSachSanPham[6].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[6].id,danhSachSanPham[6].store.id, danhSachSanPham[6].name, danhSachSanPham[6].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
@@ -606,150 +472,107 @@
 									});
 								</script>
 								<div id="owl-demo3" class="owl-carousel">
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>Sale</h6>
-											</div>
-											<a href="products3.html"><img src="images/h1.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products3.html">Wall Clock</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$80</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Wall Clock" />
-													<input type="hidden" name="amount" value="80.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[0].store.id}}">
+											<img src="{{danhSachSanPham[0].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[0].store.id}}">{{danhSachSanPham[0].name}}</a></h4>
+												<h5>{{danhSachSanPham[0].price}}</h5>
+												<h6>{{danhSachSanPham[0].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[0].store.id, danhSachSanPham[0].name, danhSachSanPham[0].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>10%<br>Off</h6>
-											</div>
-											<a href="products3.html"><img src="images/h2.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products3.html">Plants & Vases</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$40</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Plants & Vases" />
-													<input type="hidden" name="amount" value="40.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[1].store.id}}">
+											<img src="{{danhSachSanPham[1].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[1].id}}/{{danhSachSanPham[1].store.id}}">{{danhSachSanPham[1].name}}</a></h4>
+												<h5>{{danhSachSanPham[1].price}}</h5>
+												<h6>{{danhSachSanPham[1].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[2].store.id, danhSachSanPham[2].name, danhSachSanPham[2].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products3.html"><img src="images/h3.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products3.html">Queen Size Bed</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$250</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Queen Size Bed" />
-													<input type="hidden" name="amount" value="250.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[3].id}}/{{danhSachSanPham[3].store.id}}">
+											<img src="{{danhSachSanPham[3].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[3].id}}/{{danhSachSanPham[3].store.id}}">{{danhSachSanPham[3].name}}</a></h4>
+												<h5>{{danhSachSanPham[3].price}}</h5>
+												<h6>{{danhSachSanPham[3].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[3].store.id, danhSachSanPham[3].name, danhSachSanPham[3].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products3.html"><img src="images/h4.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products3.html">flower pot</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$30</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="flower pot" />
-													<input type="hidden" name="amount" value="30.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">
+											<img src="{{danhSachSanPham[4].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">{{danhSachSanPham[4].name}}</a></h4>
+												<h5>{{danhSachSanPham[4].price}}</h5>
+												<h6>{{danhSachSanPham[4].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[4].store.id, danhSachSanPham[4].name, danhSachSanPham[4].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>Sale</h6>
-											</div>
-											<a href="products3.html"><img src="images/h1.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products3.html">Wall Clock</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$80</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Wall Clock" />
-													<input type="hidden" name="amount" value="80.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">
+											<img src="{{danhSachSanPham[4].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">{{danhSachSanPham[4].name}}</a></h4>
+												<h5>{{danhSachSanPham[4].price}}</h5>
+												<h6>{{danhSachSanPham[4].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[4].id,danhSachSanPham[4].store.id, danhSachSanPham[4].name, danhSachSanPham[4].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>10%<br>Off</h6>
-											</div>
-											<a href="products3.html"><img src="images/h2.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products3.html">Plants & Vases</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$40</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Plants & Vases" />
-													<input type="hidden" name="amount" value="40.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[5].id}}/{{danhSachSanPham[5].store.id}}">
+											<img src="{{danhSachSanPham[5].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[5].id}}/{{danhSachSanPham[5].store.id}}">{{danhSachSanPham[5].name}}</a></h4>
+												<h5>{{danhSachSanPham[5].price}}</h5>
+												<h6>{{danhSachSanPham[5].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[5].id,danhSachSanPham[5].store.id, danhSachSanPham[5].name, danhSachSanPham[5].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products3.html"><img src="images/h3.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products3.html">Queen Size Bed</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$250</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Queen Size Bed" />
-													<input type="hidden" name="amount" value="250.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-												</form>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products3.html"><img src="images/h4.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products3.html">flower pot</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$30</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="flower pot" />
-													<input type="hidden" name="amount" value="30.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[6].id}}/{{danhSachSanPham[6].store.id}}">
+											<img src="{{danhSachSanPham[6].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[6].id}}/{{danhSachSanPham[6].store.id}}">{{danhSachSanPham[6].name}}</a></h4>
+												<h5>{{danhSachSanPham[6].price}}</h5>
+												<h6>{{danhSachSanPham[6].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[6].id,danhSachSanPham[6].store.id, danhSachSanPham[6].name, danhSachSanPham[6].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
@@ -774,150 +597,107 @@
 									});
 								</script>
 								<div id="owl-demo4" class="owl-carousel">
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>New</h6>
-											</div>
-											<a href="products4.html"><img src="images/s1.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products4.html">Roller Skates</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$180</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Roller Skates" />
-													<input type="hidden" name="amount" value="180.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[0].store.id}}">
+											<img src="{{danhSachSanPham[0].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[0].store.id}}">{{danhSachSanPham[0].name}}</a></h4>
+												<h5>{{danhSachSanPham[0].price}}</h5>
+												<h6>{{danhSachSanPham[0].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[0].store.id, danhSachSanPham[0].name, danhSachSanPham[0].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products4.html"><img src="images/s2.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products4.html">Football</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$70</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Football" />
-													<input type="hidden" name="amount" value="70.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[0].id}}/{{danhSachSanPham[1].store.id}}">
+											<img src="{{danhSachSanPham[1].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[1].id}}/{{danhSachSanPham[1].store.id}}">{{danhSachSanPham[1].name}}</a></h4>
+												<h5>{{danhSachSanPham[1].price}}</h5>
+												<h6>{{danhSachSanPham[1].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[2].store.id, danhSachSanPham[2].name, danhSachSanPham[2].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>20% <br>Off</h6>
-											</div>
-											<a href="products4.html"><img src="images/s3.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products4.html">Nylon Shuttle</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$56</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Nylon Shuttle" />
-													<input type="hidden" name="amount" value="56.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[3].id}}/{{danhSachSanPham[3].store.id}}">
+											<img src="{{danhSachSanPham[3].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[3].id}}/{{danhSachSanPham[3].store.id}}">{{danhSachSanPham[3].name}}</a></h4>
+												<h5>{{danhSachSanPham[3].price}}</h5>
+												<h6>{{danhSachSanPham[3].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[3].store.id, danhSachSanPham[3].name, danhSachSanPham[3].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products4.html"><img src="images/s4.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products4.html">Cricket Kit</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$80</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Cricket Kit" />
-													<input type="hidden" name="amount" value="80.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">
+											<img src="{{danhSachSanPham[4].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">{{danhSachSanPham[4].name}}</a></h4>
+												<h5>{{danhSachSanPham[4].price}}</h5>
+												<h6>{{danhSachSanPham[4].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[0].id,danhSachSanPham[4].store.id, danhSachSanPham[4].name, danhSachSanPham[4].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>New</h6>
-											</div>
-											<a href="products4.html"><img src="images/s1.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products4.html">Roller Skates</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$180</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Roller Skates" />
-													<input type="hidden" name="amount" value="180.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">
+											<img src="{{danhSachSanPham[4].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[4].id}}/{{danhSachSanPham[4].store.id}}">{{danhSachSanPham[4].name}}</a></h4>
+												<h5>{{danhSachSanPham[4].price}}</h5>
+												<h6>{{danhSachSanPham[4].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[4].id,danhSachSanPham[4].store.id, danhSachSanPham[4].name, danhSachSanPham[4].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products4.html"><img src="images/s2.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products4.html">Football</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$70</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Football" />
-													<input type="hidden" name="amount" value="70.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[5].id}}/{{danhSachSanPham[5].store.id}}">
+											<img src="{{danhSachSanPham[5].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[5].id}}/{{danhSachSanPham[5].store.id}}">{{danhSachSanPham[5].name}}</a></h4>
+												<h5>{{danhSachSanPham[5].price}}</h5>
+												<h6>{{danhSachSanPham[5].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[5].id,danhSachSanPham[5].store.id, danhSachSanPham[5].name, danhSachSanPham[5].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<div class="new-tag">
-												<h6>20% <br>Off</h6>
-											</div>
-											<a href="products4.html"><img src="images/s3.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products4.html">Nylon Shuttle</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$56</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Nylon Shuttle" />
-													<input type="hidden" name="amount" value="56.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
-												</form>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="glry-w3agile-grids agileits">
-											<a href="products4.html"><img src="images/s4.png" alt="img"></a>
-											<div class="view-caption agileits-w3layouts">
-												<h4><a href="products4.html">Cricket Kit</a></h4>
-												<p>Lorem ipsum dolor sit amet consectetur</p>
-												<h5>$80</h5>
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="w3ls_item" value="Cricket Kit" />
-													<input type="hidden" name="amount" value="80.00" />
-													<button type="submit" class="w3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<div class="item"  >
+										<div class="glry-w3agile-grids agileits" >
+											<a href="/single/{{danhSachSanPham[6].id}}/{{danhSachSanPham[6].store.id}}">
+											<img src="{{danhSachSanPham[6].imageLink}}" alt="img"></a>
+											<div class="view-caption agileits-w3layouts" >
+												<h4><a href="/single/{{danhSachSanPham[6].id}}/{{danhSachSanPham[6].store.id}}">{{danhSachSanPham[6].name}}</a></h4>
+												<h5>{{danhSachSanPham[6].price}}</h5>
+												<h6>{{danhSachSanPham[6].store.name}}</h6>
+												<form >
+													
+													<button ng-click="themVaoGioHang(danhSachSanPham[6].id,danhSachSanPham[6].store.id, danhSachSanPham[6].name, danhSachSanPham[6].price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 												</form>
 											</div>
 										</div>
@@ -1060,224 +840,5 @@
 			</div>
 		</div>
 	</div>
-	<!-- //deals -->
-	<!-- footer-top -->
-	<div class="w3agile-ftr-top">
-		<div class="container">
-			<div class="ftr-toprow">
-				<div class="col-md-4 ftr-top-grids">
-					<div class="ftr-top-left">
-						<i class="fa fa-truck" aria-hidden="true"></i>
-					</div>
-					<div class="ftr-top-right">
-						<h4>FREE DELIVERY</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus justo ac </p>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="col-md-4 ftr-top-grids">
-					<div class="ftr-top-left">
-						<i class="fa fa-user" aria-hidden="true"></i>
-					</div>
-					<div class="ftr-top-right">
-						<h4>CUSTOMER CARE</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus justo ac </p>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="col-md-4 ftr-top-grids">
-					<div class="ftr-top-left">
-						<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-					</div>
-					<div class="ftr-top-right">
-						<h4>GOOD QUALITY</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tempus justo ac </p>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-	<!-- //footer-top -->
-	<!-- subscribe -->
-	<div class="subscribe">
-		<div class="container">
-			<div class="col-md-6 social-icons w3-agile-icons">
-				<h4>Keep in touch</h4>
-				<ul>
-					<li><a href="#" class="fa fa-facebook icon facebook"> </a></li>
-					<li><a href="#" class="fa fa-twitter icon twitter"> </a></li>
-					<li><a href="#" class="fa fa-google-plus icon googleplus"> </a></li>
-					<li><a href="#" class="fa fa-dribbble icon dribbble"> </a></li>
-					<li><a href="#" class="fa fa-rss icon rss"> </a></li>
-				</ul>
-				<ul class="apps">
-					<li>
-						<h4>Download Our app : </h4>
-					</li>
-					<li><a href="#" class="fa fa-apple"></a></li>
-					<li><a href="#" class="fa fa-windows"></a></li>
-					<li><a href="#" class="fa fa-android"></a></li>
-				</ul>
-			</div>
-			<div class="col-md-6 subscribe-right">
-				<h4>Sign up for email and get 25%off!</h4>
-				<form action="#" method="post">
-					<input type="text" name="email" placeholder="Enter your Email..." required="">
-					<input type="submit" value="Subscribe">
-				</form>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!-- //subscribe -->
-	<!-- footer -->
-	<div class="footer">
-		<div class="container">
-			<div class="footer-info w3-agileits-info">
-				<div class="col-md-4 address-left agileinfo">
-					<div class="footer-logo header-logo">
-						<h2><a href="index.html"><span>S</span>mart <i>Bazaar</i></a></h2>
-						<h6>Your stores. Your place.</h6>
-					</div>
-					<ul>
-						<li><i class="fa fa-map-marker"></i> 123 San Sebastian, New York City USA.</li>
-						<li><i class="fa fa-mobile"></i> 333 222 3333 </li>
-						<li><i class="fa fa-phone"></i> +222 11 4444 </li>
-						<li><i class="fa fa-envelope-o"></i> <a href="mailto:example@mail.com"> mail@example.com</a></li>
-					</ul>
-				</div>
-				<div class="col-md-8 address-right">
-					<div class="col-md-4 footer-grids">
-						<h3>Company</h3>
-						<ul>
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="marketplace.html">Marketplace</a></li>
-							<li><a href="values.html">Core Values</a></li>
-							<li><a href="privacy.html">Privacy Policy</a></li>
-						</ul>
-					</div>
-					<div class="col-md-4 footer-grids">
-						<h3>Services</h3>
-						<ul>
-							<li><a href="contact.html">Contact Us</a></li>
-							<li><a href="login.html">Returns</a></li>
-							<li><a href="faq.html">FAQ</a></li>
-							<li><a href="sitemap.html">Site Map</a></li>
-							<li><a href="login.html">Order Status</a></li>
-						</ul>
-					</div>
-					<div class="col-md-4 footer-grids">
-						<h3>Payment Methods</h3>
-						<ul>
-							<li><i class="fa fa-laptop" aria-hidden="true"></i> Net Banking</li>
-							<li><i class="fa fa-money" aria-hidden="true"></i> Cash On Delivery</li>
-							<li><i class="fa fa-pie-chart" aria-hidden="true"></i>EMI Conversion</li>
-							<li><i class="fa fa-gift" aria-hidden="true"></i> E-Gift Voucher</li>
-							<li><i class="fa fa-credit-card" aria-hidden="true"></i> Debit/Credit Card</li>
-						</ul>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-	</div>
-	<!-- //footer -->
-	<div class="copy-right">
-		<div class="container">
-			<p>© 2016 Smart bazaar . All rights reserved | Design by <a href="http://w3layouts.com"> W3layouts.</a></p>
-		</div>
-	</div>
-	<!-- cart-js -->
-	<script src="/js/minicart.js"></script>
-	<script>
-									w3ls.render();
 
-									w3ls.cart.on('w3sb_checkout', function (evt) {
-										var items, len, i;
-
-										if (this.subtotal() > 0) {
-											items = this.items();
-
-											for (i = 0, len = items.length; i < len; i++) {
-												items[i].set('shipping', 0);
-												items[i].set('shipping2', 0);
-											}
-										}
-									});
-	</script>
-	<!-- //cart-js -->
-	<!-- countdown.js -->
-	<script src="/js/jquery.knob.js"></script>
-	<script src="/js/jquery.throttle.js"></script>
-	<script src="/js/jquery.classycountdown.js"></script>
-	<script>
-		$(document).ready(function () {
-			$('#countdown1').ClassyCountdown({
-				end: '1388268325',
-				now: '1387999995',
-				labels: true,
-				style: {
-					element: "",
-					textResponsive: .5,
-					days: {
-						gauge: {
-							thickness: .10,
-							bgColor: "rgba(0,0,0,0)",
-							fgColor: "#1abc9c",
-							lineCap: 'round'
-						},
-						textCSS: 'font-weight:300; color:#fff;'
-					},
-					hours: {
-						gauge: {
-							thickness: .10,
-							bgColor: "rgba(0,0,0,0)",
-							fgColor: "#05BEF6",
-							lineCap: 'round'
-						},
-						textCSS: ' font-weight:300; color:#fff;'
-					},
-					minutes: {
-						gauge: {
-							thickness: .10,
-							bgColor: "rgba(0,0,0,0)",
-							fgColor: "#8e44ad",
-							lineCap: 'round'
-						},
-						textCSS: ' font-weight:300; color:#fff;'
-					},
-					seconds: {
-						gauge: {
-							thickness: .10,
-							bgColor: "rgba(0,0,0,0)",
-							fgColor: "#f39c12",
-							lineCap: 'round'
-						},
-						textCSS: ' font-weight:300; color:#fff;'
-					}
-
-				},
-				onEndCallback: function () {
-					console.log("Time out!");
-				}
-			});
-		});
-	</script>
-	<!-- //countdown.js -->
-	<!-- menu js aim -->
-	<script src="/js/jquery.menu-aim.js">
-
-	</script>
-	<script src="/js/main.js"></script>
-	<!-- Resource jQuery -->
-	<!-- //menu js aim -->
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-</body>
-
-</html>
+<% include partials/footer %>

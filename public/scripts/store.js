@@ -358,14 +358,20 @@ app.controller('sanPhamTrangChu', function ($scope, $http){
         console.log(result);
         $scope.loaiSanPham = result.data;
     });
+    $http.post("/product/subcate/1").then(function (result) {
+                console.log('lay danh sach san pham trang chu');
+                console.log(result.data.products);
+                $scope.danhSachSanPham = result.data.products;
+            });
     $scope.layDanhSachSanPham = function(id){
         console.log('lay danh sach san pham '+ id);
         $http.post("/product/subcate/"+id).then(function (result) {
-                console.log('startaaa');
-                console.log(result);
+                console.log('lay danh sach san pham trang chu');
+                console.log(result.data.products);
                 $scope.danhSachSanPham = result.data.products;
             });
     };
+    $scope.themVaoGioHang = app.themVaoGioHang;
 })
 
 app.controller('gioHang',function($scope,$window, $rootScope, $http){
