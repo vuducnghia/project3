@@ -14,7 +14,7 @@ var passport = require('passport');
 ///////////////////////////// phan quyen
 var auth_adminSystem = function auth_adminSystem(req, res, next) {
   console.log(req.user.level)
-  if (req.user.level === 1){
+  if (req.user.level === 1) {
     next()
   }
   console.log('thoat')
@@ -38,8 +38,15 @@ function isLoggedIn(req, res, next) {
   // if they aren't redirect them to the home page
   res.redirect('/admin/login');
 }
+function isLogout(req, res, next) {
+  if (!req.isAuthenticated())
+    return next();
+  alert('loi')
+}
 
-///////////////////////////////////////////////////////////////////////////// router client
+///////////////////////// router client
+
+
 ////////////////////////////////////////////admin max
 router.get('/', isLoggedIn, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
@@ -51,7 +58,7 @@ router.get('/sign_up', isLoggedIn, function (req, res, next) {  // k can dung nu
   res.render('admin/account/sign_up', { title: 'Express' });
 });
 
-router.get('/login', function (req, res, next) {
+router.get('/login', isLogout, function (req, res, next) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/account/login', { title: 'Express' });
 });
@@ -138,7 +145,7 @@ router.post('/sign_up', adminController.sign_up);
 router.post('/logout', adminController.logout);
 router.post('/login_admin', passport.authenticate('local-admin', { failureRedirect: '/admin/login' }), adminController.login);
 // router.post('/login_admin', passport.authenticate('local-admin', { successRedirect: '/',failureRedirect: '/admin/login' }));
-router.post('/createAdminStore',auth_adminSystem, adminController.createAdminStore);
+router.post('/createAdminStore', auth_adminSystem, adminController.createAdminStore);
 // router.post('/createAdminSystemAndSale', adminController.createAdminSystemAndSale);
 
 
