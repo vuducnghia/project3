@@ -584,16 +584,48 @@ app.controller("manage_order", function ($scope, $http, $rootScope, $window) {
     init();
 
     function init() {
+        var label_status = {'0': 'Da tao', '1': 'Da giao hang', '2': 'Huy don'};
         $http({
             method: "GET",
             url: "/admin/getAllOrders"
         }).success(function (data) {
-            $scope.listOrder = data
+            $scope.listOrder = [];
+            data.forEach(function(item){
+                item.label_status = label_status[item.status];
+                $scope.listOrder.push(item);
+            });
+
         }).error(function (err) {
             alert("Unable to connect to the serverrrrr---/admin/getAllOrders");
         });
 
     }
 
+    $scope.detailOrder = function () {
+        var y = $window.location.href.split('/');
+
+        id = y[y.length - 1];
+
+        $http({
+            method: "GET",
+            url: "/admin/detailOrder/" + id
+        }).success(function (data) {
+            $scope.data = data[0];
+
+            $http({
+                method: "GET",
+                url: "/admin/productOrder/" + id
+            }).success(function (products) {
+                $scope.data.products = products;
+                console.log($scope.data);
+
+            }).error(function (err) {
+                alert("Unable to connect to the serverrrrr---/admin/updateProduct");
+            });
+
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/updateProduct");
+        });
+    }
 
 })

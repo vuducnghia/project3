@@ -26,7 +26,7 @@
                                                 <th class="text-center">Name</th>
                                                 <th class="text-center">Total Price</th>
                                                 <th class="text-center">Create date</th>
-                                                <th class="text-center">Shipping Address</th>
+                                                <th class="text-center">Status</th>
                                                 <th class="text-center">Customer</th>
                                                 <th class="text-center">Store</th>
                                                 <th class="text-center">Action</th>
@@ -38,7 +38,7 @@
                                                 <td class="text-center">{{order.name}}</td>
                                                 <td class="text-center">{{order.totalPrice}}</td>
                                                 <td class="text-center">{{order.create_Date | date:'dd-M-yyyy'}}</td>
-                                                <td class="text-center">{{order.shipping_Address}}</td>
+                                                <td class="text-center"><span class="label label-danger">{{order.label_status}}</span></td>
                                                 <td class="text-center">{{order.name_customer}}</td>
                                                 <td class="text-center">{{order.name_store}}</td>
                                                 <td class="text-center">

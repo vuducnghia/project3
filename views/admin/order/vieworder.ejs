@@ -1,0 +1,153 @@
+<% extend('../layout/master') %>
+    <div ng-app="admin">
+        <div class="admin-order" ng-controller="manage_order">
+            <div id="page-inner" ng-init="detailOrder()">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Order
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Advanced Tables -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Order
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col col-md-5">
+                                        <h3>Info order</h3>
+                                        <br>
+                                        <div class="form-group row">
+                                            <div class="col-md-5">
+                                                Id Order
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ data.idorder }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-5">
+                                                Name Order
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ data.name }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-5">
+                                                Total Price
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ data.totalPrice }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-5">
+                                                Date create
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ data.create_Date | date:'dd-M-yyyy' }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-5">
+                                                Store
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ data.name_store }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-5">
+                                                Shipping Address
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ data.shipping_Address }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col col-md-5">
+                                        <h3>Customer</h3>
+                                        <br>
+                                        <div class="form-group row">
+                                            <div class="col-md-5">
+                                                Id Customer
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ data.idUser }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-5">
+                                                Username
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ data.username }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-5">
+                                                Email
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ data.email }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" ng-show="data.phone">
+                                            <div class="col-md-5">
+                                                Phone
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ data.phone }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" ng-show="data.address">
+                                            <div class="col-md-5">
+                                                Address
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ data.address }}
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID Product</th>
+                                            <th class="text-center">Name Product</th>
+                                            <th class="text-center">Price</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-center">Sub price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="gradeU" ng-repeat="item in data.products">
+                                            <td class="text-center">{{item.product_idProduct}}</td>
+                                            <td class="text-center">{{item.name}}</td>
+                                            <td class="text-center">{{item.price}}</td>
+                                            <td class="text-center">{{item.quantity}}</td>
+                                            <td class="text-center">{{item.quantity * item.price }}</td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
