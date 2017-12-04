@@ -483,14 +483,16 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
 app.controller('soSanhSanPham',function($scope, $http,$location){
     console.log('$location');
     console.log($location.$$absUrl);
-    masanPham1 = $location.$$absUrl.split('/')[4];
-    storeidSP1 = $location.$$absUrl.split('/')[5];
-    tenSanPham2 = $location.$$absUrl.split('/')[6];
+    maSanPham1 = $location.$$absUrl.split('/')[5];
+    storeidSP1 = $location.$$absUrl.split('/')[6];
+    tenSanPham2 = $location.$$absUrl.split('/')[7];
     console.log('idsanPham1');
-    console.log(idsanPham1);
+    console.log(maSanPham1);
     console.log('tenSanPham2');
     console.log(tenSanPham2);
-     $http.post("/product/sosanh/"+ maSanPham1+ "/" + "/" + storeidSP1 + tenSanPham2).then(function (result) {
+    var urlPost = "/product/sosanh/"+ maSanPham1+ "/" + storeidSP1 +"/"+ tenSanPham2;
+    console.log('urlPost: ', urlPost);
+     $http.post("/product/sosanh/"+ maSanPham1+ "/" + storeidSP1 +"/"+ tenSanPham2).then(function (result) {
         console.log('startaaa');
         console.log(result);
         $scope.sanPham = result.data;
