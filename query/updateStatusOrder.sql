@@ -1,0 +1,1 @@
+UPDATE `order` SET `status` = '2' WHERE `order`.`idorder` = 1

@@ -191,3 +191,4 @@ router.post('/changeActive', userController.changeActive);
 router.get('/getAllOrders', orderController.getAllOrders);
 router.get('/detailOrder/:id', orderController.detailOrder);
 router.get('/productOrder/:id', orderController.productOrder);
+router.post('/orders/changestatus', orderController.changestatus);

@@ -48,3 +48,19 @@ exports.productOrder = (req, res) => {
         connection.release();
     })
 }
+
+exports.changestatus = (req, res) => {
+
+    poolConnection.getConnection((err, connection) => {
+        if (err) return console.log(err);
+        const sellectQuery = "UPDATE `order` SET `status` = '" + req.body.status + "' WHERE `order`.`idorder` = " + req.body.id_order
+        connection.query(sellectQuery, (error, results, fields) => {
+            if (err) {
+                console.log(err);
+                return res.json({ err_msg: 'Something wrong!' });
+            }
+            res.json(results);
+        });
+        connection.release();
+    })
+}
