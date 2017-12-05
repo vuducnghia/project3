@@ -600,9 +600,9 @@ app.controller("manage_user", function ($scope, $http, $rootScope, $window) {
 app.controller("manage_order", function ($scope, $http, $rootScope, $window) {
 
     init();
-
+    var label_status = {'0': 'Da tao', '1': 'Da giao hang', '2': 'Huy don'};
     function init() {
-        var label_status = {'0': 'Da tao', '1': 'Da giao hang', '2': 'Huy don'};
+        
         $http({
             method: "GET",
             url: "/admin/getAllOrders"
@@ -623,13 +623,15 @@ app.controller("manage_order", function ($scope, $http, $rootScope, $window) {
         var y = $window.location.href.split('/');
 
         id = y[y.length - 1];
+        var label_status = {'0': 'Da tao', '1': 'Giao hang thanh cong', '2': 'Huy don'};
+        $scope.edit = false;
 
         $http({
             method: "GET",
             url: "/admin/detailOrder/" + id
         }).success(function (data) {
             $scope.data = data[0];
-
+            $scope.data.label_status = label_status[data[0].status];
             $http({
                 method: "GET",
                 url: "/admin/productOrder/" + id
@@ -643,6 +645,28 @@ app.controller("manage_order", function ($scope, $http, $rootScope, $window) {
 
         }).error(function (err) {
             alert("Unable to connect to the serverrrrr---/admin/updateProduct");
+        });
+    }
+
+    $scope.changestatus = function() {
+        $scope.edit = true;
+    }
+    $scope.savestatus = function(order) {
+        
+
+        var data = {
+            'id_order': order.idorder,
+            'status': order.status
+        }
+        $http({
+            method: "POST",
+            url: "/admin/orders/changestatus",
+            data : data
+        }).success(function (data) {
+            $scope.data.label_status = label_status[order.status];
+            $scope.edit = false;
+        }).error(function (err) {
+            alert("Unable to connect to the serverrrrr---/admin/orders/changestatus");
         });
     }
 
