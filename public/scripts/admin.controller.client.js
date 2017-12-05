@@ -597,6 +597,17 @@ app.controller("manage_user", function ($scope, $http, $rootScope, $window) {
     }
 })
 
+app.controller("profile", function ($scope, $http, $rootScope, $window) {
+    
+
+    $scope.edit = false;
+
+    $scope.clickedit = function(){
+        $scope.edit = true;
+        
+    }
+})
+
 app.controller("manage_order", function ($scope, $http, $rootScope, $window) {
 
     init();

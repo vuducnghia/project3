@@ -81,6 +81,19 @@ router.get('/users', isLoggedIn, function (req, res) {
   res.render('admin/account/list_users', { title: 'Manage User' });
 });
 
+//User
+router.get('/profile', isLoggedIn, function (req, res) {
+
+  res.setHeader('Content-Type', 'text/html');
+  res.render('admin/account/profile', { title: 'Profile', user: req.user });
+});
+router.post('/profile/edit', adminController.editProfileAdmin);
+router.get('/profile/editerror', isLoggedIn, function (req, res) {
+
+  res.setHeader('Content-Type', 'text/html');
+  res.render('admin/account/error', { title: 'Error' });
+});
+
 
 
 ////////////////////##################$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4444

@@ -187,3 +187,37 @@ exports.createStore = (req, res) => {
         })
     })
 }
+
+exports.editProfileAdmin = (req, res) => {
+    poolConnection.getConnection((err, connection) => {
+        if (err) return console.log(err);
+        const sellectQuery = 'SELECT username FROM ecommerce.admin;';
+
+        connection.query(sellectQuery, (error, results, fields) => {
+            if (err) {
+                console.log(err);
+                return res.json({ err_msg: 'Something wrong!' });
+            }
+
+            //Check if have any duplicate infomation
+            const duplicateUser = results.filter((userExist) => {
+                return req.body.username === userExist.username;
+            });
+            if (duplicateUser.length > 0) {
+                res.redirect('/admin/profile/editerror'); 
+            } else {
+                const sellectQuery2 = "UPDATE `admin` SET `username` = '" + req.body.username + "', `phone` = '" + req.body.phone + "', `email` = '" + req.body.email + "' WHERE `admin`.`idadmin` = " + req.body.idadmin;
+                console.log(sellectQuery2);
+                connection.query(sellectQuery2, (error, results, fields) => {
+                    if (err) {
+                        console.log(err);
+                        return res.json({ err_msg: 'Something wrong!' });
+                    }
+                    res.redirect('/admin/profile');
+                })
+            }
+        });
+
+        
+    })
+}
