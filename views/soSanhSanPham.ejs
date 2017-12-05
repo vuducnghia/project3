@@ -1,9 +1,69 @@
 
 <% include partials/navbar %>
 
-<div ng-controller="soSanhSanPham">
-	
-</div>
+	<div ng-controller="soSanhSanPham" style="margin-bottom: 350px;">
+		<div class="col-md-6">
+			<center style="margin-bottom: 20px; margin-top: 20px;">
+				<h3>
+					{{sanPham1.name}}
+				</h3>
+			</center>
+			<div class="col-xs-4"  >
+				<center>
+					<a href="/single/{{sanPham1.id}}/{{sanPham1.store.id}}">
+						<img src={{sanPham1.imageLink}}>
+					</a>
+				</center>
+				
+			</div>
+			<div class="col-xs-8" >
+				<ul ng-repeat="info in sanPham1.description">
+					<li style="list-style: none;font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+ 								 border-bottom: 1px solid #ccc;">
+						<!-- {{product1.description."0"}} -->
+						{{info}}
+					</li>
+				</ul>
+				<div style="font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+ 								 border-bottom: 1px solid #ccc;"" >
+					Giá bán: {{sanPham1.price}} Vnd tại <a href="/singleStore/{{sanPham1.store.id}}">{{sanPham1.store.name}}</a> 
+				</div>
+				<!-- {{product1.description}} -->
+			</div>
+
+		</div>
+		<div class="col-md-6">
+			<center style="margin-bottom: 20px; margin-top: 20px;">
+				<h3>
+					{{sanPham2.name}}
+				</h3>
+			</center>
+			<div class="col-xs-4"  >
+				<center>
+					<a href="/single/{{sanPham2.id}}/{{sanPham2.store.id}}">
+						<img src={{sanPham2.imageLink}}>
+					</a>
+				</center>
+				
+			</div>
+			<div class="col-xs-8" >
+				<ul ng-repeat="info in sanPham2.description">
+					<li style="list-style: none;font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+ 								 border-bottom: 1px solid #ccc;">
+						<!-- {{product1.description."0"}} -->
+						{{info}}
+					</li>
+				</ul>
+				<div style="font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+ 								 border-bottom: 1px solid #ccc;"" >
+					Giá bán: {{sanPham2.price}} Vnd tại <a href="/singleStore/{{sanPham2.store.id}}"> {{sanPham2.store.name}}</a>
+				</div>
+				<!-- {{product1.description}} -->
+			</div>
+
+		</div>
+		
+	</div>
 
 
 	<% include partials/footer %>

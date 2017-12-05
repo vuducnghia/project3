@@ -18,11 +18,13 @@
 			<div>
 				<br>
 				<p class="bold">Danh sách các mặt hàng đặt mua: </p>
+				<hr>
 				<ul ng-repeat="sp in gioHang">
 					<li>
 						<p>Tên sản phẩm: {{sp.name}}</p>
 						<p>Giá tiền: {{sp.price}}</p>
 						<p>Số lượng: {{sp.number}}</p>
+						<hr>
 					</li>
 				</ul>
 				<div class="tongGioHang"><p class="bold">Tổng tiền: {{tong}}</p></div>

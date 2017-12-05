@@ -1,21 +1,21 @@
 <% include partials/navbar %>
 
-<div class="my-profile" ng-controller="trangCaNhan">
+<div class="my-profile" ng-controller="trangCaNhan" style="font-size: 1.3em;">
 	<div class="content-form">
 		<div class="row">
-			<label class="col-xs-2">username:</label>
+			<label class="col-xs-3">username:</label>
 			<input type="text" ng-model="khachHang.username">
 		</div>
 		<div class="row">
-			<label class="col-xs-2">email:</label>
+			<label class="col-xs-3">email:</label>
 			<input type="text" ng-model="khachHang.email">
 		</div>
 		<div class="row">
-			<label class="col-xs-2">Số điện thoại:</label>
+			<label class="col-xs-3">Số điện thoại:</label>
 			<input ng-model="khachHang.phone">
 		</div>
 		<div class="row">
-			<label class="col-xs-2">Địa chỉ:</label>
+			<label class="col-xs-3">Địa chỉ:</label>
 			<input ng-model="khachHang.address">
 		</div>
 		<button class="btn-success" ng-click="suaThongTin(khachHang.username, khachHang.email, khachHang.phone, khachHang.address)">Thay đổi thông tin tài khoản</button>

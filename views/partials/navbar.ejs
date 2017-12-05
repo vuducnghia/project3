@@ -105,15 +105,18 @@ $(document).ready(function() {
 	<!-- //smooth-scrolling-of-move-up -->
 <script src="/js/bootstrap.js"></script>
 </head>
-<body  ng-app="storeApp" >
+<body  ng-app="storeApp" style="font-size: 1.5em;">
 
-	<div class="header" ng-controller = "account">
-		<div class="w3ls-header"><!--header-one-->
+	<div class="header" ng-controller = "account" >
+		<div class="w3ls-header" style="font-size: 1.3em;" ><!--header-one-->
 			<div class="w3ls-header-left">
 				<p><a href="#">UPTO $50 OFF ON LAPTOPS | USE COUPON CODE LAPPY </a></p>
 			</div>
 			<div class="w3ls-header-right">
 				<ul>
+					<li class="dropdown head-dpdn">
+						<a href="/" class="dropdown-toggle"> Trang chủ</a>
+					</li>
 					<li class="dropdown head-dpdn" ng-if="user== ''">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i>{{user}} <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -128,9 +131,10 @@ $(document).ready(function() {
 
 							<li ><a href="/users/xemLichSuMuaHang">Lịch sử mua hàng</a></li>
 							<li ><a href="/users">Trang cá nhân</a></li>
+							<li><a href=""  ng-click="dang_xuat()">Đăng xuất</a></li>
 						</ul>
 					</li>
-					<li class="dropdown head-dpdn">
+					<!-- <li class="dropdown head-dpdn">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-percent" aria-hidden="true"></i> Today's Deals<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/offers">Cash Back Offers</a></li>
@@ -145,7 +149,7 @@ $(document).ready(function() {
 							<li><a href="/offers">Occasions Register</a></li>
 							<li><a href="/offers">View Balance</a></li>
 						</ul>
-					</li>
+					</li> -->
 					<!-- <li class="dropdown head-dpdn">
 						<a href="/contact" class="dropdown-toggle"><i class="fa fa-map-marker" aria-hidden="true"></i> Contact us</a>
 					</li> -->
@@ -155,9 +159,9 @@ $(document).ready(function() {
 					<li class="dropdown head-dpdn">
 						<a href="/help" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
 					</li>
-					<li class="dropdown head-dpdn" >
-						<a href="" class="dropdown-toggle" ng-click="dang_xuat()"><i class="fa fa-question-circle" aria-hidden="true"></i> Đăng xuất</a>
-					</li>
+					<!-- <li class="dropdown head-dpdn ">
+						
+					</li> -->
 				</ul>
 			</div>
 			<div class="clearfix"> </div>
@@ -173,18 +177,31 @@ $(document).ready(function() {
 						<input type="search" name="Search" ng-model="querySanPham" placeholder="Tìm kiếm sản phẩm ..." required="">
 						<button type="submit" ng-click="timKiemSanPham()" class="btn btn-default" aria-label="Left Align">
 							<i class="fa fa-search" aria-hidden="true"> </i>
+							
 						</button>
+						<div ng-if="trangThaiTimKiemSanPham != false">
+							<ul style="list-style: none;font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+ 								 border-bottom: 1px solid #ccc;"	 ng-repeat="sanPhamTimKiem in cacSanPhamTimKiem">
+								<li><a href="/single/{{sanPhamTimKiem.id}}/{{sanPhamTimKiem.store.id}}">{{sanPhamTimKiem.name}}</a></li>
+							</ul>
+						</div>
 					</form>
 					<form >
 						<input type="search" name="Search" ng-model="queryCuaHang" placeholder="Tìm kiếm cửa hàng ..." required="">
 						<button type="submit" ng-click="timKiemCuaHang()" class="btn btn-default" aria-label="Left Align">
 							<i class="fa fa-search" aria-hidden="true"> </i>
 						</button>
+						<div ng-if="trangThaiTimKiemCuaHang != false">
+							<ul style="list-style: none;font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+ 								 border-bottom: 1px solid #ccc;"	 ng-repeat="cuaHangTimKiem in cacCuaHangTimKiem">
+								<li><a href="/singleStore/{{cuaHangTimKiem.id}}">{{cuaHangTimKiem.name}}</a></li>
+							</ul>
+						</div>
 					</form>
 				</div>
 				<div class="header-cart">
 					<div class="my-account">
-						<a href="/contact"><i class="fa fa-map-marker" aria-hidden="true"></i> CONTACT US</a>
+						<a href="/contact"><i class="fa fa-map-marker" aria-hidden="true"></i> Liên hệ</a>
 					</div>
 					<div class="cart">
 					<a href='/gioHang'>
@@ -202,7 +219,7 @@ $(document).ready(function() {
 			<div class="container">
 				<div class="menu">
 					<div class="cd-dropdown-wrapper" ng-controller="loaiSanPham">
-						<a class="cd-dropdown-trigger" href="#0">Store Categories</a>
+						<a class="cd-dropdown-trigger" style="font-size: 15px; margin-left: -80px;" href="#0">Loại sản phẩm</a>
 						<nav class="cd-dropdown">
 							<a href="#0" class="cd-close">Close</a>
 							<ul class="cd-dropdown-content">

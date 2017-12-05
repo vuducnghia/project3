@@ -291,14 +291,16 @@ exports.compare2Products = (id1, storeId1, id2, storeId2, callback) => {
             name: product1.name,
             price: product1.price,
             imageLink: product1.imageLink,
-            description: product1.description
+            description: product1.description,
+            store: product1.store
           },
           product2: {
             id: product2.id,
             name: product2.name,
             price: product2.price,
             imageLink: product2.imageLink,
-            description: product2.description
+            description: product2.description,
+            store: product2.store
           },
         }
         callback(null, compareObj);

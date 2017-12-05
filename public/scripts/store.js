@@ -36,6 +36,9 @@ app.themVaoGioHang = function(idSanPham, idCuaHang, name, price){
 app.controller("account", function ($scope, $http, $window, $rootScope) {
     // $window.localStorage.setItem('gioHang','') ;
     $rootScope.user = $window.localStorage.getItem('user');
+    $scope.trangThaiTimKiemCuaHang = false;
+    $scope.trangThaiTimKiemSanPham = false;
+
     $scope.dang_xuat = function () {
 
         console.log('CLickkk');
@@ -55,38 +58,57 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
         });
     }
     $scope.timKiemSanPham = function() {
-        console.log('Tim kiem san pham');
-        console.log('Cau lenh tim kiem: ', $scope.querySanPham);
-        data = {
-            query: $scope.querySanPham
-        }
-        $http({
-            method: "POST",
-            url: "/product/timKiemSanPham",
-            data: data
-        }).success(function (data) {
-            console.log(data);
+        if($scope.trangThaiTimKiemSanPham==true){
+            $scope.trangThaiTimKiemSanPham = false;
+            $scope.cacSanPhamTimKiem = []
+        }else{
+            $scope.trangThaiTimKiemCuaHang = false;
+            $scope.trangThaiTimKiemSanPham = true;
+            
+            console.log('Tim kiem san pham');
+            console.log('Cau lenh tim kiem: ', $scope.querySanPham);
+            data = {
+                query: $scope.querySanPham
+            }
+            $http({
+                method: "POST",
+                url: "/product/timKiemSanPham",
+                data: data
+            }).success(function (data) {
+                console.log('ket qua tim kiem');
+                console.log(data);
+                $scope.cacSanPhamTimKiem = data.products;
 
-        }).error(function (err) {
-            alert("Unable to connect to the server.");
-        });
+            }).error(function (err) {
+                alert("Unable to connect to the server.");
+            });
+        }
+        
     }
     $scope.timKiemCuaHang = function() {
-        console.log('Tim kiem cua hang');
-        console.log('Cau lenh tim kiem: ', $scope.queryCuaHang);
-        data = {
-            query: $scope.queryCuaHang
-        }
-        $http({
-            method: "POST",
-            url: "/store/timkiemcuahang",
-            data: data
-        }).success(function (data) {
-            console.log(data);
+        if($scope.trangThaiTimKiemCuaHang==true){
+            $scope.trangThaiTimKiemCuaHang = false;
+            $scope.cacCuaHangTimKiem = []
+        }else{
+            $scope.trangThaiTimKiemCuaHang = true;
+            $scope.trangThaiTimKiemSanPham = false;
+            console.log('Tim kiem cua hang');
+            console.log('Cau lenh tim kiem: ', $scope.queryCuaHang);
+            data = {
+                query: $scope.queryCuaHang
+            }
+            $http({
+                method: "POST",
+                url: "/store/timkiemcuahang",
+                data: data
+            }).success(function (data) {
+                $scope.cacCuaHangTimKiem = data.stores;
+                console.log(data);
 
-        }).error(function (err) {
-            alert("Unable to connect to the server.");
-        });
+            }).error(function (err) {
+                alert("Unable to connect to the server.");
+            });
+        }
     }
 
 })
@@ -483,19 +505,37 @@ app.controller('gioHang',function($scope,$window, $rootScope, $http){
 app.controller('soSanhSanPham',function($scope, $http,$location){
     console.log('$location');
     console.log($location.$$absUrl);
-    maSanPham1 = $location.$$absUrl.split('/')[5];
-    storeidSP1 = $location.$$absUrl.split('/')[6];
-    tenSanPham2 = $location.$$absUrl.split('/')[7];
+    maSanPham1 = $location.$$absUrl.split('/')[4];
+    storeidSP1 = $location.$$absUrl.split('/')[5];
+    tenSanPham2 = $location.$$absUrl.split('/')[6];
     console.log('idsanPham1');
     console.log(maSanPham1);
+    console.log('idcuahang1');
+    console.log(storeidSP1);
     console.log('tenSanPham2');
     console.log(tenSanPham2);
     var urlPost = "/product/sosanh/"+ maSanPham1+ "/" + storeidSP1 +"/"+ tenSanPham2;
     console.log('urlPost: ', urlPost);
      $http.post("/product/sosanh/"+ maSanPham1+ "/" + storeidSP1 +"/"+ tenSanPham2).then(function (result) {
         console.log('startaaa');
-        console.log(result);
-        $scope.sanPham = result.data;
+        console.log(result.data.compareResult.product1);
+        $scope.sanPham1 = result.data.compareResult.product1;
+        var desObj1 = JSON.parse($scope.sanPham1.description);
+        if(Object.values) {
+          $scope.sanPham1.description = Object.values(desObj1);
+        } else {
+          $scope.sanPham1.description = $.makeArray(desObj1)[0];
+        }
+        $scope.sanPham2 = result.data.compareResult.product2;
+        var desObj2 = JSON.parse($scope.sanPham2.description);
+        if(Object.values) {
+          $scope.sanPham2.description = Object.values(desObj2);
+        } else {
+          $scope.sanPham2.description = $.makeArray(desObj2)[0];
+        }
+        console.log('$scope.sanPham1');
+        console.log($scope.sanPham1);
+
     });
 
 
@@ -538,4 +578,23 @@ app.controller('trangCaNhan',function($scope, $http){
     }
 
 
+})
+
+app.controller('chiTietCuaHang', function($location, $scope, $http){
+    console.log('$location');
+    console.log($location.$$absUrl);
+    maCuaHang = $location.$$absUrl.split('/')[4];
+    data={'idStore': maCuaHang }
+    $http({
+            method: "POST",
+            url: "/store/xem-thong-tin-cua-hang",
+            data: data
+        }).success(function (data) {
+
+            console.log("lay thong tin cua hang thanh cong!");
+            console.log(data);
+            // $window.location.href = '/logi';
+        }).error(function (err) {
+            alert("Unable to connect to the server.");
+        });
 })
