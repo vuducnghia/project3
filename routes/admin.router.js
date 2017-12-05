@@ -31,14 +31,27 @@ function auth_adminStore(req, res, next) {
     return next()
 }
 function isLoggedIn(req, res, next) {
-
-  // if user is authenticated in the session, carry on 
   if (req.isAuthenticated())
     return next();
 
-  // if they aren't redirect them to the home page
   res.redirect('/admin/login');
 }
+
+function isLoggedForAminSaleIn(req, res, next) {
+
+
+  if (req.isAuthenticated())
+    return next();
+  res.redirect('/admin/orders');
+}
+
+function isLoggedForAminStoreIn(req, res, next) {
+
+  if (req.isAuthenticated())
+    return next();
+  // res.redirect('/admin/orders');
+}
+
 function isLogout(req, res, next) {
   if (!req.isAuthenticated())
     return next();
@@ -126,11 +139,11 @@ router.get('/product/:id', isLoggedIn, function (req, res) {
 
 
 //Order
-router.get('/orders', isLoggedIn, auth_adminSale,function (req, res) {
+router.get('/orders', isLoggedForAminSaleIn, auth_adminSale,function (req, res) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/order/listorder', { title: 'Manage Order' });
 });
-router.get('/orders/:id',isLoggedIn, auth_adminSale, function (req, res) {
+router.get('/orders/:id',isLoggedForAminSaleIn, auth_adminSale, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
   res.render('admin/order/vieworder', {title: 'View Order'});
 });
