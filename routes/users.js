@@ -15,6 +15,10 @@ router.get('/xemLichSuMuaHang', function(req, res, next) {
   res.setHeader('Content-Type', 'text/html');
   res.render('xemLichSuMuaHang', { title: 'Express' });
 });
+router.get('/xemDanhSachSanPhamYeuThich', function(req, res, next) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('danhSachSanPhamYeuThich', { title: 'Express' });
+});
 router.post('/signup', userController.signup);
 router.post('/trangcanhan', userController.xemtrangcanhan);
 router.post('/xemlichsumuahang', userController.xemlichsumuahang);
