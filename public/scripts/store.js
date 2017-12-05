@@ -286,8 +286,38 @@ app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $
     $scope.show = false;
     $scope.onClickAddToCart = app.themVaoGioHang;
 
-    $scope.addToWishlist = function() {
+    $scope.getReviews = function(idProduct, idStore) {
+      $http({
+          method: "POST",
+          url: "/product/get-reviews",
+          data: {
+            idProduct: idProduct,
+            idStore: idStore
+          }
+      }).then(function(result) {
+        console.log(result.data);
+      }).catch(function(err) {
+        console.log(err);
+      })
+    }
+
+    $scope.addToWishlist = function(sanPham) {
       console.log("Clicked add to Wishlist :)))");
+      console.log(sanPham);
+      $http({
+          method: "POST",
+          url: "/product/them-vao-yeu-thich",
+          data: {
+            product: sanPham
+          }
+      }).then(function(result) {
+        console.log(result.data);
+        if(result.data.isAuthenticated == false) {
+          return $window.location.href = '/login';
+        }
+      }).catch(function(err) {
+        console.log(err);
+      })
     }
     console.log('$location');
     console.log($location.$$absUrl);

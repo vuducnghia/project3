@@ -54,3 +54,11 @@ const makeOrder_Store_Product = (order_idorder, store_product_store_idstore, sto
     connection.release();
   })
 }
+
+exports.getLichSuMuaHang = (idUser, callback) => {
+  poolConnection.getConnection((err, connection) => {
+    if(err) callback(err, null);
+
+    connection.release();
+  })
+}

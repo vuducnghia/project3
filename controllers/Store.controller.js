@@ -13,3 +13,11 @@ exports.findStoreByName = (req, res) => {
     return res.json({stores: stores});
   })
 }
+
+exports.getStoreInfo = (req, res) => {
+  const idStore = req.body.idStore;
+  Store.getStoreInfo(idStore, (err, result) => {
+    if(err) return res.json({error_msg: err});
+    return res.json({storeInfo: result});
+  })
+}

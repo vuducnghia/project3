@@ -59,3 +59,12 @@ exports.makeOrder = (req, res) => {
   })
   return res.json({a: 'aaaaaa'});
 }
+
+exports.getLichSuMuaHang = (req, res) => {
+  if(!req.isAuthenticated()) return res.json({isAuthenticated: false, error_msg: "Ban can dang nhap"});
+  const idUser = req.user.idUser;
+  Order.getLichSuMuaHang(idUser, (err, results) => {
+    if(err) return res.json({error_msg: err});
+    return res.json({orderHistory: results});
+  })
+}

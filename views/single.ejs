@@ -71,7 +71,7 @@
 							<input type="hidden" name="amount" value={{sanPham.price}} /> -->
 							<button ng-click="onClickAddToCart(sanPham.id,sanPham.store.id, sanPham.name, sanPham.price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 						</form>
-						<button class="w3ls-cart w3ls-cart-like" ng-click="addToWishlist()"><i class="fa fa-heart-o" aria-hidden="true"></i> Add to Wishlist</button>
+						<button class="w3ls-cart w3ls-cart-like" ng-click="addToWishlist(sanPham)"><i class="fa fa-heart-o" aria-hidden="true"></i> Add to Wishlist</button>
 					</div>
 				   <div class="clearfix"> </div>
 				</div>
@@ -185,7 +185,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingThree">
 							<h4 class="panel-title">
-								<a class="collapsed pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								<a class="collapsed pa_italic" ng-click="getReviews(sanPham.id, sanPham.store.id)" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
 									<i class="fa fa-check-square-o fa-icon" aria-hidden="true"></i> reviews (5) <span class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
 								</a>
 							</h4>

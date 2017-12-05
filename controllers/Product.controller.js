@@ -112,3 +112,27 @@ exports.soSanhSanPham = (req, res) => {
     })
   })
 }
+
+exports.addToWishlist = (req, res) => {
+  if(!req.isAuthenticated()) {
+    return res.json({isAuthenticated: false, error_msg: "Ban chua dang nhap"});
+  }
+  const product = req.body.product;
+  const user = req.user;
+  console.log('req.product: ', product);
+  console.log('req.user: ', user);
+  Product.addToWishlist(product, user, (err, result) => {
+    if(err) return res.json({error_msg: "Them vao yeu thich khong thanh cong"});
+    return res.json({msg: "Them vao yeu thich thanh cong"});
+  })
+}
+
+exports.getReviews = (req, res) => {
+  const idProduct = req.body.idProduct;
+  const idStore = req.body.idStore;
+
+  Product.getReviews(idProduct, idStore, (err, results) => {
+    if(err) return res.json({err});
+    return res.json({reviews: results});
+  })
+}
