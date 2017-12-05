@@ -308,3 +308,53 @@ exports.compare2Products = (id1, storeId1, id2, storeId2, callback) => {
     connection.release();
   })
 }
+
+exports.addToWishlist = (product, user, callback) => {
+  const idProduct = product.id;
+  const idStore = product.store.id;
+  const idUser = user.idUser;
+
+  poolConnection.getConnection((err, connection) => {
+    if(err) return callback(err);
+    const queryString = "INSERT INTO `ecommerce`.`wish_list` "
+    +"(`user_idUser`, `product_idProduct`, `store_idStore`) "
+    +"VALUES (?, ?, ?);";
+    const paramsQuery = [idUser, idProduct, idStore];
+    connection.query({sql: queryString}, paramsQuery, (err, results) => {
+      if(err) {
+        console.log("err: ", err);
+        return callback(err);
+      }
+      return callback(null, null);
+    })
+    connection.release()
+  })
+}
+
+exports.getReviews = (idProduct, idStore, callback) => {
+  poolConnection.getConnection((err, connection) => {
+    if(err) return callback(err, null);
+    const queryString = "SELECT * "
+    + " FROM ecommerce.review_product r, "
+    + " ecommerce.user u "
+    + " WHERE r.store_product_store_idstore = ? "
+    + " AND r.store_product_product_idProduct = ? "
+    + " AND r.user_idUser = u.idUser ;";
+    const params = [idStore, idProduct];
+    connection.query({sql: queryString, nestTables: true}, params, (err, results) => {
+      if(err) return callback(err, null);
+      if(!results[0]) return callback(null, []);
+      const reviews = results.map((review) => {
+        return {
+          user: {
+            name: review.u.username
+          },
+          content: review.r.content,
+          rate: review.r.rate
+        }
+      });
+      return callback(null, reviews);
+    })
+    connection.release();
+  })
+}

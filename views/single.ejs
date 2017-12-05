@@ -71,7 +71,7 @@
 							<input type="hidden" name="amount" value={{sanPham.price}} /> -->
 							<button ng-click="onClickAddToCart(sanPham.id,sanPham.store.id, sanPham.name, sanPham.price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 						</form>
-						<button class="w3ls-cart w3ls-cart-like" ng-click="addToWishlist()"><i class="fa fa-heart-o" aria-hidden="true"></i> Add to Wishlist</button>
+						<button class="w3ls-cart w3ls-cart-like" ng-click="addToWishlist(sanPham)"><i class="fa fa-heart-o" aria-hidden="true"></i> Add to Wishlist</button>
 					</div>
 				   <div class="clearfix"> </div>
 				</div>
