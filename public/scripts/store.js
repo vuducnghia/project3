@@ -51,11 +51,13 @@ app.controller("account", function ($scope, $http, $window, $rootScope) {
             $window.localStorage.setItem('gioHang','');
             console.log("Log out successful");
             // console.log(data);
-            // $window.location.href = '/';
+            $window.location.href = '/';
+
         }).error(function (err) {
             console.log("Unable to connect to the server.");
             console.log(err);
         });
+
     }
     $scope.timKiemSanPham = function() {
         if($scope.trangThaiTimKiemSanPham==true){
@@ -157,12 +159,15 @@ app.controller('dang_nhap', function ($http, $scope, $window, $rootScope, $locat
                 if($window.history && $window.history.back) {
                   return $window.history.back();
                 }
+
                 $window.location.href = '/';
+                msg="dang nhap thanh cong";
             }).error(function (err) {
                 console.log("err: ", err);
                 if(err == 'Unauthorized') return $window.location.href = '/login';
                 alert("Unable to connect to the server.");
             });
+        alert(msg);
     }
 });
 // app.controller('profile', function())
@@ -295,10 +300,51 @@ app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $
             idStore: idStore
           }
       }).then(function(result) {
-        console.log(result.data);
+        console.log(result.data.reviews);
+        var reviews = result.data.reviews;
+        console.log(reviews);
+        $scope.phanHois = reviews;
+        $scope.len = reviews.length;
+        $scope.number = 0;
       }).catch(function(err) {
         console.log(err);
       })
+    }
+    $scope.next = function(x,idProduct, idStore){
+        $http({
+          method: "POST",
+          url: "/product/get-reviews",
+          data: {
+            idProduct: idProduct,
+            idStore: idStore
+          }
+      }).then(function(result) {
+        console.log(result.data.reviews);
+        var reviews = result.data.reviews;
+        console.log(reviews);
+        $scope.phanHois = reviews;
+        $scope.number = x+1;
+      }).catch(function(err) {
+        console.log(err);
+      })
+    }
+    $scope.prev = function(x,idProduct, idStore){
+        $http({
+          method: "POST",
+          url: "/product/get-reviews",
+          data: {
+              idProduct: idProduct,
+              idStore: idStore
+            }
+          }).then(function(result) {
+            console.log(result.data.reviews);
+            var reviews = result.data.reviews;
+            console.log(reviews);
+            $scope.phanHois = reviews;
+            $scope.number = x-1;
+          }).catch(function(err) {
+            console.log(err);
+          })
     }
 
     $scope.addToWishlist = function(sanPham) {
@@ -311,6 +357,7 @@ app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $
             product: sanPham
           }
       }).then(function(result) {
+        console.log('them san pham vao yeu thich');
         console.log(result.data);
         if(result.data.isAuthenticated == false) {
           return $window.location.href = '/login';
@@ -401,6 +448,7 @@ app.controller("singleProduct", function ($scope, $http,$location, $rootScope, $
         $scope.show = true;
         console.log($scope.show);
     }
+
 
 })
 
@@ -579,11 +627,7 @@ app.controller('trangCaNhan',function($scope, $http){
         console.log(result);
         $scope.khachHang = result.data.user;
     });
-    $http.post("/users/xemlichsumuahang").then(function (result) {
-        console.log('xem lich su mua hang');
-        console.log(result);
-        $scope.lichSu = result.data;
-    });
+    
     $scope.suaThongTin = function( username, email, phone, address){
         data={
             username: username,
@@ -608,6 +652,22 @@ app.controller('trangCaNhan',function($scope, $http){
     }
 
 
+})
+
+app.controller('xemLichSuMuaHang', function($scope,$http){
+    $http.post("/users/xemlichsumuahang").then(function (result) {
+        console.log('xem lich su mua hang');
+        console.log(result);
+        $scope.lichSu = result.data;
+    });
+})
+
+app.controller('sanPhamYeuThich', function($scope,$http){
+    $http.post("/users/xemlichsumuahang").then(function (result) {
+        console.log('xem lich su mua hang');
+        console.log(result);
+        $scope.lichSu = result.data;
+    });
 })
 
 app.controller('chiTietCuaHang', function($location, $scope, $http){

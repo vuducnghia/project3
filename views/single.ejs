@@ -51,7 +51,7 @@
 							</ul>
 							<div class="row" style="margin: 0">
 								<textarea ng-model="userReview" id="input-review" name="review" cols="30" rows="5" class="col-xs-8"></textarea>
-								<a class="col-xs-8 text-center" style="font-size: 20px;" ng-click="guiPhanHoiSanPham(userReview,sanPham.id,sanPham.store.id)">Add your review</a>
+								<a class="col-xs-8 text-center" style="font-size: 20px;" ng-click="guiPhanHoiSanPham(userReview,sanPham.id,sanPham.store.id)">Gửi phản hồi của bạn</a>
 							</div>
 						</div>
 						<div class="single-price">
@@ -69,9 +69,9 @@
 							<input type="hidden" name="add" value="1" />
 							<input type="hidden" name="w3ls_item" value={{sanPham.name}}/>
 							<input type="hidden" name="amount" value={{sanPham.price}} /> -->
-							<button ng-click="onClickAddToCart(sanPham.id,sanPham.store.id, sanPham.name, sanPham.price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+							<button ng-click="onClickAddToCart(sanPham.id,sanPham.store.id, sanPham.name, sanPham.price)" class="w3ls-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
 						</form>
-						<button class="w3ls-cart w3ls-cart-like" ng-click="addToWishlist(sanPham)"><i class="fa fa-heart-o" aria-hidden="true"></i> Add to Wishlist</button>
+						<button class="w3ls-cart w3ls-cart-like" ng-click="addToWishlist(sanPham)"><i class="fa fa-heart-o" aria-hidden="true"></i> Thêm vào yêu thích</button>
 					</div>
 				   <div class="clearfix"> </div>
 				</div>
@@ -120,7 +120,7 @@
 								<form>
 
 									<button type="submit" class="w3ls-cart" ng-click="onClickAddToCart(sanPhamLienQuan[0].id, sanPhamLienQuan[0].store.id, sanPhamLienQuan[0].name, sanPhamLienQuan[0].price)">
-									<i class="fa fa-cart-plus"  aria-hidden="true"></i> Add to cart</button>
+									<i class="fa fa-cart-plus" style="width:20px;"  aria-hidden="true"></i> Thêm vào giỏ hàng</button>
 								</form>
 							</div>
 						</div>
@@ -138,7 +138,7 @@
 								<form >
 
 									<button type="submit" class="w3ls-cart" ng-click="onClickAddToCart( sanPhamLienQuan[1].id, sanPhamLienQuan[1].store.id, sanPhamLienQuan[1].name, sanPhamLienQuan[1].price)" >
-									<i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
+									<i class="fa fa-cart-plus"  aria-hidden="true"></i> Thêm vào giỏ hàng</button>
 								</form>
 							</div>
 						</div>
@@ -148,27 +148,28 @@
 			<!-- //recommendations -->
 			<!-- collapse-tabs -->
 			<div class="collpse tabs">
-				<h3 class="w3ls-title">About this item</h3>
+				<h3 class="w3ls-title">Thông tin về sản phẩm</h3>
 				<div class="panel-group collpse" id="accordion" role="tablist" aria-multiselectable="true">
 					<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingOne">
 							<h4 class="panel-title">
 								<a class="pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-									<i class="fa fa-file-text-o fa-icon" aria-hidden="true"></i> Description <span class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
+									<i class="fa fa-file-text-o fa-icon" aria-hidden="true"></i> Mô tả <span class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
 								</a>
 							</h4>
 						</div>
 						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 							<div class="panel-body">
 								<ul>
-									<li ng-repeat="info in sanPham.description">
+									<li style="list-style: none;font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
+ 								 border-bottom: 1px solid #ccc;" ng-repeat="info in sanPham.description">
 										{{info}}
 									</li>
 								</ul>
 							</div>
 						</div>
 					</div>
-					<div class="panel panel-default">
+			<!-- 		<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingTwo">
 							<h4 class="panel-title">
 								<a class="collapsed pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -181,18 +182,26 @@
 								(Mock)Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="panel panel-default">
 						<div class="panel-heading" role="tab" id="headingThree">
 							<h4 class="panel-title">
 								<a class="collapsed pa_italic" ng-click="getReviews(sanPham.id, sanPham.store.id)" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-									<i class="fa fa-check-square-o fa-icon" aria-hidden="true"></i> reviews (5) <span class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
+									<i class="fa fa-check-square-o fa-icon" aria-hidden="true"></i> Phản hồi <span class="fa fa-angle-down fa-arrow" aria-hidden="true"></span> <i class="fa fa-angle-up fa-arrow" aria-hidden="true"></i>
 								</a>
 							</h4>
 						</div>
-						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+						<div id="collapseThree"  class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" style="font-color: #000000;">
 							<div class="panel-body">
-								(Mock)Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+								<h4>Đánh giá: {{phanHois[number].rate}} <i class="fa fa-star-o" ></i> </h4>
+								<h4 style="margin-left: 20px;">{{phanHois[number].content}}</h4>
+								<div style="float: left;">   
+									<label ng-hide="number == 0" ng-click="prev(number,sanPham.id, sanPham.store.id)"><< Prev</label></div>
+								<div style="float: right;">
+									<label ng-hide="number == len-1" ng-click="next(number,sanPham.id, sanPham.store.id)" >Next >></label>
+								</div>
+								
+
 							</div>
 						</div>
 					</div>
