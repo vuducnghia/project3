@@ -30,3 +30,33 @@ exports.findStoreByName = (query, callback) => {
     connection.release();
   })
 }
+
+exports.getStoreInfo = (idStore, callback) => {
+  poolConnection.getConnection((err, connection) => {
+    if(err) {
+      console.log("Loi fasf253tsg");
+      return callback(err, null);
+    }
+    const queryString = "SELECT * FROM ecommerce.store st "
+      +"WHERE st.idstore = ?";
+    const params = [idStore];
+    connection.query({sql: queryString, nestTables: true}, params, (err, results, fields) => {
+      if(err) {
+        console.log('Something wrong when catch store infomation!');
+        return callback(err, null);
+      };
+      if(!results || !results[0]) return callback(null, []);
+      const result = results[0];
+      const stores = {
+        id: result.st.idstore,
+        name: result.st.name,
+        phonenumber: result.st.phone,
+        address: result.st.address,
+        description: result.st.description,
+        imagesLink: result.st.linkImage
+      }
+      return callback(null, stores);
+    })
+    connection.release();
+  })
+}
