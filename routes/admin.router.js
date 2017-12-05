@@ -137,18 +137,25 @@ router.get('/product/:id', isLoggedIn, function (req, res) {
 
 
 
-
+// admin SALE
 //Order
+
+
+
 router.get('/orders', isLoggedForAminSaleIn, auth_adminSale,function (req, res) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/order/listorder', { title: 'Manage Order' });
+  res.render('admin/admin_sale/listorder', { title: 'Manage Order' });
 });
 router.get('/orders/:id',isLoggedForAminSaleIn, auth_adminSale, function (req, res) {
   res.setHeader('Content-Type', 'text/html');
-  res.render('admin/order/vieworder', {title: 'View Order'});
+  res.render('admin/admin_sale/vieworder', {title: 'View Order'});
 });
 
-
+//            ADMIN STORE
+router.get('/sale', isLoggedForAminSaleIn, auth_adminSale,function (req, res) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('admin/admin_store/home', { title: 'Manage Order' });
+});
 
 
 ////////////####################################################################33

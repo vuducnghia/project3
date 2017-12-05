@@ -31,10 +31,14 @@ app.controller("account", function ($scope, $http, $rootScope, $window) {
             url: "/admin/login_admin",
             data: data
         }).success(function (data) {
-
             console.log('response: ', data);
-            $rootScope.role = data.level;
-            $window.location.href = '/admin';
+            if (data.admin.level == 1) {
+                $window.location.href = '/admin';
+            }
+            else if (data.admin.level == 2)
+                $window.location.href = '/admin/orders';
+            else 
+                $window.location.href = '/admin/sale';
         }).error(function (err) {
             alert("Unable to connect to the serverrrrr.");
         });
@@ -57,7 +61,7 @@ app.controller("account", function ($scope, $http, $rootScope, $window) {
         console.log($scope.account.level)
         // $scope.account.active = 1;
         if ($scope.account.level === '1' || $scope.account.level === '2') {
-            
+
             $http({
                 method: "POST",
                 url: "/admin/createAdminSystemAndSale",
@@ -575,20 +579,20 @@ app.controller("manage_user", function ($scope, $http, $rootScope, $window) {
         });
     }
 
-    $scope.changeActive = function(user){
-        if(user.level ==1){
+    $scope.changeActive = function (user) {
+        if (user.level == 1) {
             alert('impossible dream :kaka')
             return;
         }
-            
-        if(user.active == 0)
+
+        if (user.active == 0)
             user.active = 1;
-        else 
+        else
             user.active = 0;
         $http({
             method: "POST",
             url: "/admin/changeActive",
-            data : user
+            data: user
         }).success(function (data) {
             console.log(data)
         }).error(function (err) {
@@ -600,15 +604,15 @@ app.controller("manage_user", function ($scope, $http, $rootScope, $window) {
 app.controller("manage_order", function ($scope, $http, $rootScope, $window) {
 
     init();
-    var label_status = {'0': 'Da tao', '1': 'Da giao hang', '2': 'Huy don'};
+    var label_status = { '0': 'Da tao', '1': 'Da giao hang', '2': 'Huy don' };
     function init() {
-        
+
         $http({
             method: "GET",
             url: "/admin/getAllOrders"
         }).success(function (data) {
             $scope.listOrder = [];
-            data.forEach(function(item){
+            data.forEach(function (item) {
                 item.label_status = label_status[item.status];
                 $scope.listOrder.push(item);
             });
@@ -623,7 +627,7 @@ app.controller("manage_order", function ($scope, $http, $rootScope, $window) {
         var y = $window.location.href.split('/');
 
         id = y[y.length - 1];
-        var label_status = {'0': 'Da tao', '1': 'Giao hang thanh cong', '2': 'Huy don'};
+        var label_status = { '0': 'Da tao', '1': 'Giao hang thanh cong', '2': 'Huy don' };
         $scope.edit = false;
 
         $http({
@@ -648,11 +652,11 @@ app.controller("manage_order", function ($scope, $http, $rootScope, $window) {
         });
     }
 
-    $scope.changestatus = function() {
+    $scope.changestatus = function () {
         $scope.edit = true;
     }
-    $scope.savestatus = function(order) {
-        
+    $scope.savestatus = function (order) {
+
 
         var data = {
             'id_order': order.idorder,
@@ -661,7 +665,7 @@ app.controller("manage_order", function ($scope, $http, $rootScope, $window) {
         $http({
             method: "POST",
             url: "/admin/orders/changestatus",
-            data : data
+            data: data
         }).success(function (data) {
             $scope.data.label_status = label_status[order.status];
             $scope.edit = false;
